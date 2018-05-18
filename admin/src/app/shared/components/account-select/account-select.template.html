@@ -1,0 +1,19 @@
+<div class="account-select">
+  <ngx-select [allowClear]="true"
+              [items]="accounts" optionValueField="id" optionTextField="text"
+              [(ngModel)]="selectedAccount"
+              (typed)="inputTyped('ngx-select', $event)"
+              placeholder="No Account" class="account-select-input">
+
+    <ng-template ngx-select-option ngx-select-option-selected let-option let-text="text">
+      <img class="account-photo" [src]="option.data.profilePhoto" />
+      <span class="account-name">{{option.data.profileName}}</span>
+      <span class="account-email">{{option.data.profileEmail}}</span>
+    </ng-template>
+
+    <ng-template ngx-select-option-not-found>
+      Nothing found
+    </ng-template>
+
+  </ngx-select>
+</div>

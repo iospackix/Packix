@@ -1,0 +1,72 @@
+{
+  "name": "AccountGroupLink",
+  "plural": "AccountGroupLinks",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "allowedMethods": [
+    "find",
+    "findOne",
+    "findById",
+    "create",
+    "destroyById"
+  ],
+  "ownerIdPath": "group.accountId",
+  "properties": {
+    "accountId": {
+      "type": "string",
+      "required": true,
+      "index": true
+    },
+    "accountGroupId": {
+      "type": "string",
+      "required": true,
+      "index": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "account": {
+      "type": "belongsTo",
+      "model": "Account",
+      "foreignKey": "accountId"
+    },
+    "group": {
+      "type": "belongsTo",
+      "model": "AccountGroup",
+      "foreignKey": "accountGroupId"
+    }
+  },
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    },
+    {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "$owner",
+      "permission": "ALLOW"
+    },
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "admin",
+      "permission": "ALLOW"
+    },
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "dynamicOwner",
+      "permission": "ALLOW",
+      "property": [
+        "destroyById"
+      ]
+    }
+  ],
+  "methods": {}
+}

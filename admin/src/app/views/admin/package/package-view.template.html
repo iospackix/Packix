@@ -1,0 +1,703 @@
+<style>
+  .ql-snow b, .ql-snow strong {
+    font-weight: bold !important;
+  }
+
+  .page-main .list-group {
+    margin: 0;
+    padding-right: 15px;
+  }
+
+  .list-group .avatar {
+    width: 62px;
+  }
+
+  .list-group .card {
+    margin-bottom: 15px;
+  }
+
+  .list-group .card-block {
+    -webkit-transition: border .2s linear, color .2s linear, width .2s linear, background-color .2s linear;
+    -o-transition: border .2s linear, color .2s linear, width .2s linear, background-color .2s linear;
+    transition: border .2s linear, color .2s linear, width .2s linear, background-color .2s linear;
+  }
+
+  .list-group .card-block:hover {
+    cursor: pointer;
+    background-color: #eee;
+  }
+
+  .list-group .list-group-item, .list-group .list-group-item:hover {
+    background-color: transparent;
+  }
+
+  .list-inline {
+    height: 25px;
+  }
+
+  .list-inline li a:hover {
+    text-decoration: none;
+    color: #76838f !important;
+  }
+
+  .detail {
+    background-color: #a2caee !important;
+  }
+
+  .page-content {
+    height: 100%;
+    overflow-y: auto;
+  }
+
+  .tab-content {
+    padding: 15px;
+  }
+
+  .screenshot-img {
+    width: 100%;
+    margin-top: -10px;
+    height: auto;
+    z-index: 1;
+  }
+
+  .screenshot-delete {
+    display: inline-block;
+    height: 20px;
+    z-index: 3;
+    padding-top: 1px;
+    font-size: 10px;
+    width: 20px;
+    position: relative;
+    float: right;
+    margin-right: -10px;
+    margin-top: -10px;
+  }
+
+  .screenshot-container {
+    padding-bottom: 25px;
+  }
+
+  .screenshot-pl-text {
+    padding-right: 10px;
+    padding-left: 10px;
+    display: table-cell;
+    font-size: 15px;
+    color: rgba(146, 146, 146, 0.4);
+    font-weight: 400;
+    vertical-align: middle;
+    text-align: center;
+  }
+
+  .screenshot-pl-text i {
+    display: block;
+    text-align: center;
+    font-size: 25px;
+    color: rgba(146, 146, 146, 0.4);
+    margin-bottom: 4px;
+  }
+
+  .screenshot-img-placeholder {
+    background-color: #e5ebed;
+    height: 100%;
+    width: 100%;
+    display: block;
+  }
+
+  .screenshots-wrapper {
+    display: flex;
+    width: auto;
+    justify-content: initial;
+    margin-bottom: -20px;
+    margin-right:  -5px;
+    margin-left: -5px;
+  }
+
+  .screenshot-upload {
+    position: absolute;
+    height: 100%;
+    opacity: 0;
+    width: 100%;
+  }
+
+  .screenshot-item {
+    display: block;
+    height: 100%;
+    max-width: 155px;
+  }
+
+  strong, b {
+    font-weight: 500;
+  }
+
+  .package-page .card-block {
+    border-top: 1px solid #e4eaec;
+  }
+
+  .head-action-btn {
+    font-size: 12px;
+    padding: 5px;
+    padding-right: 5px;
+    padding-left: 10px;
+    border: none;
+    float: right;
+  }
+
+  .thing {
+    min-height: 0 !important;
+    min-width: 0 !important;
+  }
+
+</style>
+
+<div class="page-content container-fluid package-page">
+  <div class="row">
+    <div class="col-xxl-3 col-xl-4 col-lg-12" style="float: right;" *ngIf="package">
+      <div class="alert alert-danger" *ngIf="!package.visible" role="alert">
+        This package is currently hidden, users will not be able to see or download it.
+      </div>
+      <div class="alert alert-warning" *ngIf="minIOSVersion.length < 1" role="alert" (click)="packageModal.show()" style="cursor: pointer;">
+        You have not set a minimum iOS Version that this package supports, use the pencil button next to the "Package" header to set iOS Support.
+      </div>
+      <div class="card">
+        <div class="card-block">
+          <h4 style="margin-top: 0px;" class="project-option-title">Package
+            <button container="body" tooltip="Edit Package Info and Supported iOS Version" type="button" (click)="packageModal.show()" class="btn btn-icon btn-primary head-action-btn">
+              <i class="icon wb-pencil" aria-hidden="true"></i>
+            </button>
+          </h4>
+          <p class="mb-5">
+            <span><strong>Name: </strong></span>{{package.name}}
+          </p>
+          <p class="mb-5">
+            <span><strong>Identifier: </strong></span>{{package.identifier}}
+          </p>
+          <p class="mb-5">
+            <span><strong>Latest Version: </strong></span>{{package.latestVersion.version}}
+          </p>
+          <p class="mb-5">
+            <span><strong>Short Description: </strong></span>{{package.shortDescription}}
+          </p>
+          <p class="mb-0">
+            <span><strong>Download Count: </strong></span>{{package.latestVersion.downloadCount}}
+          </p>
+
+          <a [attr.href]="'/package/' + package.identifier + '/'" target="_blank" *ngIf="package.visible">
+            <button style="width: 100%; margin-top: 10px; margin-bottom: -5px;" class="btn btn-primary">
+              View Package Depiction
+            </button>
+          </a>
+
+          <!--<div class="progress progress-xs mb-10">-->
+            <!--<div class="progress-bar progress-bar-success" role="progressbar" aria-valuemax="100" aria-valuemin="0" aria-valuenow="60" style="width: 60%;">-->
+            <!--</div>-->
+          <!--</div>-->
+        </div>
+        <div class="card-block" *ngIf="shouldShowPaid">
+          <h4 class="project-option-title mt-15">Sales Info</h4>
+          <p class="mb-5" container="body" tooltip="How many sales this package has">
+            <span><strong>Sales Count: </strong></span>{{salesCount}}
+          </p>
+          <p class="mb-5" container="body" tooltip="How much this package has made before fees">
+            <span><strong>Sales Revenue: </strong></span>{{ salesAmount | number : '1.2-2'}}
+          </p>
+          <p class="mb-5" container="body" tooltip="How much the payment processor has taken in fees">
+            <span><strong>Sales Fees: </strong></span>{{ salesFees | number : '1.2-2'}}
+          </p>
+          <p class="mb-0" container="body" tooltip="What is this income after fees and refunds">
+            <span><strong>Sales Income: </strong></span>{{ (salesAmount - salesFees) | number : '1.2-2'}}
+          </p>
+        </div>
+        <div class="card-block">
+          <h4 class="project-option-title mt-15">Download Restrictions
+            <button container="body" tooltip="Set price, patreon tier, etc..." (click)="restrictionsModal.show()" type="button" class="btn btn-icon btn-primary head-action-btn">
+              <i class="icon wb-pencil" aria-hidden="true"></i>
+            </button>
+          </h4>
+          <div *ngIf="package.downloadRestrictions && package.downloadRestrictions.length > 0">
+            <span *ngFor="let restriction of package.downloadRestrictions"
+                  [ngClass]="['badge mr-5 mb-5', {'patreon':'badge-warning', 'paypal-payment':'badge-primary', 'cydia-store':'badge-info'}[ restriction.type]]">
+              <ng-container *ngIf="restriction.type == 'patreon'">Patreon: {{restriction.data.rewardAmount/100 | currency}} or more</ng-container>
+              <ng-container *ngIf="restriction.type == 'paypal-payment'">PayPal: {{restriction.data.price | currency}}</ng-container>
+              <ng-container *ngIf="restriction.type == 'cydia-store'">CydiaStore: {{restriction.data.packageIdentifier}}</ng-container>
+            </span>
+          </div>
+          <div *ngIf="!package.downloadRestrictions || package.downloadRestrictions.length < 1">
+            <p class="mb-0">This package currently does not have any download restrictions.</p>
+          </div>
+        </div>
+      </div>
+      <div class="card" *ngIf="package.downloadRestrictions && package.downloadRestrictions.length > 0" style="margin-bottom: 15px;">
+        <div class="card-block" style="padding: 0; border-top: none;">
+          <button style="width: 100%;" class="btn btn-primary" (click)="giftsModal.show()">
+            Gift Tweak
+          </button>
+        </div>
+      </div>
+      <div class="card" *ngIf="showPatreonRestriction" style="margin-bottom: 15px;">
+        <div class="card-block" style="padding: 0; border-top: none;">
+          <button style="width: 100%;" class="btn btn-warning" (click)="giftToPatreonModal.show()">
+            Gift to Patreon Users
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col-xxl-9 col-xl-8 col-lg-12" *ngIf="package">
+      <div class="row" *ngIf="shouldShowPaid">
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xl-3">
+          <div class="card card-inverse card-shadow bg-blue-600 white">
+            <div class="card-block pt-10 pb-10 pr-15 pl-15">
+              <div class="counter counter-md counter-inverse text-left">
+                <div class="counter-label counter-label-sm font-size-13">
+                  <div>Last 24 Hours</div>
+
+                </div>
+                <div class="counter-number-group font-size-20">
+                  <span class="counter-number-related">$</span>
+                  <span class="counter-number">{{ purchaseStats.last24Hours.total | number : '1.2-2'}}</span>
+                </div>
+                <div class="counter-label">
+
+                  <div class="counter counter-sm text-left">
+                    <div class="counter-number-group font-size-12">
+                      <span class="counter-number">{{ purchaseStats.last24Hours.count }}</span>
+                      <span class="counter-number-related text-uppercase blue-200">Sales</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xl-3">
+          <div class="card card-inverse card-shadow bg-green-600 white">
+            <div class="card-block pt-10 pb-10 pr-15 pl-15">
+              <div class="counter counter-md counter-inverse text-left">
+                <div class="counter-label counter-label-sm font-size-13">
+                  <div>Last 7 Days</div>
+
+                </div>
+                <div class="counter-number-group font-size-20">
+                  <span class="counter-number-related">$</span>
+                  <span class="counter-number">{{ purchaseStats.lastWeek.total | number : '1.2-2'}}</span>
+                </div>
+                <div class="counter-label">
+
+                  <div class="counter counter-sm text-left">
+                    <div class="counter-number-group font-size-12">
+                      <span class="counter-number">{{ purchaseStats.lastWeek.count }}</span>
+                      <span class="counter-number-related text-uppercase green-200">Sales</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xl-3">
+          <div class="card card-inverse card-shadow bg-red-600 white">
+            <div class="card-block pt-10 pb-10 pr-15 pl-15">
+              <div class="counter counter-md counter-inverse text-left">
+                <div class="counter-label counter-label-sm font-size-13">
+                  <div>Last 30 Days</div>
+
+                </div>
+                <div class="counter-number-group font-size-20">
+                  <span class="counter-number-related">$</span>
+                  <span class="counter-number">{{ purchaseStats.lastMonth.total | number : '1.2-2'}}</span>
+                </div>
+                <div class="counter-label">
+
+                  <div class="counter counter-sm text-left">
+                    <div class="counter-number-group font-size-12">
+                      <span class="counter-number">{{ purchaseStats.lastMonth.count }}</span>
+                      <span class="counter-number-related text-uppercase red-200">Sales</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xl-3">
+          <div class="card card-inverse card-shadow bg-purple-600 white">
+            <div class="card-block pt-10 pb-10 pr-15 pl-15">
+              <div class="counter counter-md counter-inverse text-left">
+                <div class="counter-label counter-label-sm font-size-13">
+                  <div>Last 90 Days</div>
+
+                </div>
+                <div class="counter-number-group font-size-20">
+                  <span class="counter-number-related">$</span>
+                  <span class="counter-number">{{ purchaseStats.last3Months.total | number : '1.2-2'}}</span>
+                </div>
+                <div class="counter-label">
+
+                  <div class="counter counter-sm text-left">
+                    <div class="counter-number-group font-size-12">
+                      <span class="counter-number">{{ purchaseStats.last3Months.count }}</span>
+                      <span class="counter-number-related text-uppercase purple-200">Sales</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12 col-lg-12">
+          <div class="card" style="background-color: transparent">
+        <div class="card-block" style="padding: 0px; border-top: none;">
+          <div class="nav-tabs-animate nav-tabs-horizontal nav-tabs-inverse" data-plugin="tabs">
+            <ul class="nav nav-tabs nav-tabs-solid" role="tablist">
+              <li class="nav-item" role="presentation">
+                <a class="nav-link active" data-toggle="tab" href="#description" aria-controls="description" role="tab"
+                   aria-expanded="true">
+                  Description
+                </a>
+              </li>
+              <li class="nav-item" role="presentation">
+                <a class="nav-link" data-toggle="tab" href="#screenshots" aria-controls="screenshots" role="tab"
+                   aria-expanded="false">
+                  Screenshots
+                </a>
+              </li>
+              <li class="nav-item" role="presentation">
+                <a class="nav-link" data-toggle="tab" href="#versions" aria-controls="versions" role="tab"
+                   aria-expanded="false">
+                  Versions
+                </a>
+              </li>
+              <li class="nav-item" role="presentation" *ngIf="shouldShowPaid">
+                <a class="nav-link" data-toggle="tab" href="#purchases" aria-controls="purchases" role="tab"
+                   aria-expanded="false">
+                  Purchases
+                </a>
+              </li>
+              <li class="nav-item" role="presentation" *ngIf="shouldShowPaid">
+                <a class="nav-link" data-toggle="tab" href="#refunds" aria-controls="refund requests" role="tab"
+                   aria-expanded="false">
+                  Refund Requests
+                  <span class="badge badge-pill badge-danger" *ngIf="refundRequestResponseNeededCount > 0">{{ refundRequestResponseNeededCount }}</span>
+                </a>
+              </li>
+              <li class="nav-item" role="presentation">
+                <a class="nav-link" data-toggle="tab" href="#reviews" aria-controls="reviews" role="tab"
+                   aria-expanded="false">
+                  Reviews
+                </a>
+              </li>
+              <li class="nav-item dropdown" style="display: none;">
+                <a class="dropdown-toggle nav-link" data-toggle="dropdown" href="#" aria-expanded="false">Menu </a>
+                <div class="dropdown-menu" role="menu">
+                  <a class="dropdown-item" data-toggle="tab" href="#description" aria-controls="description" role="tab">Description
+                  </a>
+                  <a class="dropdown-item" data-toggle="tab" href="#screenshots" aria-controls="screenshots" role="tab">Screenshots
+                  </a>
+                  <a class="dropdown-item" data-toggle="tab" href="#versions" aria-controls="versions" role="tab">Versions
+                  </a>
+                  <a class="dropdown-item" data-toggle="tab" href="#purchases" aria-controls="purchases"
+                     role="tab" *ngIf="shouldShowPaid">Purchases</a>
+                  <a class="dropdown-item" data-toggle="tab" href="#purchases" aria-controls="refunds"
+                     role="tab" *ngIf="shouldShowPaid">Refund Requests <span class="badge badge-pill badge-danger" *ngIf="refundRequestResponseNeededCount > 0">{{ refundRequestResponseNeededCount }}</span></a>
+                  <a class="dropdown-item" data-toggle="tab" href="#reviews" aria-controls="reviews"
+                     role="tab">Reviews</a>
+                </div>
+              </li>
+            </ul>
+            <div class="tab-content">
+              <div class="tab-pane active" id="description" role="tabpanel" aria-expanded="true">
+                <quill-editor #editor [(ngModel)]="detailedPackageDescription" [modules]="editorConfig" [style]="{height: '200px'}">
+                  <!--<div quill-editor-toolbar>-->
+                  <!--<span class="ql-formats">-->
+                  <!--<button class="ql-bold" [title]="'Bold'"></button>-->
+                  <!--<button class="ql-italic" [title]="'Bold'"></button>-->
+                  <!--<button class="ql-underline" [title]="'Bold'"></button>-->
+                  <!--</span>-->
+                  <!--<span class="ql-formats">-->
+                  <!--<select class="ql-align" [title]="'Aligment'">-->
+                  <!--<option selected></option>-->
+                  <!--<option value="center"></option>-->
+                  <!--<option value="right"></option>-->
+                  <!--<option value="justify"></option>-->
+                  <!--</select>-->
+                  <!--</span>-->
+                  <!--</div>-->
+                </quill-editor>
+                <br>
+                <button type="button" (click)="savePackageDescription()" class="btn btn-block btn-primary">Save</button>
+              </div>
+              <div class="tab-pane" id="screenshots" role="tabpanel" aria-expanded="false">
+                <div ng2FileDrop [uploader]="screenshotUploader" style="min-height:170px;" class="p-15">
+                  <div class="row screenshots-wrapper" >
+                    <div class="col-xl-2 col-lg-3 col-md-3 col-sm-4 col-6 screenshot-container">
+                      <div class="screenshot-item">
+                        <input type="file" ng2FileSelect [uploader]="screenshotUploader" class="screenshot-upload" />
+                        <div class="screenshot-img-placeholder">
+                          <div style="display: table; height: 100%;">
+                            <h4 class="screenshot-pl-text"><i aria-hidden="true" class="front-icon wb-upload"></i>Click / Drag to Upload</h4>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-xl-2 col-lg-3 col-md-3 col-sm-4 col-6 screenshot-container" *ngFor="let item of screenshotUploader.queue">
+                      <div class="screenshot-item">
+                        <div class="screenshot-img-placeholder">
+                          <div style="display: table; height: 100%;">
+                            <h4 class="screenshot-pl-text"><i aria-hidden="true" class="front-icon wb-upload"></i>Progress: {{item.progress}}%</h4>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-xl-2 col-lg-3 col-md-3 col-sm-4 col-6 screenshot-container" *ngFor="let screenshot of package.screenshots">
+                      <div class="screenshot-item">
+                        <button type="button" class="btn btn-floating btn-danger screenshot-delete" (click)="removeScreenshot(screenshot)"><i class="icon wb-minus" aria-hidden="true"></i></button>
+                        <img class="screenshot-img" [src]="'/api/PackageScreenshots/' + screenshot.id + '/download.jpg?size=large'" alt="Card image cap" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="tab-pane" id="versions" role="tabpanel" aria-expanded="false">
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead>
+                    <tr>
+                      <th>Version</th>
+                      <th>Size</th>
+                      <th>Downloads</th>
+                      <th>Rating</th>
+                      <th>Visibility</th>
+                    </tr>
+                    </thead>
+                    <tbody *ngIf="package.versions">
+                    <tr *ngFor="let packageVersion of package.versions">
+                      <td><a routerLink="version/{{packageVersion.id}}">{{packageVersion.version}}</a></td>
+                      <td>{{packageVersion.file.size}}</td>
+                      <td>{{packageVersion.downloadCount}}</td>
+                      <td>
+                        <div class="rating" data-score="4" data-number="5" data-read-only="true"
+                             data-plugin="rating"></div>
+                      </td>
+                      <td>
+                        <span class="badge badge-success" *ngIf="packageVersion.visible == true">visible</span>
+                        <span class="badge badge-danger" *ngIf="packageVersion.visible == false">hidden</span>
+                      </td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="tab-pane" id="purchases" role="tabpanel" aria-expanded="false" *ngIf="shouldShowPaid">
+                <purchases-table [purchases]="packagePurchases"></purchases-table>
+                <!--<td><a target="_blank" [attr.href]="'/api/PackagePurchases/' + purchase.id + '/refund'">Refund</a></td>-->
+              </div>
+              <div class="tab-pane" id="refunds" role="tabpanel" aria-expanded="false" *ngIf="shouldShowPaid">
+                <refund-requests-table [packageId]="packageID"></refund-requests-table>
+                <!--<td><a target="_blank" [attr.href]="'/api/PackagePurchases/' + purchase.id + '/refund'">Refund</a></td>-->
+              </div>
+              <div class="tab-pane" id="reviews" role="tabpanel" aria-expanded="false">
+                <reviews-table [reviews]="packageReviews"></reviews-table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div bsModal #restrictionsModal="bs-modal" class="modal fade modal-fade-in-scale-up" aria-hidden="true" aria-labelledby="Restrictions Popup"
+     role="dialog" tabindex="-1">
+  <div class="modal-dialog modal-simple">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" (click)="restrictionsModal.hide()" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title">Download Restrictions</h4>
+      </div>
+      <div class="modal-body">
+        <div class="form-group" *ngIf="showPatreonRestriction">
+          <label class="form-control-label" for="patreonRestriction">Patreon Restrictions</label>
+          <select id="patreonRestriction" name="patreonRestriction" #selectElem (change)="setPatreonReward(selectElem.value)" class="form-control">
+            <option [selected]="selectedRewardId === '000000'" value="000000">None</option>
+            <option *ngFor="let reward of patreonRewards" [value]="reward.id"  [selected]="selectedRewardId == reward.id">
+              {{reward.amount/100 | currency}} or more
+            </option>
+          </select>
+        </div>
+        <div class="form-group" *ngIf="showPayPalRestriction">
+          <label class="form-control-label" for="patreonRestriction">PayPal Payment Restriction</label>
+          <div class="input-group">
+            <span class="input-group-addon">$</span>
+            <input type="number" class="form-control"  [(ngModel)]="paypalPaymentPrice">
+          </div>
+          <span class="text-help">If the amount is '0' the paypal restriction will either not be set or removed. Price is in USD</span>
+        </div>
+        <p *ngIf="!showCydiaStoreRestriction">If want to use restrict a package by price you must first setup PayPal in settings <a routerLink="/settings">here</a>.</p>
+        <div class="form-group" *ngIf="showCydiaStoreRestriction">
+          <label class="form-control-label" for="cydiaStoreRestriction">Cydia Store Restriction</label>
+          <input type="text" id="cydiaStoreRestriction" class="form-control"  [(ngModel)]="cydiaStorePackageId" placeholder="Cydia Store Package ID...">
+          <span class="text-help">The <strong>Package ID</strong> of the package in Cydia Store that you want to link this package with. If the field is empty the Cydia Store restriction is removed.</span>
+        </div>
+        <p *ngIf="!showPayPalRestriction">If want to restrict a package by cydia store you must first setup that in settings <a routerLink="/settings">here</a>.</p>
+        <!--<patreon-reward-select [rewards]="patreonRewards" [selectedRewards]="selectedRewards"></patreon-reward-select>-->
+        <!--<select [compareWith]="comparePatreonRewards" bootstrapSelect [(ngModel)]="selectedPatreonRewards"-->
+                <!--data-selected-text-format="static" title="Select Reward Tiers" multiple>-->
+          <!--<option *ngFor="let reward of patreonRewards" [ngValue]="reward" id="{{reward.id}}">{{reward.name}}</option>-->
+        <!--</select>-->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" (click)="restrictionsModal.hide()">Close</button>
+        <button type="button" class="btn btn-primary" (click)="saveRestrictions(); restrictionsModal.hide()">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div bsModal #packageModal="bs-modal" class="modal fade modal-fade-in-scale-up" aria-hidden="true" aria-labelledby="Restrictions Popup"
+     role="dialog" tabindex="-1">
+  <div class="modal-dialog modal-simple">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" (click)="packageModal.hide()" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title">Package Settings</h4>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-control-label" for="packageName">Name</label>
+          <input type="text" id="packageName" class="form-control"  [(ngModel)]="packageName">
+        </div>
+        <div class="form-group">
+          <label class="form-control-label" for="packageDescription">Short Description</label>
+          <input type="text" id="packageDescription" class="form-control"  [(ngModel)]="packageShort">
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="bugsReportURL">Bugs Report URL</label>
+          <input type="text" id="bugsReportURL" class="form-control"  [(ngModel)]="bugsReportURL">
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="minIOSVersion">Minimum iOS Version</label>
+          <input type="text" id="minIOSVersion" class="form-control"  [(ngModel)]="minIOSVersion">
+          <span class="text-help">The minimum iOS Version needed to use the package.</span>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="maxIOSVersion">Maximum iOS Version</label>
+          <input type="text" id="maxIOSVersion" class="form-control"  [(ngModel)]="maxIOSVersion">
+          <span class="text-help">The maximum iOS Version this package can be used on.</span>
+        </div>
+        <!--<patreon-reward-select [rewards]="patreonRewards" [selectedRewards]="selectedRewards"></patreon-reward-select>-->
+        <!--<select [compareWith]="comparePatreonRewards" bootstrapSelect [(ngModel)]="selectedPatreonRewards"-->
+        <!--data-selected-text-format="static" title="Select Reward Tiers" multiple>-->
+        <!--<option *ngFor="let reward of patreonRewards" [ngValue]="reward" id="{{reward.id}}">{{reward.name}}</option>-->
+        <!--</select>-->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" (click)="packageModal.hide()">Close</button>
+        <button type="button" class="btn btn-primary" (click)="savePackage(); packageModal.hide()">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div bsModal #giftsModal="bs-modal" class="modal fade modal-fade-in-scale-up" aria-hidden="true" aria-labelledby="Restrictions Popup"
+     role="dialog" tabindex="-1">
+  <div class="modal-dialog modal-simple">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" (click)="giftsModal.hide()" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h4 style="text-align: center;">Gift to Account</h4>
+        <account-select></account-select>
+        <button style="width: 100%; margin-top: 25px;" class="btn btn-primary" (click)="giftAccount()">
+          Gift Tweak To Account
+        </button>
+
+        <h4 style="text-align: center; margin-top: 25px;">Gift to Emails</h4>
+        <div class="form-group">
+          <textarea [(ngModel)]="emailsString" class="form-control" id="exampleFormControlTextarea1" rows="4"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlInput1">Email Separator String</label>
+          <input [(ngModel)]="emailSepString" type="text" class="form-control" id="exampleFormControlInput1" placeholder="">
+        </div>
+        <button style="width: 100%;" class="btn btn-primary" (click)="giftToEmails()">
+          Gift to Emails
+        </button>
+        <!--<patreon-reward-select [rewards]="patreonRewards" [selectedRewards]="selectedRewards"></patreon-reward-select>-->
+        <!--<select [compareWith]="comparePatreonRewards" bootstrapSelect [(ngModel)]="selectedPatreonRewards"-->
+        <!--data-selected-text-format="static" title="Select Reward Tiers" multiple>-->
+        <!--<option *ngFor="let reward of patreonRewards" [ngValue]="reward" id="{{reward.id}}">{{reward.name}}</option>-->
+        <!--</select>-->
+      </div>
+    </div>
+  </div>
+</div>
+
+<div bsModal #giftToPatreonModal="bs-modal" class="modal fade modal-fade-in-scale-up" aria-hidden="true" aria-labelledby="Gift to Patreon's Popup"
+     role="dialog" tabindex="-1">
+  <div class="modal-dialog modal-simple">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" (click)="giftToPatreonModal.hide()" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title">Gift to Patreon Users</h4>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="giftToPledgeType" class="form-control-label">Pledge Amount Source</label>
+          <select name="giftToPledgeType" [(ngModel)]="giftToPatreonPledgeType" id="giftToPledgeType" class="form-control">
+            <option value="current">Current Pledge Amount</option>
+            <option value="historical">Historical Pledge Amount</option>
+          </select>
+          <span class="text-help">You can either gift to your Patreon users based on their current pledge amount or how much they have pledged since they became a Patreon.</span>
+        </div>
+
+        <div class="form-group">
+          <label for="giftToPledgeAmountType" class="form-control-label">Pledge Amount Type</label>
+          <select name="giftToPledgeAmountType" [(ngModel)]="giftToPatreonPledgeAmountType" id="giftToPledgeAmountType" class="form-control">
+            <option value="tier">Reward Tier</option>
+            <option value="custom">Custom</option>
+          </select>
+          <span class="text-help">You can either base the pledge amount on an pre-existing tier your have or use a custom amount</span>
+        </div>
+
+        <div class="form-group" *ngIf="giftToPatreonPledgeAmountType === 'tier'">
+          <label for="giftToPledgeAmountType" class="form-control-label">Tier Selection</label>
+          <select id="giftToPledgeTier" name="patreonRestriction" #selectElem (change)="setGiftPledgeTier(selectElem.value)" class="form-control">
+            <option [selected]="giftToPatreonPledgeTierId === '000000'" value="000000">None
+            <option *ngFor="let reward of patreonRewards" [value]="reward.id"  [selected]="giftToPatreonPledgeTierId == reward.id">
+              {{reward.amount/100 | currency}} or more
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group" *ngIf="giftToPatreonPledgeAmountType === 'custom'">
+          <label for="giftToPledgeAmountType" class="form-control-label">Custom Pledge Amount</label>
+          <div class="input-group">
+            <span class="input-group-addon">$</span>
+            <input type="number" class="form-control"  [(ngModel)]="giftToPatreonPledgeAmount" placeholder="Pledge Amount">
+          </div>
+          <span class="text-help">The pledge amount comparison is based on equal or greater to what you enter above.</span>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" (click)="giftToPatreonModal.hide()">Close</button>
+        <button type="button" class="btn btn-primary" (click)="giftToPatreonUsers(giftToPatreonModal)">Gift to Users</button>
+      </div>
+    </div>
+  </div>
+</div>

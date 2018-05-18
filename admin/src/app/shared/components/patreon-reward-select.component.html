@@ -1,0 +1,6 @@
+
+<!-- the built-in compareWith directive below is necessary when using Objects for option values -->
+<select [(ngModel)]="selectedRewards"
+        data-selected-text-format="static" [title]="title" multiple bootstrapSelect [compareWith]="compareRewards">
+  <option *ngFor="let reward of rewards" [ngValue]="reward" id="{{reward.id}}">{{reward.title}}</option>
+</select>

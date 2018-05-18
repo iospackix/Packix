@@ -1,0 +1,21 @@
+@import 'vars';
+
+// for fix remark-v4/issues/312
+.chartist-tooltip-wrap { 
+  position: relative; 
+}
+
+.chartist-tooltip {
+  position: absolute;
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 400;
+  text-align: center;
+  pointer-events: none;
+  padding: 3px 8px;
+  color: #ffffff;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 3px;
+  z-index: 1;
+}

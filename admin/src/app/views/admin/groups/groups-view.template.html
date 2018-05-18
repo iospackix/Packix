@@ -1,0 +1,70 @@
+<style>
+  .page-main .list-group {
+    margin: 0;
+    padding-right: 15px;
+  }
+
+  .list-group .avatar {
+    width: 62px;
+  }
+
+  .list-group .card {
+    margin-bottom: 15px;
+  }
+
+  .list-group .card-block {
+    -webkit-transition: border .2s linear, color .2s linear, width .2s linear, background-color .2s linear;
+    -o-transition: border .2s linear, color .2s linear, width .2s linear, background-color .2s linear;
+    transition: border .2s linear, color .2s linear, width .2s linear, background-color .2s linear;
+  }
+
+  .list-group .card-block:hover {
+    cursor: pointer;
+    background-color: #eee;
+  }
+
+  .list-group .list-group-item, .list-group .list-group-item:hover {
+    background-color: transparent;
+  }
+
+  .list-inline {
+    height: 25px;
+  }
+
+  .list-inline li a:hover {
+    text-decoration: none;
+    color: #76838f !important;
+  }
+
+  .detail {
+    background-color: #a2caee !important;
+  }
+
+
+</style>
+<div class="page-main">
+  <div style="height:100%; overflow-y: auto;" class="p-15">
+    <div class="row">
+      <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12" *ngFor="let group of groups">
+        <a [routerLink]="group.id" class="no-link">
+          <div class="panel">
+            <div class="panel-heading">
+              <h3 class="panel-title" *ngIf="group.name">{{ group.name }}
+              </h3>
+            </div>
+            <div class="panel-body">
+              <p *ngIf="group.description"><b>Description:</b> {{group.description}}</p>
+              <p *ngIf="group.packageAccessTypeDescription"><b>Access Type:</b> {{group.packageAccessTypeRestriction}}</p>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="site-action">
+    <button type="button" class="btn-raised btn btn-success btn-floating">
+      <i class="front-icon wb-plus animation-scale-up" aria-hidden="false"></i>
+    </button>
+  </div>
+</div>

@@ -1,0 +1,87 @@
+{
+  "name": "PackageVersionRating",
+  "plural": "PackageVersionRatings",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "mixins": {
+    "TimeStamp": {
+      "createdAt": "createdOn",
+      "updatedAt": "updatedOn",
+      "silenceWarnings": false
+    },
+    "Archive": {
+      "deletedAt": "deletedAt",
+      "isDeleted": "isDeleted"
+    }
+  },
+  "hidden": [
+    "clientIp"
+  ],
+  "ownerIdPath": "package.accountId",
+  "allowedMethods": [
+    "deleteById"
+  ],
+  "properties": {
+    "value": {
+      "type": "number",
+      "index": true
+    },
+    "clientIp": {
+      "type": "string",
+      "index": true
+    },
+    "packageId": {
+      "type": "string",
+      "required": true,
+      "index": true
+    },
+    "packageVersionId": {
+      "type": "string",
+      "required": true,
+      "index": true
+    },
+    "clientType": {
+      "type": "string",
+      "required": true,
+      "index": true,
+      "default": "UNKNOWN"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "packageVersion": {
+      "type": "belongsTo",
+      "model": "PackageVersion",
+      "foreignKey": "",
+      "allowedMethods": [
+        "get"
+      ]
+    },
+    "package": {
+      "type": "belongsTo",
+      "model": "Package",
+      "foreignKey": "",
+      "allowedMethods": [
+        "get"
+      ]
+    }
+  },
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    },
+    {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW"
+    }
+  ],
+  "methods": {}
+}

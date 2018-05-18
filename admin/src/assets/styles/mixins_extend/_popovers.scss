@@ -1,0 +1,16 @@
+@mixin popover-variant($color, $bg, $border){
+  .popover-title {
+    color: $color;
+    background-color: $bg;
+    border-color: $border;
+  }
+
+  
+  &.bs-tether-element-attached-top .popover-arrow,
+  &.popover-bottom .popover-arrow {
+    border-bottom-color: $border;
+    &:after {
+      border-bottom-color: $bg;
+    }
+  }
+}

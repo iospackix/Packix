@@ -1,0 +1,18 @@
+
+// Inline code
+code {
+  color: $code-color;
+  background-color: $code-bg;
+}
+
+// User input typically entered via keyboard
+kbd {
+  color: $kbd-color;
+  background-color: $kbd-bg;
+  @include box-shadow($kbd-box-shadow);
+}
+
+// Blocks of code
+pre {
+  color: $pre-color;
+}

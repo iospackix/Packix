@@ -1,0 +1,26 @@
+@mixin tooltip-variant($color, $bg) {
+  .tooltip-inner {
+    color: $color;
+    background-color: $bg;
+  }
+
+  &.bs-tether-element-attached-top .tooltip-inner::before,
+  &.tooltip-top .tooltip-inner::before {
+    border-bottom-color: $bg;
+  }
+
+  &.bs-tether-element-attached-right .tooltip-inner::before,
+  &.tooltip-right .tooltip-inner::before {
+    border-left-color: $bg;
+  }
+
+  &.bs-tether-element-attached-bottom .tooltip-inner::before,
+  &.tooltip-bottom .tooltip-inner::before {
+    border-top-color: $bg;
+  }
+
+  &.bs-tether-element-attached-left .tooltip-inner::before,
+  &.tooltip-left .tooltip-inner::before {
+    border-right-color: $bg;
+  }
+}

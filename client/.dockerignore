@@ -1,0 +1,9 @@
+npm-debug.log
+static/hawkes.html
+static/Packages*
+static/Release
+static/Packages
+list.env
+README.md
+.DS_Store
+.env

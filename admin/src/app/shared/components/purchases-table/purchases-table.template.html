@@ -1,0 +1,72 @@
+<div class="package-purchases-table">
+  <div class="form-group" style="width: 100%;">
+    <div class="input-group">
+      <input type="text" [ngModel]="searchText" (ngModelChange)="searchStroke($event)" class="form-control" placeholder="Search...">
+    </div>
+  </div>
+  <data-table id="persons-grid"
+              headerTitle=""
+              [items]="items"
+              [itemCount]="itemCount"
+              [limit]="10"
+              (reload)="reloadItems($event)"
+              [pagination]="true"
+              [indexColumn]="false"
+              [header]="false"
+              [rowColors]="rowColors"
+              [substituteRows]="false"
+  >
+    <data-table-column
+      [property]="'profileName'"
+      [header]="'Account'"
+      [sortable]="true"
+      [resizable]="false">
+      <ng-template #dataTableCell let-item="item">
+        <div class="account-select thing" style="min-height: min-content; display: table;">
+          <img class="account-photo" [src]="item.account.profilePhoto" />
+          <div class="account-name">{{item.account.profileName}}</div>
+          <div class="account-email" style="margin-top: -5px;">{{item.account.profileEmail}}</div>
+        </div>
+      </ng-template>
+    </data-table-column>
+    <data-table-column
+      [property]="'payerEmail'"
+      [header]="'Email'"
+      [sortable]="true"
+      [resizable]="false">
+      <ng-template #dataTableCell let-item="item">
+        {{item.payerEmail}}
+      </ng-template>
+    </data-table-column>
+    <data-table-column
+      [property]="'amountPaid'"
+      [header]="'Amount'"
+      [sortable]="true"
+      [resizable]="false"
+      [width]="'15%'">
+      <ng-template #dataTableCell let-item="item">
+        {{item.amountPaid}}
+      </ng-template>
+    </data-table-column>
+    <data-table-column
+      [property]="'feePaid'"
+      [header]="'Fee'"
+      [sortable]="true"
+      [resizable]="false"
+      [width]="'12%'">
+      <ng-template #dataTableCell let-item="item">
+        {{item.feePaid}}
+      </ng-template>
+    </data-table-column>
+    <data-table-column
+      [property]="'feePaid'"
+      [header]="'Refund'"
+      [sortable]="false"
+      [resizable]="false"
+      [width]="'12.5%'">
+      <ng-template #dataTableCell let-item="item">
+        <a target="_blank" [attr.href]="'/api/PackagePurchases/' + item.id + '/refund'">Refund</a>
+      </ng-template>
+    </data-table-column>
+  </data-table>
+</div>

@@ -1,0 +1,85 @@
+// Name:            Progress
+//
+// Component:       `progress`
+//
+// Modifiers:       `progress-bar-indicating`
+//                  `progress-skill`
+//                  `progress-lg`
+//                  `progress-sm`
+//                  `progress-xs`
+//                  `progress-square`
+//                  `progress-circle`
+//                  `contextual-progress`
+//
+// Markup:
+//
+// <!-- progress -->
+// <div class="progress">
+//   <div class="progress-bar"></div>
+// </div>
+//
+// ========================================================================
+
+// Variables
+// ========================================================================
+
+$progress-bar-indicating-active-bg: $inverse !default;
+
+$progress-skill-color:              $subtitle-color !default;
+
+// Component: Progress
+// ========================================================================
+
+// Outer container
+.progress {
+  background-color: $progress-bg;
+}
+
+// Bar of progress
+.progress-bar {
+  color: $progress-bar-color;
+  background-color: $progress-bar-bg;
+}
+
+// Color Variations
+// -------------------------
+
+.progress-bar-success {
+  @include progress-bar-variant($progress-bar-success-bg);
+}
+
+.progress-bar-info {
+  @include progress-bar-variant($progress-bar-info-bg);
+}
+
+.progress-bar-warning {
+  @include progress-bar-variant($progress-bar-warning-bg);
+}
+
+.progress-bar-danger {
+  @include progress-bar-variant($progress-bar-danger-bg);
+}
+
+// Modifier: `progress-bar-indicating`
+// -------------------------
+
+.progress-bar-indicating {
+  &.active {
+
+    &:before {
+      background-color: $progress-bar-indicating-active-bg;
+    }
+  }
+}
+
+// Modifier: `progress-skill`
+// ========================================================================
+
+.progress-skill {
+
+  .progress-bar {
+    > span {
+      color: $progress-skill-color;
+    }
+  }
+}

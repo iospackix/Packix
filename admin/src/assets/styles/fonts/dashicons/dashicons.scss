@@ -1,0 +1,18 @@
+/**
+ * Dashicons
+ * Created by Wordpress
+ * https://github.com/WordPress/dashicons
+ * GPL-2.0 License
+ */
+@import "vars";
+@import "scss/variables";
+@import "scss/path";
+
+[class^="#{$dashicons-css-prefix}-"],
+[class*=" #{$dashicons-css-prefix}-"] {
+  font-family: '#{$dashicons-font-family}';
+
+  @include make-icon();
+}
+
+@import "scss/icons";

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet prefetch" href="https://use.fontawesome.com/releases/v5.0.6/css/all.css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400" rel="stylesheet">
+  <link rel="stylesheet prefetch" href="/assets/css/login.css">
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" />
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-3560559626882023",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-118668002-1" />
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-118668002-1');
+  </script>
+</head>
+<body>
+
+<div class="page">
+  <div class="page-content">
+    <div class="panel">
+      <div class="panel-body">
+        <h1 class="login-text">Sign in with</h1>
+        <a id="google" href="/api/auth/google">
+          <button type="button" class="btn btn-tagged google">
+             <span class="btn-tag">
+             <i class="fab fa-google" aria-hidden="true"></i>
+             </span>
+            Google
+          </button>
+        </a>
+        <!--<a id="patreon" href="/api/auth/patreon">-->
+          <!--<button type="button" class="btn btn-tagged patreon">-->
+             <!--<span class="btn-tag">-->
+               <!--<i class="fab fa-patreon" aria-hidden="true"></i>-->
+             <!--</span>-->
+            <!--Patreon-->
+          <!--</button>-->
+        <!--</a>-->
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+
+
+  function sanitizeIt(value) {
+    return value
+      .replace(/&/, "&amp;")
+      .replace(/</, "&lt;")
+      .replace(/>/, "&gt;")
+      .replace(/"/, "&quot;")
+      .replace(/'/, "&apos;")
+      ;
+  }
+
+  function getJSON(url, callback) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', url, true);
+    xhr.responseType = 'json';
+    xhr.onload = function() {
+      var status = xhr.status;
+      if (status === 200) {
+        callback(null, xhr.response);
+      } else {
+        callback(status, xhr.response);
+      }
+    };
+    xhr.send();
+  }
+
+  function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    url = String(url);
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+      results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return sanitizeIt(decodeURIComponent(results[2].replace(/\+/g, " ")));
+  }
+
+  (function() {
+    var redirectURL = getParameterByName('next');
+    if (!redirectURL) {
+        redirectURL='/account/';
+    }
+    if (redirectURL) {
+      document.getElementById("google").href="/api/auth/google?next=" + String(redirectURL);
+    //  document.getElementById("patreon").href="/api/auth/patreon?next=" + redirectURL;
+    }
+
+    getJSON('/api/Accounts/me', function(status, response) {
+        if (response['profileName']) {
+          console.log('settings url');
+          console.log(redirectURL);
+          window.location.href = String(redirectURL);
+        }
+    });
+    // your page initialization code here
+    // the DOM will be available here
+
+  })();
+
+</script>
+
+</body>
+</html>

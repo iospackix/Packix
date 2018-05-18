@@ -1,0 +1,15 @@
+%site-menu-unfold {
+  .site-menu {
+    &-category {
+      color: $site-menu-category-color;
+    }
+  }
+};
+
+@include media-breakpoint-down(sm) {
+  //.js-menubar {
+    .site-gridmenu {
+      background: rgba($site-gridmenu-bg, (90/100));
+    }
+  //}
+}

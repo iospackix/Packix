@@ -1,0 +1,35 @@
+<div class="accounts-table">
+  <div class="form-group" style="width: 100%;" *ngIf="shouldAllowSearch">
+    <div class="input-group">
+      <input type="text" [ngModel]="searchText" (ngModelChange)="searchStroke($event)" class="form-control" placeholder="Search...">
+    </div>
+  </div>
+  <data-table id="persons-grid"
+              headerTitle=""
+              [items]="items"
+              [itemCount]="itemCount"
+              [limit]="10"
+              (reload)="reloadItems($event)"
+              [pagination]="true"
+              [indexColumn]="false"
+              [header]="false"
+              [rowColors]="rowColors"
+              [substituteRows]="false"
+  >
+    <data-table-column
+      [property]="'profileName'"
+      [header]="'Account'"
+      [sortable]="true"
+      [resizable]="false">
+      <ng-template #dataTableCell let-item="item">
+        <a [routerLink]="'/accounts/' + item.id" class="no-link">
+          <div class="account-select thing" style="min-height: min-content; display: table;">
+            <img class="account-photo" [src]="item.profilePhoto" />
+            <div class="account-name">{{item.profileName}}</div>
+            <div class="account-email" style="margin-top: -5px;">{{item.profileEmail}}</div>
+          </div>
+        </a>
+      </ng-template>
+    </data-table-column>
+  </data-table>
+</div>

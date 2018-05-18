@@ -1,0 +1,61 @@
+<div class="package-reviews-table">
+  <div class="form-group" style="width: 100%;">
+    <div class="input-group">
+      <input type="text" [ngModel]="searchText" (ngModelChange)="searchStroke($event)" class="form-control" placeholder="Search...">
+    </div>
+  </div>
+  <style>
+    .column-title {
+      vertical-align: top !important;
+    }
+  </style>
+  <data-table id="persons-grid"
+              headerTitle=""
+              [items]="items"
+              [itemCount]="itemCount"
+              [limit]="10"
+              (reload)="reloadItems($event)"
+              [pagination]="true"
+              [indexColumn]="false"
+              [header]="false"
+              [rowColors]="rowColors"
+              [substituteRows]="false"
+  >
+    <data-table-column
+      [property]="'title'"
+      [header]="'Title'"
+      [sortable]="true"
+      [resizable]="false"
+      [width]="'20%'"
+    >
+    </data-table-column>
+    <data-table-column
+      [property]="'description'"
+      [header]="'Description'"
+      [sortable]="true"
+      [resizable]="false"
+      [width]="'50%'">
+      <ng-template #dataTableCell let-item="item">
+        <p>{{item.description}}</p>
+      </ng-template>
+    </data-table-column>
+    <data-table-column
+      [property]="'ratingValue'"
+      [header]="'Rating'"
+      [sortable]="true"
+      [resizable]="false"
+      [width]="'10%'">
+      <ng-template #dataTableCell let-item="item">
+        <div [textContent]="item.ratingValue === 0 ? 'N/A' : item.ratingValue + '/5'">
+        </div>
+      </ng-template>
+    </data-table-column>
+    <data-table-column
+      [property]="'versionName'"
+      [header]="'Version'"
+      [sortable]="true"
+      [resizable]="false"
+      [width]="'10%'">
+    </data-table-column>
+  </data-table>
+</div>

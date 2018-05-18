@@ -1,0 +1,310 @@
+{
+  "name": "Account",
+  "plural": "Accounts",
+  "base": "User",
+  "mixins": {
+    "TimeStamp": {
+      "createdAt": "createdOn",
+      "updatedAt": "updatedOn",
+      "silenceWarnings": false
+    },
+    "Archive": {
+      "deletedAt": "deletedAt",
+      "isDeleted": "isDeleted"
+    }
+  },
+  "allowedMethods": [
+    "getMe",
+    "find",
+    "findById",
+    "findOne",
+    "create",
+    "prototype.patchAttributes",
+    "updateAttributes"
+  ],
+  "properties": {
+    "profileName": {
+      "type": "string"
+    },
+    "profilePhoto": {
+      "type": "string"
+    },
+    "profileEmail": {
+      "type": "string"
+    },
+    "cydiaId": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "accessTokens": {
+      "type": "hasMany",
+      "model": "AccountToken",
+      "foreignKey": "userId",
+      "allowedMethods": [
+        "get"
+      ]
+    },
+    "identities": {
+      "type": "hasMany",
+      "model": "AccountIdentity",
+      "foreignKey": "userId",
+      "allowedMethods": [
+        "get"
+      ]
+    },
+    "credentials": {
+      "type": "hasMany",
+      "model": "AccountCredential",
+      "foreignKey": "userId",
+      "allowedMethods": [],
+      "options": {
+        "disableInclude": true
+      }
+    },
+    "packagePurchases": {
+      "type": "hasMany",
+      "model": "PackagePurchase",
+      "foreignKey": ""
+    },
+    "packageGifts": {
+      "type": "hasMany",
+      "model": "PackageGiftLink",
+      "foreignKey": "accountId",
+      "allowedMethods": [
+        "get",
+        "count"
+      ]
+    },
+    "devices": {
+      "type": "hasMany",
+      "model": "Device",
+      "foreignKey": "",
+      "allowedMethods": [
+        "get"
+      ]
+    },
+    "packages": {
+      "type": "hasMany",
+      "model": "Package",
+      "foreignKey": "",
+      "allowedMethods": [
+        "get",
+        "delete",
+        "destroyById"
+      ]
+    },
+    "groups": {
+      "type": "hasMany",
+      "model": "AccountGroup",
+      "foreignKey": "accountId",
+      "through": "AccountGroupLink",
+      "allowedMethods": [
+        "get"
+      ]
+    }
+  },
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": "getMe"
+    },
+    {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "admin",
+      "permission": "ALLOW"
+    },
+    {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "developer",
+      "permission": "ALLOW"
+    },
+    {
+      "accessType": "WRITE",
+      "principalType": "ROLE",
+      "principalId": "admin",
+      "permission": "ALLOW"
+    },
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "admin",
+      "permission": "ALLOW"
+    },
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY",
+      "property": [
+        "__create__groups",
+        "__delete__groups",
+        "__destroyById__groups",
+        "__exists__groups",
+        "__findById__groups",
+        "__get__groups",
+        "__link__groups",
+        "__updateById__groups",
+        "__unlink__groups"
+      ]
+    },
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$owner",
+      "permission": "ALLOW",
+      "property": [
+        "__get__groups",
+        "__findById__groups"
+      ]
+    },
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "admin",
+      "permission": "ALLOW",
+      "property": [
+        "__create__groups",
+        "__delete__groups",
+        "__destroyById__groups",
+        "__exists__groups",
+        "__findById__groups",
+        "__get__groups",
+        "__link__groups",
+        "__updateById__groups",
+        "__unlink__groups"
+      ]
+    },
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY",
+      "property": [
+        "__count__devices",
+        "__create__devices",
+        "__delete__devices",
+        "__destroyById__devices",
+        "__findById__devices",
+        "__get__devices",
+        "__updateById__devices"
+      ]
+    },
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$owner",
+      "permission": "ALLOW",
+      "property": [
+        "__get__devices",
+        "__findById__devices",
+        "__destroyById__devices",
+        "__count__devices"
+      ]
+    },
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "admin",
+      "permission": "ALLOW",
+      "property": [
+        "__count__devices",
+        "__create__devices",
+        "__delete__devices",
+        "__destroyById__devices",
+        "__findById__devices",
+        "__get__devices",
+        "__updateById__devices"
+      ]
+    },
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY",
+      "property": [
+        "__count__packagePurchases",
+        "__create__packagePurchases",
+        "__delete__packagePurchases",
+        "__destroyById__packagePurchases",
+        "__findById__packagePurchases",
+        "__get__packagePurchases",
+        "__updateById__packagePurchases"
+      ]
+    },
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$owner",
+      "permission": "ALLOW",
+      "property": [
+        "__get__packagePurchases",
+        "__findById__packagePurchases",
+        "__count__packagePurchases"
+      ]
+    },
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "admin",
+      "permission": "ALLOW",
+      "property": [
+        "__count__packagePurchases",
+        "__create__packagePurchases",
+        "__delete__packagePurchases",
+        "__destroyById__packagePurchases",
+        "__findById__packagePurchases",
+        "__get__packagePurchases",
+        "__updateById__packagePurchases"
+      ]
+    },
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY",
+      "property": [
+        "__count__packageGifts",
+        "__create__packageGifts",
+        "__delete__packageGifts",
+        "__destroyById__packageGifts",
+        "__findById__packageGifts",
+        "__get__packageGifts",
+        "__updateById__packageGifts"
+      ]
+    },
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$owner",
+      "permission": "ALLOW",
+      "property": [
+        "__get__packageGifts",
+        "__findById__packageGifts",
+        "__count__packageGifts"
+      ]
+    },
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "admin",
+      "permission": "ALLOW",
+      "property": [
+        "__count__packageGifts",
+        "__create__packageGifts",
+        "__delete__packageGifts",
+        "__destroyById__packageGifts",
+        "__findById__packageGifts",
+        "__get__packageGifts",
+        "__updateById__packageGifts"
+      ]
+    }
+  ],
+  "methods": {}
+}

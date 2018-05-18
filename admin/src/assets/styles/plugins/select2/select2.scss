@@ -1,0 +1,16 @@
+@import 'vars';
+
+
+$dropdown-arrow-color:  $input-color-placeholder;
+$dropdown-box-shadow:   0 6px 12px rgba(0, 0, 0, .175);
+$clear-selection-color: $dropdown-arrow-color;
+
+@import 'scss/core';
+
+// fix /remark-material-v4/issues/193
+
+.modal-open .select2-container {
+	z-index: $zindex-modal + 1;
+}
+
+

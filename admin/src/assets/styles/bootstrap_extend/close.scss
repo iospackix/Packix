@@ -1,0 +1,13 @@
+//
+// Close icons
+// --------------------------------------------------
+
+.close {
+  &.icon {
+    font-size: inherit;
+  }
+}
+
+button.close {
+  cursor: pointer;
+}

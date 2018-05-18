@@ -1,0 +1,180 @@
+<style>
+  .page-main .list-group {
+    margin: 0;
+    padding-right: 15px;
+  }
+
+  .list-group .avatar {
+    width: 62px;
+  }
+
+  .list-group .card {
+    margin-bottom: 15px;
+  }
+
+  .list-group .card-block {
+    -webkit-transition: border .2s linear, color .2s linear, width .2s linear, background-color .2s linear;
+    -o-transition: border .2s linear, color .2s linear, width .2s linear, background-color .2s linear;
+    transition: border .2s linear, color .2s linear, width .2s linear, background-color .2s linear;
+  }
+
+  .list-group .card-block:hover {
+    cursor: pointer;
+    background-color: #eee;
+  }
+
+  .list-group .list-group-item, .list-group .list-group-item:hover {
+    background-color: transparent;
+  }
+
+  .list-inline {
+    height: 25px;
+  }
+
+  .list-inline li a:hover {
+    text-decoration: none;
+    color: #76838f !important;
+  }
+
+  .detail {
+    background-color: #a2caee !important;
+  }
+
+  strong, b {
+    font-weight: 500;
+  }
+
+  .group-page .card-block {
+    border-top: 1px solid #e4eaec;
+  }
+
+  .head-action-btn {
+    font-size: 12px;
+    padding: 5px;
+    padding-right: 5px;
+    padding-left: 10px;
+    border: none;
+    float: right;
+  }
+
+  .thing {
+    min-height: 0 !important;
+    min-width: 0 !important;
+  }
+
+
+</style>
+
+<div class="page-header">
+  <h1 class="page-title">Developer Settings</h1>
+  <div class="page-header-actions">
+    <button type="button" class="btn btn-primary" (click)="saveSettingsData();">Save</button>
+  </div>
+</div>
+<div class="page-content container-fluid">
+  <div class="row packages-row">
+    <div class="col-md-12 col-lg-12 col-xl-6" *ngIf="devSettings">
+      <div class="panel package-panel panel-bordered">
+        <div class="panel-heading">
+          <h3 class="panel-title">PayPal Payments</h3>
+          <div class="panel-actions panel-actions-keep">
+            <ui-switch size="small" [checked]="devSettings.usePaypal" (change)="devSettings.usePaypal = !devSettings.usePaypal"></ui-switch>
+          </div>
+        </div>
+        <div class="alert alert-danger" *ngIf="paypalTestStatus === 1" role="alert">
+          Your currently saved PayPal Client ID and Client Secret was tested to work and failed, please make sure you pasted them correctly and that they are indeed the <strong>Live</strong> versions.
+        </div>
+        <div class="alert alert-success" *ngIf="paypalTestStatus === 2" role="alert">
+          Your currently saved PayPal Client ID and Client Secret has been tested and should work fine.
+        </div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="form-group">
+                <label class="form-control-label">PayPal REST Client ID</label>
+                <input type="text" [disabled]="!devSettings.usePaypal" class="form-control" [(ngModel)]="devSettings.paypalClientId" placeholder="Your PayPal REST Client ID...">
+                <span class="text-help">Please enter your <b>LIVE</b> PayPal REST Client ID</span>
+              </div>
+            </div>
+            <div class="col-lg-12">
+              <div class="form-group">
+                <label class="form-control-label">PayPal REST Client Secret</label>
+                <input type="text" [disabled]="!devSettings.usePaypal" class="form-control" [(ngModel)]="devSettings.paypalClientSecret" placeholder="Your PayPal REST Client Secret...">
+                <span class="text-help">Please enter your <b>LIVE</b> PayPal REST Client Secret</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12 col-lg-12 col-xl-6" *ngIf="devSettings">
+      <div class="panel package-panel panel-bordered">
+        <div class="panel-heading">
+          <h3 class="panel-title">Cydia Store Integration</h3>
+          <div class="panel-actions panel-actions-keep">
+            <ui-switch size="small" [checked]="devSettings.useCydiaStore" (change)="devSettings.useCydiaStore = !devSettings.useCydiaStore"></ui-switch>
+          </div>
+        </div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="form-group">
+                <label class="form-control-label">Cydia Store Vendor ID</label>
+                <input type="text" [disabled]="!devSettings.useCydiaStore" class="form-control" [(ngModel)]="devSettings.cydiaVendorId" placeholder="Your Cydia Store Vendor Id...">
+                <span class="text-help">Please enter your Cydia Store Vendor ID</span>
+              </div>
+            </div>
+            <div class="col-lg-12">
+              <div class="form-group">
+                <label class="form-control-label">Cydia Store Vendor Secret</label>
+                <input type="text" [disabled]="!devSettings.useCydiaStore" class="form-control" [(ngModel)]="devSettings.cydiaVendorSecret" placeholder="Your Cydia Store Vendor Secret...">
+                <span class="text-help">Please enter your Cydia Store Vendor Secret</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12 col-lg-12 col-xl-6" *ngIf="devSettings">
+      <div class="panel package-panel panel-bordered">
+        <div class="panel-heading">
+          <h3 class="panel-title">Patreon Integration</h3>
+          <div class="panel-actions panel-actions-keep">
+            <ui-switch size="small" [checked]="devSettings.usePatreon" (change)="devSettings.usePatreon = !devSettings.usePatreon"></ui-switch>
+          </div>
+        </div>
+        <div class="alert alert-danger" *ngIf="patreonTestStatus === 1" role="alert">
+          Your currently saved Patreon Creator Access Token was tested to work and failed, please make sure you pasted it correctly and that it matches the current one in the Patreon Portal.
+        </div>
+        <div class="alert alert-success" *ngIf="patreonTestStatus === 2" role="alert">
+          Your currently saved  Patreon Creator Access Token has been tested and should work fine.
+        </div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="form-group">
+                <label class="form-control-label">Patreon Creator Token</label>
+                <input type="text" [disabled]="!devSettings.usePatreon" class="form-control" [(ngModel)]="devSettings.patreonAccessToken" placeholder="Your Patreon Creator Token...">
+                <span class="text-help">Please enter your Patreon Creator Token</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12 col-lg-12 col-xl-6">
+      <div class="card">
+        <div class="card-block" style="padding: 0; border-top: none;">
+          <account-select></account-select>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-block" style="padding: 0; border-top: none;">
+          <button style="width: 100%;" class="btn btn-primary" (click)="addAccountToDevelopers()">
+            Add Account to Developers
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

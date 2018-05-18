@@ -1,0 +1,119 @@
+// Name:            Card
+//
+// Component:       `card`
+// ========================================================================
+
+// Variables
+// ========================================================================
+
+$card-actions-link-color:        $gray !default;
+$card-actions-link-hover-color:  $gray-light !default;
+
+$card-posts-horizontal-border:   $border-color-base !default;
+
+// $card-margin-bottom:             2.143rem !default;
+$card-margin-bottom:             pxToRem(30px) !default;
+
+// Component: Card
+// ========================================================================
+.card-header,
+.card-footer {
+  border: none;
+  box-shadow: none;
+}
+
+
+// Modifier: `card-bordered`
+// -------------------------
+.card-bordered {
+  border: $card-border-width solid $card-border-color;
+}
+
+.card-header-bordered {
+  border-bottom: $card-border-width solid $card-border-color;
+}
+
+.card-footer-bordered {
+  border-top: $card-border-width solid $card-border-color;
+}
+
+// Modifier: `card transparent`
+// -------------------------
+.card-transparent {
+  background-color: transparent;
+}
+
+.card-header-transparent {
+  background-color: transparent;
+}
+
+.card-footer-transparent {
+  background-color: transparent;
+}
+
+// Strucutes
+// ========================================================================
+
+.card-text {
+  &.type-link {
+    a {
+      color: $gray;
+
+      &:hover {
+        color: $gray-light;
+      }
+
+      + a:before {
+        background-color: $gray;
+      }
+    }
+  }
+}
+
+// Card Watermark
+// ========================================================================
+
+.card-watermark {
+  &.darker {
+    color: black;
+  }
+
+  &.lighter {
+    color: white;
+  }
+}
+
+
+// Card divider
+// ========================================================================
+
+.card-divider {
+  &:after {
+    background-color: $inverse;
+  }
+}
+
+// card Actions
+// ========================================================================
+
+.card-actions {
+
+  a {
+    color: $card-actions-link-color;
+
+    &.active, &:hover, &:focus {
+      color: $card-actions-link-hover-color;
+    }
+  }
+}
+
+.card-actions-sidebar {
+
+  a {
+    border-right: 1px solid $card-posts-horizontal-border;
+
+    + a {
+      border-top: 1px solid $card-posts-horizontal-border;
+    }
+  }
+}

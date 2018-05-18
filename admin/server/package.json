@@ -1,0 +1,18 @@
+{
+  "name": "packix-admin-server",
+  "version": "1.0.0",
+  "description": "Express server for Packix admin interface",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "connect-mongo": "^2.0.1",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.14.0",
+    "express-session": "^1.15.6"
+  },
+  "author": "Packix",
+  "license": "MIT"
+}

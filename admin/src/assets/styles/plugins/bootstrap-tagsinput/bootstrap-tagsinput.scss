@@ -1,0 +1,88 @@
+@import 'vars';
+
+// var
+// =============================================================
+$label-default-bg:           $btn-default-bg;
+$label-default-color:        $text-color;
+$label-default-remove-color: $label-default-color;
+
+$tag-border: transparent;
+$tag-hover-border: $brand-primary-hover;
+$tag-active-border: $brand-primary-active;
+
+// bootstrap-tagsinput
+// =============================================================
+
+.bootstrap-tagsinput {
+  display: inline-block;
+  padding: $padding-base-vertical $padding-base-horizontal;
+  color: $text-color;
+  vertical-align: middle;
+  max-width: 100%;
+  line-height: $line-height-base;
+  cursor: text;
+  background-color: $color-white;
+  border: 1px solid $input-border;
+  box-shadow: none;
+  border-radius: $input-border-radius;
+
+  input {
+    border: none;
+    box-shadow: none;
+    outline: none;
+    background-color: transparent;
+    margin: 0;
+    width: auto !important;
+    max-width: inherit;
+    line-height: inherit;
+    padding: 0 6px;
+
+    &:focus {
+      border: none;
+      box-shadow: none;
+    }
+  }
+
+  .form-control {
+    input::-moz-placeholder {
+      color: $input-color-placeholder;
+      opacity: 1;
+    }
+    input:-ms-input-placeholder {
+      color: $input-color-placeholder;
+    }
+    input::-webkit-input-placeholder {
+      color: $input-color-placeholder;
+    }
+  }
+
+  .tag {
+    margin: 1px;
+    margin-right: 2px;
+
+    border: 1px solid $tag-border;
+
+    &:hover {
+      border: 1px solid $tag-hover-border;
+    }
+
+    &:hover:active {
+      border-color: $tag-active-border;
+    }
+
+    [data-role="remove"] {
+      margin-left: 8px;
+      cursor: pointer;
+
+      &:after {
+        content: "x";
+        padding: 0 2px;
+      }
+    }
+
+    &.label {
+      display: inline-block;
+      margin: 0 0 2px;
+    }
+  }
+}

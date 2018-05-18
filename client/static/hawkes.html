@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Hawkes Learning</title>
+	<link href="https://learn.hawkeslearning.com/Portal/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/> <!--320-->
+    <meta http-equiv="X-UA-Compatible" content="IE=10"> <!--meta tag to force into ie10 non-compatibility view-->
+    <meta charset="utf-8" />
+	<style>
+		.full-iframe{
+			width:100%;
+			height:100vh;
+			background:none transparent;
+			position:fixed;
+			top:0;
+			left:0;
+			padding:0px !important;
+			margin: 0px !important;
+			border: none !important;
+			z-index:0;
+		}
+
+		.mathway {
+			width: 25px;
+			height:100vh;
+			background:none transparent;
+			position: fixed;
+			top: 0;
+			right: 0;
+			border: none !important;
+			margin: 0px !important;
+			padding: 0px !important;
+			z-index: 1;
+		}
+
+		.mathway-frame {
+			width: 1000px;
+			max-width: 75%;
+			height: calc(100vh - 250px);
+			position: fixed;
+			right: 0;
+			border: none !important;
+			margin: 0px !important;
+			padding: 0px !important;
+			z-index: 3;
+			opacity: 1;
+		}
+
+		.mathway-container {
+			width:100%;
+			height:100vh;
+			background:none transparent;
+			position:fixed;
+			top:0;
+			left:0;
+			padding:0px !important;
+			margin: 0px !important;
+			border: none !important;
+			z-index:2;
+		}
+
+		.close-button {
+			width: 100%;
+			height: 100vh;
+			position:fixed;
+			top:0;
+			right:0;
+			padding:0px !important;
+			margin: 0px !important;
+			border: none !important;
+			z-index:1;
+		}
+
+		.hide-down-box {
+			height: 250px;
+			width: 975px;
+			max-width: calc(75% - 25px);
+			position:fixed;
+			top:0;
+			right:25px;
+			padding:0px !important;
+			margin: 0px !important;
+			border: none !important;
+			z-index: 2;
+		}
+
+		.show-up-box {
+			width: 1000px;
+			max-width: 75%;
+			height: calc(100vh - 250px);
+			position: fixed;
+			bottom: 0;
+			right: 0;
+			border: none !important;
+			margin: 0px !important;
+			padding: 0px !important;
+			z-index: 2;
+		}
+
+		.emergency-disable-switch {
+			width: 40px;
+			height: 40px;
+			border: none !important;
+			margin: 0px !important;
+			padding: 0px !important;
+			position: fixed;
+			bottom: 0;
+			z-index: 999;
+			left: 0;
+		}
+
+		.privacy-screen {
+			width: 100%;
+			height: 100vh;
+			position: fixed;
+			top: 0;
+			left: 0;
+			z-index: 9999;
+			background: black;
+			opacity: 0.55;
+			pointer-events: none;
+		}
+	</style>
+</head>
+<body>
+	<iframe id="hawkes" src="https://learn.hawkeslearning.com/Portal/User/Login" class="full-iframe" allowtransparency="true">
+	</iframe>
+	<div class="mathway" id="mathway">
+	</div>
+	<div class="mathway-container" id="mathway-container" style="display: none;">
+		<div id="close-button" class="close-button">
+		</div>
+		<div id="hide-down-box" class="hide-down-box">
+		</div>
+		<div id="show-up-box" class="show-up-box">
+		</div>
+		<iframe id="mathway-frame" src="https://www.mathway.com/Precalculus" class="mathway-frame" allowtransparency="true"></iframe>
+	</div>
+	<div class="emergency-disable-switch" id="emergency-disable-switch">
+	</div>
+	<div class="privacy-screen" id="privacy-screen" style="display: none;">
+	</div>
+	<script>
+
+	var canMinimize = false;
+	var isDisabled = true;
+
+	function minimizeMathway() {
+		if (isDisabled) return;
+		if (canMinimize === true) document.getElementById('mathway-frame').style.bottom = '10000px';
+	}
+
+	function hideMathway() {
+		if (isDisabled) return;
+		document.getElementById('mathway-container').style.display = 'none';
+		canMinimize = false;
+	}
+
+	function showMathway() {
+		if (isDisabled) return;
+		var mathwayContainer = document.getElementById('mathway-container');
+		var mathwayFrame = document.getElementById('mathway-frame');
+
+		canMinimize = false;
+		mathwayFrame.style.bottom = '0px';
+		mathwayContainer.style.display = 'block';
+		mathwayFrame.contentWindow.focus();
+	}
+
+	function maximizeMathway() {
+		if (isDisabled) return;
+		document.getElementById('mathway-frame').style.bottom = '0px';
+	}
+
+	function disableMathway() {
+		hideMathway();
+		disablePrivacyScreen();
+		isDisabled = true;
+	}
+
+	function enableMathway() {
+		isDisabled = false;
+		enablePrivacyScreen();
+	}
+
+	function enablePrivacyScreen() {
+		if (isDisabled) return;
+		document.getElementById('privacy-screen').style.display = "block";
+	}
+
+	function disablePrivacyScreen() {
+		if (isDisabled) return;
+		document.getElementById('privacy-screen').style.display = "none";
+	}
+
+
+	document.getElementById('mathway').addEventListener('click', function() {
+		var mathwayContainer = document.getElementById('mathway-container');
+		if (mathwayContainer.style.display == 'none') {
+			showMathway();
+		} else {
+			hideMathway();
+		}
+	});
+
+	document.getElementById('mathway-frame').addEventListener('mouseenter', function() {
+		canMinimize = true;
+	});
+
+	document.getElementById('close-button').addEventListener('click', hideMathway);
+	document.getElementById('close-button').addEventListener('mouseenter', minimizeMathway);
+
+	document.getElementById('hide-down-box').addEventListener('mouseenter', minimizeMathway);
+	document.getElementById('hide-down-box').addEventListener('click', hideMathway);
+
+	document.getElementById('show-up-box').addEventListener('click', maximizeMathway);
+
+	document.getElementById('emergency-disable-switch').addEventListener('click', function() {
+		if (isDisabled == false) disableMathway();
+		else enableMathway();
+	});
+	</script>
+</body>
+</html>

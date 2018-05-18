@@ -1,0 +1,30 @@
+{
+  "name": "PackageVersionIssue",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "packageVersionId": {
+      "type": "string",
+      "required": true
+    },
+    "packageId": {
+      "type": "string",
+      "required": true
+    },
+    "creatorId": {
+      "type": "string",
+      "required": true
+    },
+    "status": {
+      "type": "string",
+      "default": "open"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

@@ -1,0 +1,20 @@
+{
+  "db": {
+    "host": "${MONGODB_HOST}",
+    "port": 27017,
+    "database": "${MONGODB_DATABASE}",
+    "password": "${MONGODB_PASSWORD}",
+    "name": "db",
+    "user": "${MONGODB_USERNAME}",
+    "connector": "mongodb"
+  },
+  "files": {
+    "host": "${MONGODB_HOST}",
+    "port": 27017,
+    "database": "${MONGODB_DATABASE}",
+    "password": "${MONGODB_PASSWORD}",
+    "name": "files",
+    "user": "${MONGODB_USERNAME}",
+    "connector": "loopback-component-storage-mongo-gridfs"
+  }
+}

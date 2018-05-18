@@ -1,0 +1,205 @@
+{
+  "name": "PackageVersion",
+  "plural": "PackageVersions",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "mixins": {
+    "Computed": {
+      "properties": {
+        "downloadCount": "computeDownloadCount"
+      }
+    },
+    "TimeStamp": {
+      "createdAt": "createdOn",
+      "updatedAt": "updatedOn",
+      "silenceWarnings": false
+    },
+    "Stats": [
+      {
+        "method": "stats",
+        "endpoint": "/:id/downloads/stats",
+        "description": "A Description for Loopback Explorer",
+        "type": "relation",
+        "relation": "downloads",
+        "count": {
+          "on": "createdOn",
+          "by": "index"
+        }
+      }
+    ],
+    "Archive": {
+      "deletedAt": "deletedAt",
+      "isDeleted": "isDeleted"
+    }
+  },
+  "allowedMethods": [
+    "find",
+    "findById",
+    "findOne",
+    "prototype.patchAttributes",
+    "create",
+    "prototype.review",
+    "prototype.rate",
+    "prototype.download",
+    "prototype.downloadStats",
+    "patchAttributes"
+  ],
+  "ownerIdPath": "package.accountId",
+  "properties": {
+    "version": {
+      "type": "string",
+      "required": true
+    },
+    "changes": {
+      "type": [
+        "any"
+      ]
+    },
+    "dependencies": {
+      "type": "string"
+    },
+    "visible": {
+      "type": "boolean",
+      "default": true
+    },
+    "raw": {
+      "type": "object"
+    },
+    "downloadCount": {
+      "type": "Number"
+    },
+    "ratingStats": {
+      "type": "object"
+    },
+    "packageId": {
+      "type": "string",
+      "index": true
+    },
+    "packageFileId": {
+      "type": "string",
+      "index": true
+    },
+    "recentReviews": {
+      "type": [
+        "PackageVersionReview"
+      ],
+      "default": []
+    }
+  },
+  "validations": [],
+  "relations": {
+    "package": {
+      "type": "belongsTo",
+      "model": "Package",
+      "foreignKey": "packageId",
+      "allowedMethods": [
+        "get"
+      ]
+    },
+    "file": {
+      "type": "hasOne",
+      "model": "PackageFile",
+      "foreignKey": "",
+      "allowedMethods": [
+        "get",
+        "update"
+      ]
+    },
+    "downloads": {
+      "type": "hasMany",
+      "model": "PackageDownload",
+      "foreignKey": "versionId",
+      "allowedMethods": []
+    },
+    "ratings": {
+      "type": "hasMany",
+      "model": "PackageVersionRating",
+      "foreignKey": "",
+      "options": {
+        "disableInclude": true
+      },
+      "allowedMethods": [
+        "count"
+      ]
+    },
+    "reviews": {
+      "type": "hasMany",
+      "model": "PackageVersionReview",
+      "foreignKey": "",
+      "allowedMethods": [
+        "get",
+        "findById",
+        "count"
+      ]
+    }
+  },
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    },
+    {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW"
+    },
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": [
+        "review",
+        "rate",
+        "download",
+        "prototype.review",
+        "prototype.rate",
+        "prototype.download"
+      ]
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": [
+        "prototype.patchAttributes",
+        "patchAttributes"
+      ]
+    },
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY",
+      "property": [
+        "__get__file",
+        "__update__file"
+      ]
+    },
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "dynamicOwner",
+      "permission": "ALLOW",
+      "property": [
+        "__get__file",
+        "__update__file",
+        "__count__ratings",
+        "__get__reviews",
+        "__findById__reviews",
+        "__count__reviews",
+        "prototype.downloadStats",
+        "prototype.patchAttributes",
+        "patchAttributes"
+      ]
+    }
+  ],
+  "methods": {}
+}

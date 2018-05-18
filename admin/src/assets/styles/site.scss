@@ -1,0 +1,663 @@
+// Load variables
+@import 'vars';
+
+
+// Load fontface
+// -------------------------------
+// @import (css)"#{$use-font-family-url}";
+
+// Sectionse
+// -------------------------------
+@import 'sections/site-navbar';
+@import 'sections/site-menubar';
+@import 'sections/site-menu';
+@import 'sections/site-gridmenu';
+@import 'sections/site-sidebar';
+@import 'sections/site-action';
+@import 'sections/page';
+@import 'sections/page-header';
+@import 'sections/page-aside';
+@import 'sections/site-footer';
+
+// Layouts
+// -------------------------------
+@import 'layouts/layout-full';
+@import 'layouts/layout-boxed';
+@import 'layouts/layout-print';
+@import 'layouts/site-menubar-fold';
+@import "layouts/site-menubar-fold-alt";
+@import 'layouts/site-menubar-unfold';
+@import 'layouts/site-navbar-collapse-show';
+@import "layouts/site-navbar-small";
+@import 'layouts/responsive-phone';
+@import 'layouts/site-menubar-flipped';
+
+// Components
+// -------------------------------
+//@if $use-checkbox-radio == true {
+@import 'components/checkbox-radio';
+//}
+//@if $use-material-forms == true {
+@import 'components/material-forms';
+//}
+//@if $use-loader == true {
+@import 'components/loader';
+//}
+//@if $use-animation == true {
+@import 'components/animation';
+//}
+//@if $use-colors == true {
+@import 'components/colors';
+//}
+//@if $use-bg == true {
+@import 'components/bg';
+//}
+//@if $use-social == true {
+@import 'components/social';
+//}
+//@if $use-blocks == true {
+@import 'components/blocks';
+//}
+//@import 'components/divider';
+//@if $use-avatar == true {
+@import 'components/avatar';
+//}
+//@if $use-status == true {
+@import 'components/status';
+//}
+//@if $use-icon == true {
+@import 'components/icon';
+//}
+//@if $use-hamburger == true {
+@import 'components/hamburger';
+//}
+//@if $use-counter == true {
+@import 'components/counter';
+//}
+//@if $use-panels == true {
+@import 'components/panels';
+//}
+//@if $use-panel-groups == true {
+@import 'components/panel-groups';
+//}
+//@if $use-cover == true {
+@import 'components/cover';
+//}
+//@if $use-overlay == true {
+@import 'components/overlay';
+//}
+//@if $use-comment == true {
+@import 'components/comment';
+//}
+//@if $use-chat == true {
+@import 'components/chat';
+//}
+//@if $use-steps == true {
+@import 'components/steps';
+//}
+//@if $use-pearls == true {
+@import 'components/pearls';
+//}
+//@if $use-timeline == true {
+@import 'components/timeline';
+//}
+//@if $use-testimonial == true {
+@import 'components/testimonial';
+//}
+//@if $use-pricing-list == true {
+@import 'components/pricing-list';
+//}
+//@if $use-pricing-table == true {
+@import 'components/pricing-table';
+//}
+//@if $use-rating == true {
+@import 'components/rating';
+//}
+//@if $use-ribbon == true {
+@import 'components/ribbon';
+//}
+//@if $use-color-selector == true {
+@import 'components/color-selector';
+//}
+//@if $use-helper-width == true {
+@import 'components/helper-width';
+//}
+//@if $use-helper-height == true {
+@import 'components/helper-height';
+//}
+//@if $use-helper-margin == true {
+@import 'components/helper-margin';
+//}
+//@if $use-helper-padding == true {
+@import 'components/helper-padding';
+//}
+//@if $use-example == true {
+@import 'components/example';
+//}
+
+//@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i');
+
+$bg-start: $color-primary-600;
+$bg-end:   $color-primary-800;//#1571b1;
+
+
+@font-face {
+  font-family: 'SF Pro Text';
+  font-style: normal;
+  font-weight: 500;
+  src: local('â˜ºï¸Ž'), url("../../../../client/static/assets/fonts/sf-pro-text_medium.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: 'SF Pro Display';
+  font-style: normal;
+  font-weight: 600;
+  src: local('â˜ºï¸Ž'), url("../../../../client/static/assets/fonts/sf-pro-display_semibold.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: 'SF Pro Display';
+  font-style: normal;
+  font-weight: 500;
+  src: local('â˜ºï¸Ž'), url("../../../../client/static/assets/fonts/sf-pro-display_medium.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: 'SF Pro Display';
+  font-style: normal;
+  font-weight: 700;
+  src: local('â˜ºï¸Ž'), url("../../../../client/static/assets/fonts/sf-pro-display_bold.woff2") format("woff2")
+}
+
+@font-face {
+  font-family: 'SF Pro Display';
+  font-style: normal;
+  font-weight: 400;
+  src: local('â˜ºï¸Ž'), url("../../../../client/static/assets/fonts/sf-pro-display_regular.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: 'SF Pro Display';
+  font-style: normal;
+  font-weight: 900;
+  src: local('☺︎'), url("../../../../client/static/assets/fonts/sf-pro-display_black.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: 'SF Pro Display';
+  font-style: normal;
+  font-weight: 800;
+  src: local('â˜ºï¸Ž'), url("../../../../client/static/assets/fonts/sf-pro-display_heavy.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: 'SF Pro Text';
+  font-style: normal;
+  font-weight: 600;
+  src: local('â˜ºï¸Ž'), url('../../../../client/static/assets/fonts/sf-pro-text_semibold.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'SF Pro Text';
+  font-style: normal;
+  font-weight: 400;
+  src: local('☺︎'), url('../../../../client/static/assets/fonts/sf-pro-text_regular.woff2') format('woff2');
+}
+
+.page-login-v3 {
+  &:before {
+    position: fixed;
+    top: 0;
+    left: 0;
+    content: '';
+    width: 100%;
+    height: 100%;
+    background-position: center top;
+    background-size: cover;
+    z-index: -1;
+
+    background: $color-primary-600; /* Old browsers */
+    /* IE9 SVG, needs conditional override of 'filter' to 'none' */
+    background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzYyYThlYSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMxNTcxYjEiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+    @include gradient-y($bg-start, $bg-end);
+  }
+
+  .panel {
+    width: 400px;
+    .panel-body {
+      padding: 50px 40px 40px;
+    }
+
+    margin-bottom: 45px;
+    background: $color-white;
+    border-radius: $border-radius-large;//4px;
+
+    .brand-text {
+      margin-top: 8px;
+    }
+  }
+
+  form {
+    margin: 45px 0 30px;
+
+    a {
+      margin-left: 20px;
+    }
+
+    .form-material.floating  {
+      & + & {
+        margin-top: 30px;
+      }
+    }
+
+    .form-material label {
+      color: #a3afb7;
+      font-weight: $font-weight-normal;
+    }
+  }
+}
+
+@include media-breakpoint-down(xs) {
+  .page-login-v3 {
+    .page-content {
+      padding: 30px 20px;
+    }
+
+    .panel {
+      width: auto;
+      padding: 10px;
+
+      .panel-body {
+        padding: 35px 25px 35px;
+      }
+    }
+  }
+}
+
+
+
+// Packages Page
+
+.app-packages .page {
+  height: -webkit-calc(100% - 44px);
+  height: calc(100% - 44px);
+}
+
+.app-packages .page-main {
+  height: 100%;
+}
+
+.app-packages .page-aside .form-control {
+  border-radius: 0;
+  border-width: 0 0 1px 0;
+  border-color: rgba(0, 0, 0, .06);
+  padding: 10px 60px 10px 30px;
+  height: 56px;
+}
+
+.app-packages .page-aside .input-search-btn {
+  padding-right: 30px;
+  border-radius: 0;
+}
+
+.app-packages .page-aside-inner {
+  height: 100%;
+}
+
+.app-packages-list {
+  height: -webkit-calc(100% - 4.003rem);
+  height: calc(100% - 4.003rem);
+}
+
+.app-packages-list .list-group .list-group-item {
+  border-bottom: 0;
+  border-radius: 0;
+  padding: 16px 30px;
+  white-space: nowrap;
+  z-index: 0;
+}
+
+.app-packages-chats {
+  padding: 20px 30px;
+  overflow-y: auto;
+  text-align: center;
+  height: -webkit-calc(100% - 96px);
+  height: calc(100% - 96px);
+  background-color: #fff;
+}
+
+body .ql-snow  {
+  .ql-editor {
+      html, body, div, span, object, iframe, h1, h2, h3,
+      h4, h5, h6, p, blockquote, pre, abbr,
+      address, cite, code, del, dfn, em, img,
+      ins, kbd, q, samp, small, strong, sub, sup, var, b,
+      i, dl, dt, dd, ol, ul, li, fieldset, form, label,
+      legend, table, caption, tbody, tfoot, thead, tr, th,
+      td, article, aside, canvas, details, figcaption, figure,
+      footer, header, hgroup, menu, nav, section, summary, time,
+      mark, audio, video {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        outline: 0;
+        font-size: 100%;
+        vertical-align: baseline;
+        background: transparent;
+      }
+      .ql-editor {
+        line-height: 1;
+      }
+      article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+        display: block;
+      }
+      nav ul {
+        list-style: none;
+      }
+      blockquote, q {
+        quotes: none;
+      }
+      blockquote:before, blockquote:after, q:before, q:after {
+        content: '';
+        content: none;
+      }
+      a {
+        margin: 0;
+        padding: 0;
+        font-size: 100%;
+        vertical-align: baseline;
+        background: transparent;
+      }
+      /* change colours to suit your needs */
+      ins {
+        background-color: #ff9;
+        color: #000;
+        text-decoration: none;
+      }
+      /* change colours to suit your needs */
+      mark {
+        background-color: #ff9;
+        color: #000;
+        font-style: italic;
+        font-weight: bold;
+      }
+      del {
+        text-decoration: line-through;
+      }
+      abbr[title], dfn[title] {
+        border-bottom: 1px dotted;
+        cursor: help;
+      }
+      table {
+        border-collapse: collapse;
+        border-spacing: 0;
+      }
+      /* change border colour to suit your needs */
+      hr {
+        display: block;
+        height: 1px;
+        border: 0;
+        border-top: 1px solid #cccccc;
+        margin: 1em 0;
+        padding: 0;
+      }
+      input, select {
+        vertical-align: middle;
+      }
+
+      .ios9-lightblue {
+        color: #54C7FC;
+      }
+      .ios9-blue {
+        color: #0076FF;
+      }
+      .ios9-darkpink {
+        color: #FF2851;
+      }
+      .ios9-red {
+        color: #FF3824;
+      }
+      .ios9-orange {
+        color: #FF9600;
+      }
+      .ios9-yellow {
+        color: #FFCD00;
+      }
+      .ios9-lightgreen {
+        color: #44DB5E;
+      }
+      .ios9-darkgray {
+        color: #8E8E93;
+      }
+      #unused-body {
+        margin-top: 0px !important;
+        padding-top: 9px !important;
+        -moz-box-shadow: inset 0 8px 6px -6px rgba(0, 0, 0, 0.2);
+        -webkit-box-shadow: inset 0 8px 6px -6px rgba(0, 0, 0, 0.2);
+        box-shadow: inset 0 8px 6px -6px rgba(0, 0, 0, 0.2);
+      }
+      .ql-editor {
+        -webkit-text-size-adjust: none;
+        -webkit-touch-callout: none;
+        -webkit-user-select: text;
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        font-family: ".SFNSText-Medium", -apple-system, "Helvetica Neue", "Lucida Grande", sans-serif;
+        background-color: #f4f4f4;
+        min-font-size: 13px;
+        text-align: center;
+        font-family: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+        font-weight: 500;
+        font-size: 15px;
+        width: 100%;
+
+      }
+      .ql-editor panel {
+        display: block;
+        margin: 0;
+        border: 0;
+        margin-top: 9px;
+        margin-bottom: 28px;
+        width: 100%;
+      }
+
+      .ql-editor {
+        margin-left: 14px;
+        margin-right: 14px;
+        background-color: white;
+        text-align: left;
+        border-radius: 15px;
+        overflow: hidden;
+        display: block;
+        padding: 15px 20px;
+        box-shadow: 2px 2px 40px -12px #999;
+        font-size: 15px;
+        color: #666;
+      }
+
+    .ql-editor panel panel-header {
+        margin: 12px;
+        margin-left: 12px;
+        margin-right: 12px;
+        display: block;
+        padding: 8px 16px 0px 20px;
+        text-align: left;
+        font-size: 24px;
+        font-family: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+        margin-bottom: 13px;
+        padding-left: 14px;
+        color: #111;
+      }
+
+      .ql-editor table tbody tr td {
+        font-family: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+        font-weight: 700;
+        font-size: 15px;
+        float: left;
+        margin: 11px 2px;
+        line-height: 1.1;
+        color: #111;
+        text-align: left;
+        color: #888;
+        color: #111;
+
+      }
+
+      // body panel panel-body table > tbody > tr {
+      //    margin: 5px 0px;
+      // }
+
+      .ql-editor table > tbody > tr > td:nth-child(2) {
+        color: #777;
+        float: right;
+        font-weight: 500;
+        font-size: 13px;
+        text-align: right;
+        font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+        color: #111;
+        padding-top: 1px;
+        padding-bottom: 1px;
+        color: #888;
+      }
+
+    .ql-editor > table > tbody > tr:first-child td {
+        margin-top: 0px;
+      }
+
+    .ql-editor > table > tbody > tr:last-child td {
+        margin-bottom: 0px;
+      }
+
+    .ql-editor > table {
+        width: 100%;
+      }
+
+    .ql-editor > table > tbody > tr {
+        border-bottom: 0.5px solid #cacaca;
+      }
+
+    .ql-editor > table > tbody > tr:last-child {
+        border-bottom: none;
+      }
+
+    .ql-editor > ul {
+        padding: 0px 17px;
+        line-height: 1.5;
+        font-weight: 500;
+        font-size: 15px;
+        margin: 0px;
+        font-family: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+      }
+
+      .change-content {
+        font-size: 14.5px;
+        font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+
+      }
+
+      .changes-dash {
+        padding-right: 10px;
+        font-weight: 900;
+        transform: scale(1.3, 1.3);
+        display: none;
+      }
+
+    .ql-editor {
+        font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+      }
+
+      h1, h2, h3, h4, h5, h6 {
+        font-family: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+      }
+
+      h1 {
+        font-size: 38px;
+        font-weight: 900;
+        color: black;
+        line-height: 1.3;
+      }
+
+      h2 {
+        font-size: 28px;
+        font-weight: 800;
+        color: black;
+        line-height: 1.5;
+      }
+
+      h3 {
+        font-size: 20px;
+        font-weight: 800;
+        color: #4a4a4a;
+        line-height: 1.4;
+        margin-bottom: 2px;
+      }
+
+      h4 {
+        font-size: 18px;
+        font-weight: 700;
+        color: #4a4a4a;
+        line-height: 1.25;
+      }
+
+      h5 {
+        font-size: 15px;
+        font-weight: 700;
+        color: #4a4a4a;
+        line-height: 1.1
+      }
+
+      h6 {
+        font-size: 13px;
+        font-weight: 800;
+        color: #111;
+        line-height: 1.3;
+      }
+
+      strong {
+        font-weight: 600;
+        color: #555;
+      }
+
+      p {
+        line-height: 1.25;
+        margin-bottom: 12px;
+        font-size: 13px;
+      }
+      ul, ol {
+        padding: 8px 18px;
+      }
+      div.header {
+        display: none;
+      }
+      div.pic {
+        display: none;
+      }
+      fieldset.black {
+        display: none;
+      }
+      @keyframes screenshots {
+        from {
+          opacity: 0;
+          -webkit-transform: translate(0, 200px);
+        }
+        to {
+          opacity: 1;
+          -webkit-transform: none;
+        }
+      }
+      body.pinstripe {
+        text-align: center;
+        background-color: #e9e9ee !important;
+        -webkit-animation-duration: .5s;
+        -webkit-animation-fill-mode: both;
+        -webkit-animation-name: screenshots;
+      }
+      body div.center {
+        text-align: left;
+        margin: 15px;
+      }
+
+    .ql-editor a {
+        text-decoration: none;
+      }
+  }
+}

@@ -1,0 +1,156 @@
+version: '3.5'
+services:
+  redis:
+    image: redis:alpine
+    networks:
+      - redis_net
+    deploy:
+      replicas: 1
+      update_config:
+        parallelism: 2
+        delay: 10s
+      restart_policy:
+        condition: on-failure
+      placement:
+        constraints: [node.role == manager]
+  traefik:
+    image: traefik:alpine
+    command: --entryPoints="Name:http Address::80 Redirect.EntryPoint:https" \
+             --entryPoints="Name:https Address::443 TLS" \
+             --defaultentrypoints="http,https" \
+             --acme="true" \
+             --acme.acmelogging="true" \
+             --acme.email="${ADMIN_EMAIL}" \
+             --acme.entrypoint="https" \
+             --acme.httpchallenge \
+             --acme.httpchallenge.entrypoint=http \
+             --acme.storage=/etc/traefik/acme.json \
+             --acme.onhostrule="true" \
+             --docker \
+             --docker.swarmmode \
+             --acme.domains="${HOST_URL}" \
+             --docker.domain="${HOST_URL}" \
+             --docker.watch \
+             --web \
+             --logLevel=info
+    ports:
+      - 80:80
+      - 443:443
+      - 8080:8080
+    networks:
+      - traefik-net
+    restart: always
+    volumes:
+      - ./docker/traefik:/etc/traefik/
+      - /var/run/docker.sock:/var/run/docker.sock
+    deploy:
+      replicas: 1
+      placement:
+        constraints: [node.role == manager]
+  client:
+    image: "packix/packix_client"
+    networks:
+      - default
+      - traefik-net
+    environment:
+      - NODE_ENV=production
+      - PORT=8083
+      - HOST_URL=${HOST_URL}
+      - COOKIE_SECRET=${COOKIE_SECRET}
+      - MONGODB_HOST=${MONGODB_HOST}
+      - MONGODB_DATABASE=${MONGODB_DATABASE}
+      - MONGODB_USERNAME=${MONGODB_USERNAME}
+      - DOCKER_BUILDING=0
+      - GOOGLE_ANALYTICS_TRACKING_ID=${GOOGLE_ANALYTICS_TRACKING_ID}
+    restart: always
+    deploy:
+      replicas: 4
+      labels:
+        traefik.backend: "${COMPOSE_PROJECT_NAME}_client"
+        traefik.frontend.rule: "Host:${HOST_URL};"
+        traefik.port: "8083"
+        traefik.docker.network: "${COMPOSE_PROJECT_NAME}_traefik-net"
+        traefik.enable: "true"
+  admin:
+    image: "packix/packix_admin"
+    environment:
+      - NODE_ENV=production
+      - COOKIE_SECRET=${COOKIE_SECRET}
+      - MONGODB_HOST=${MONGODB_HOST}
+      - MONGODB_PORT=${MONGODB_PORT}
+      - MONGODB_DATABASE=${MONGODB_DATABASE}
+      - MONGODB_USERNAME=${MONGODB_USERNAME}
+      - PORT=8086
+      - DOCKER_BUILDING=0
+    networks:
+      - default
+      - traefik-net
+    restart: always
+    deploy:
+      replicas: 1
+      labels:
+        traefik.backend: "${COMPOSE_PROJECT_NAME}_admin"
+        traefik.frontend.rule: "Host:${HOST_URL};PathPrefix:/admin"
+        traefik.port: "8086"
+        traefik.docker.network: "${COMPOSE_PROJECT_NAME}_traefik-net"
+        traefik.enable: "true"
+  backend:
+    image: "packix/packix_backend"
+    environment:
+      - NODE_ENV=production
+      - API_DATASTORE_TYPE=MongoDB
+      - MONGODB_HOST=${MONGODB_HOST}
+      - MONGODB_PORT=${MONGODB_PORT}
+      - MONGODB_USERNAME=${MONGODB_USERNAME}
+      - MONGODB_PASSWORD=${MONGODB_PASSWORD}
+      - MONGODB_DATABASE=${MONGODB_DATABASE}
+      - FILE_DATASTORE_TYPE=GridFS
+      - USE_GOOGLE_LOGIN=YES
+      - GOOGLE_LOGIN_CLIENT_ID=${GOOGLE_LOGIN_CLIENT_ID}
+      - GOOGLE_LOGIN_CLIENT_SECRET=${GOOGLE_LOGIN_CLIENT_SECRET}
+      - USE_FACEBOOK_LOGIN=YES
+      - FACEBOOK_LOGIN_CLIENT_ID=${FACEBOOK_LOGIN_CLIENT_ID}
+      - FACEBOOK_LOGIN_CLIENT_SECRET=${FACEBOOK_LOGIN_CLIENT_SECRET}
+      - USE_PATREON_LOGIN=YES
+      - PATREON_LOGIN_CLIENT_ID=${PATREON_LOGIN_CLIENT_ID}
+      - PATREON_LOGIN_CLIENT_SECRET=${PATREON_LOGIN_CLIENT_SECRET}
+      - USE_TWITTER_LOGIN=YES
+      - TWITTER_LOGIN_CLIENT_ID=${TWITTER_LOGIN_CLIENT_ID}
+      - TWITTER_LOGIN_CLIENT_SECRET=${TWITTER_LOGIN_CLIENT_SECRET}
+      - COOKIE_SECRET=${COOKIE_SECRET}
+      - PACKAGES_CONTAINER_NAME=packages
+      - HOST_URL=${HOST_URL}
+      - ADMIN_EMAIL=${ADMIN_EMAIL}
+      - PORT=8081
+      - REPOSITORY_NAME=${REPOSITORY_NAME}
+      - REPOSITORY_CODENAME=${REPOSITORY_CODENAME}
+      - REPOSITORY_DESCRIPTION=${REPOSITORY_DESCRIPTION}
+      - REPOSITORY_SUPPORT_URL=https://${HOST_URL}
+      - SMTP_EMAIL=packix-gift@${HOST_URL}
+      - SMTP_NAME=Packix Repository
+      - SENDGRID_API_KEY=${SENDGRID_API_KEY}
+      - sdk_url=https://${HOST_URL}
+      - DOCKER_BUILDING=0
+      - GOOGLE_ANALYTICS_TRACKING_ID=${GOOGLE_ANALYTICS_TRACKING_ID}
+      - REDIS_HOST=${COMPOSE_PROJECT_NAME}_redis
+      - REDIS_PORT=6379
+    depends_on:
+      - redis
+    networks:
+      - default
+      - traefik-net
+      - redis_net
+    restart: always
+    deploy:
+      replicas: 6
+      labels:
+        traefik.backend: "${COMPOSE_PROJECT_NAME}_backend"
+        traefik.frontend.rule: "Host:${HOST_URL};PathPrefix:/api,/Packages,/./Packages,/./Release,/Release,/explorer,/login"
+        traefik.port: "8081"
+        traefik.docker.network: "${COMPOSE_PROJECT_NAME}_traefik-net"
+        traefik.enable: "true"
+networks:
+  default:
+  redis_net:
+  traefik-net:
+    driver: overlay

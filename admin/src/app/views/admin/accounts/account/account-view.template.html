@@ -1,0 +1,180 @@
+<style>
+  .ql-snow b, strong {
+    font-weight: bold !important;
+  }
+
+  .page-main .list-group {
+    margin: 0;
+    padding-right: 15px;
+  }
+
+  .list-group .avatar {
+    width: 62px;
+  }
+
+  .list-group .card {
+    margin-bottom: 15px;
+  }
+
+  .list-group .card-block {
+    -webkit-transition: border .2s linear, color .2s linear, width .2s linear, background-color .2s linear;
+    -o-transition: border .2s linear, color .2s linear, width .2s linear, background-color .2s linear;
+    transition: border .2s linear, color .2s linear, width .2s linear, background-color .2s linear;
+  }
+
+  .list-group .card-block:hover {
+    cursor: pointer;
+    background-color: #eee;
+  }
+
+  .list-group .list-group-item, .list-group .list-group-item:hover {
+    background-color: transparent;
+  }
+
+  .list-inline {
+    height: 25px;
+  }
+
+  .list-inline li a:hover {
+    text-decoration: none;
+    color: #76838f !important;
+  }
+
+  .detail {
+    background-color: #a2caee !important;
+  }
+
+  .page-content {
+    height: 100%;
+    overflow-y: auto;
+  }
+
+  .download-stat-section {
+    border: 1px solid #e4eaec;
+    border-left-color: transparent;
+    border-right-color: transparent;
+    overflow: hidden;
+    padding: 15px;
+  }
+
+  .small-left-padding {
+    padding-left: 5px;
+  }
+
+  .c-border-bottom {
+    border: 1px solid #e4eaec;
+    border-left-color: transparent;
+    border-right-color: transparent;
+    overflow: hidden;
+    border-top-color: transparent;
+  }
+
+  .c-border-top {
+    border: 1px solid #e4eaec;
+    border-left-color: transparent;
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+    overflow: hidden;
+  }
+
+  .no-underline {
+    text-decoration: none !important;
+  }
+</style>
+
+<div class="page-content container-fluid package-page">
+  <div class="row">
+    <div class="col-xxl-3 col-xl-4 col-lg-12" style="float: right;" *ngIf="account">
+      <div class="card">
+        <div class="card-block" style="padding-bottom: 0px;">
+          <div class="account-profile account-select">
+            <img class="account-photo" [src]="account.profilePhoto" />
+            <span class="account-name">{{account.profileName}}</span>
+            <span class="account-email">{{account.profileEmail}}</span>
+          </div>
+        </div>
+        <div class="card-block">
+          <h4 class="project-option-title mt-15">Linked Identities
+          </h4>
+          <div *ngIf="account.identities && account.identities.length > 0">
+            <span *ngFor="let identity of account.identities"
+                  [ngClass]="['badge mr-5 mb-5', {'patreon':'badge-warning', 'google':'badge-primary'}[ identity.provider]]">
+              <ng-container *ngIf="identity.provider == 'google'">Google</ng-container>
+              <ng-container *ngIf="identity.provider == 'patreon'">Patreon</ng-container>
+            </span>
+          </div>
+          <div *ngIf="!account.identities || account.identities.length < 1">
+            <p>This user somehow does not have any identities linked.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xxl-9 col-xl-8 col-lg-12" *ngIf="account">
+      <div class="card" style="background-color: transparent">
+        <div class="card-block" style="padding: 0px; border-top: none;">
+          <div class="nav-tabs-animate nav-tabs-horizontal nav-tabs-inverse" data-plugin="tabs">
+            <ul class="nav nav-tabs nav-tabs-solid" role="tablist">
+              <li class="nav-item" role="presentation">
+                <a class="nav-link active" data-toggle="tab" href="#devices" aria-controls="devices" role="tab"
+                   aria-expanded="true">
+                  Devices
+                </a>
+              </li>
+              <li class="nav-item" role="presentation">
+                <a class="nav-link" data-toggle="tab" href="#purchases" aria-controls="purchases" role="tab"
+                   aria-expanded="false">
+                  Purchases
+                </a>
+              </li>
+              <li class="nav-item" role="presentation">
+                <a class="nav-link" data-toggle="tab" href="#gifts" aria-controls="gifts" role="tab"
+                   aria-expanded="false">
+                  Gifts
+                </a>
+              </li>
+              <li class="nav-item" role="presentation">
+                <a class="nav-link" data-toggle="tab" href="#nonces" aria-controls="nonces" role="tab"
+                   aria-expanded="false">
+                  Link Nonces
+                </a>
+              </li>
+              <li class="nav-item" role="presentation">
+                <a class="nav-link" data-toggle="tab" href="#groups" aria-controls="groups" role="tab"
+                   aria-expanded="false">
+                  Groups
+                </a>
+              </li>
+              <li class="nav-item dropdown" style="display: none;">
+                <a class="dropdown-toggle nav-link" data-toggle="dropdown" href="#" aria-expanded="false">Menu </a>
+                <div class="dropdown-menu" role="menu">
+                  <a class="dropdown-item" data-toggle="tab" href="#devices" aria-controls="devices" role="tab">Devices
+                  </a>
+                  <a class="dropdown-item" data-toggle="tab" href="#purchases" aria-controls="purchases" role="tab">Purchases
+                  </a>
+                  <a class="dropdown-item" data-toggle="tab" href="#gifts" aria-controls="gifts" role="tab">Gifts
+                  </a>
+                  <a class="dropdown-item" data-toggle="tab" href="#nonces" aria-controls="nonces"
+                     role="tab">Link Nonces</a>
+                  <a class="dropdown-item" data-toggle="tab" href="#groups" aria-controls="groups"
+                     role="tab">Groups</a>
+                </div>
+              </li>
+            </ul>
+            <div class="tab-content">
+              <div class="tab-pane active" id="devices" role="tabpanel" aria-expanded="true">
+              </div>
+              <div class="tab-pane" id="purchases" role="tabpanel" aria-expanded="false">
+              </div>
+              <div class="tab-pane" id="gifts" role="tabpanel" aria-expanded="false">
+              </div>
+              <div class="tab-pane" id="nonces" role="tabpanel" aria-expanded="false" >
+              </div>
+              <div class="tab-pane" id="groups" role="tabpanel" aria-expanded="false">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

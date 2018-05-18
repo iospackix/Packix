@@ -1,0 +1,63 @@
+{
+  "name": "PatreonUser",
+  "plural": "PatreonUsers",
+  "base": "PersistedModel",
+  "idInjection": false,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "patreonId": {
+      "type": "string",
+      "index": "true"
+    },
+    "email": {
+      "type": "string"
+    },
+    "pledgeAmount": {
+      "type": "number"
+    },
+    "historicalPledgeAmount": {
+      "type": "number",
+      "default": 0
+    },
+    "isDeclined": {
+      "type": "boolean",
+      "default": false
+    },
+    "pledgePaused": {
+      "type": "boolean",
+      "default": false
+    },
+    "accountId": {
+      "type": "string",
+      "index": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "account": {
+      "type": "belongsTo",
+      "model": "Account",
+      "foreignKey": "accountId"
+    }
+  },
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    },
+    {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "developer",
+      "permission": "ALLOW"
+    }
+  ],
+  "methods": {}
+}

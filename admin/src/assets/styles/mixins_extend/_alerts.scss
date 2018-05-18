@@ -1,0 +1,23 @@
+@mixin alert-variant($background, $border, $text-color){
+  background-color: $background;   // add
+  border-color: $border;           // add
+  color: $text-color;              // add
+
+  .close {
+    color: $text-color;
+
+    &:hover,
+    &:focus {
+      color: $text-color;
+    }
+  }
+}
+
+@mixin alert-alt-variant($border, $text){
+  border-color: $border;
+
+  a,
+  .alert-link {
+    color: $text;
+  }
+}

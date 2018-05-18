@@ -1,0 +1,117 @@
+{
+  "name": "PackageCouponCode",
+  "plural": "PackageCouponCodes",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "mixins": {
+    "TimeStamp": {
+      "createdAt": "createdOn",
+      "updatedAt": "updatedOn",
+      "silenceWarnings": false
+    }
+  },
+  "scope": {
+    "include": [
+      "package"
+    ]
+  },
+  "ownerIdPath": "package.accountId",
+  "allowedMethods": [
+    "create",
+    "find",
+    "findById",
+    "deleteById",
+    "prototype.patchAttributes",
+    "redeem",
+    "prototype.redeem",
+    "count"
+  ],
+  "properties": {
+    "type": {
+      "type": "string",
+      "required": true,
+      "default": "full"
+    },
+    "packageId": {
+      "type": "string",
+      "required": true
+    },
+    "isClaimed": {
+      "type": "boolean",
+      "required": true,
+      "default": false
+    },
+    "accountId": {
+      "type": "string"
+    },
+    "claimIp": {
+      "type": "string"
+    },
+    "validUntil": {
+      "type": "date"
+    },
+    "usesLeft": {
+      "type": "number"
+    },
+    "maxUseCount": {
+      "type": "number"
+    },
+    "extraInfo": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "validations": [],
+  "relations": {
+    "account": {
+      "type": "belongsTo",
+      "model": "Account",
+      "foreignKey": "accountId"
+    },
+    "package": {
+      "type": "belongsTo",
+      "model": "Package",
+      "foreignKey": "packageId"
+    }
+  },
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    },
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": [
+        "redeem",
+        "prototype.redeem"
+      ]
+    },
+    {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": "findById"
+    },
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "dynamicOwner",
+      "permission": "ALLOW",
+      "property": [
+        "deleteById",
+        "findById",
+        "prototype.patchAttributes"
+      ]
+    }
+  ],
+  "methods": {}
+}

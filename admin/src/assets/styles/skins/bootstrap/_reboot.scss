@@ -1,0 +1,72 @@
+// scss-lint:disable QualifyingElement, DuplicateProperty
+// Reboot
+//
+// Global resets to common HTML elements and more for easier usage by Bootstrap.
+// Adds additional rules on top of Normalize.css, including several overrides.
+
+
+// Reset the box-sizing
+//
+// Change from `box-sizing: content-box` to `border-box` so that when you add
+// `padding` or `border`s to an element, the overall declared `width` does not
+// change. For example, `width: 100px;` will always be `100px` despite the
+// `border: 10px solid red;` and `padding: 20px;`.
+//
+// Heads up! This reset may cause conflicts with some third-party widgets. For
+// recommendations on resolving such conflicts, see
+// http://getbootstrap.com/getting-started/#third-box-sizing.
+//
+// Credit: https://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/
+
+body {
+  // Go easy on the eyes and use something other than `#000` for text
+  color: $body-color;
+}
+
+
+//
+// Typography
+//
+
+// Abbreviations and acronyms
+abbr[title],
+// Add data-* attribute to help out our tooltip plugin, per https://github.com/twbs/bootstrap/issues/5257
+abbr[data-original-title] {
+  border-bottom: 1px dotted $abbr-border-color;
+}
+
+//
+// Links
+//
+
+a {
+  color: $link-color;
+
+  @include hover-focus {
+    color: $link-hover-color;
+  }
+  &:focus {
+    @include tab-focus();
+  }
+}
+
+//
+// Tables
+//
+
+table {
+  // Reset for nesting within parents with `background-color`.
+  background-color: $table-bg;
+}
+
+caption {
+  color: $text-muted;
+}
+
+// Work around a Firefox/IE bug where the transparent `button` background
+// results in a loss of the default `button` focus styles.
+//
+// Credit: https://github.com/suitcss/base/
+button:focus {
+  outline: 5px auto -webkit-focus-ring-color;
+}

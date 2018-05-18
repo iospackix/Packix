@@ -1,0 +1,43 @@
+//
+// Headings
+//
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  color: $headings-color;
+}
+
+//
+// Horizontal rules
+//
+
+hr {
+  border-top: $hr-border-width solid $hr-border-color;
+}
+
+
+//
+// Emphasis
+//
+
+mark,
+.mark {
+  background-color: $mark-bg;
+}
+
+//
+// Misc
+//
+
+
+// Blockquotes
+.blockquote {
+  border-left: $blockquote-border-width solid $blockquote-border-color;
+}
+.blockquote-footer {
+  color: $blockquote-small-color;
+}
+// Opposite alignment of blockquote
+.blockquote-reverse {
+  border-right: $blockquote-border-width solid $blockquote-border-color;
+}

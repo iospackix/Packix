@@ -1,0 +1,130 @@
+// Name:            List groups
+//
+// Component:       `list-group`
+//
+// Modifiers:       `list-group.bg-inherit`
+//                  `list-group-bordered`
+//                  `list-group-gap`
+//                  `list-group-full`
+//                  `list-group-item-dark`
+//
+// ========================================================================
+
+// Variables
+// ========================================================================
+
+$list-group-active-color                 : $brand-primary !default;
+
+$list-group-link-hover-bg                : $bg-color-base !default;
+
+$list-group-link-disabled-color          : $disabled-color-base !default;
+$list-group-link-disabled-bg             : $gray-lightest !default;
+
+$list-group-link-active-color            : $color-white !default;
+$list-group-link-active-bg               : $brand-primary !default;
+
+$list-group-bg-inherit-item-border       : rgba(0, 0, 0, 0.075) !default;
+$list-group-bg-inherit-item-hover-bg     : rgba(0, 0, 0, 0.075) !default;
+
+$list-group-bordered-border              : $border-color-base !default;
+$list-group-bordered-active-color        : $component-active-color !default;
+$list-group-bordered-active-bg           : $component-active-bg !default;
+$list-group-bordered-active-border       : $list-group-bordered-active-bg !default;
+
+// Component: List groups
+// ========================================================================
+
+a.list-group-item {
+  color: $list-group-link-color;
+
+  @include hover-focus {
+    color: $list-group-link-hover-color;
+    background-color: $list-group-link-hover-bg;
+  }
+
+  &.disabled {
+    @include plain-hover-focus {
+      color: $list-group-link-disabled-color;
+      background-color: $list-group-link-disabled-bg;
+    }
+  }
+
+  &.active {
+    @include plain-hover-focus {
+      color: $list-group-link-active-color;
+      background-color: $list-group-link-active-bg;
+    }
+  }
+}
+
+// Modifier: `list-group.bg-inherit`
+// -------------------------
+
+.list-group.bg-inherit {
+  .list-group-item {
+    border-bottom-color: $list-group-bg-inherit-item-border;
+    &:hover {
+      background-color: $list-group-bg-inherit-item-hover-bg;
+    }
+  }
+}
+
+
+// Modifier: `list-group-bordered`
+// -------------------------
+
+.list-group-bordered {
+  .list-group-item {
+    border-color: $list-group-bordered-border;
+    &.active,
+    &.active:hover,
+    &.active:focus {
+      color: $list-group-bordered-active-color;
+      background-color: $list-group-bordered-active-bg;
+      border-color: $list-group-bordered-active-border;
+    }
+  }
+}
+
+// Modifier: `list-group-dividered`
+// -------------------------
+
+.list-group-dividered {
+  .list-group-item, {
+    border-top-color: $list-group-bordered-border;
+
+    &.active:hover {
+      border-top-color: $list-group-bordered-border;
+    }
+  }
+
+  .list-group-item:last-child {
+    border-bottom-color: $list-group-bordered-border;
+  }
+
+  .list-group-item:first-child {
+    border-top-color: $list-group-border-color;
+    &.active:hover {
+      border-top-color: $list-group-border-color;
+    }
+  }
+}
+
+// add from---v3
+.list-group-item.active {
+  @include plain-hover-focus {
+    background-color: $list-group-active-bg;
+    border-color: $list-group-active-border;
+    color: $list-group-active-color;
+  }
+}
+
+// add end
+
+// Color Modifier
+// ========================================================================
+
+// Modifier: `list-group-item-dark`
+// -------------------------
+
+@include list-group-item-variant(dark, $state-dark-bg, $state-dark-text);

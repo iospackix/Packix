@@ -1,0 +1,701 @@
+// Icons
+// -------------------------
+.#{$dashicons-css-prefix}-menu:before {
+	content: $dashicons-var-menu;
+}
+.#{$dashicons-css-prefix}-admin-site:before {
+	content: $dashicons-var-admin-site;
+}
+.#{$dashicons-css-prefix}-dashboard:before {
+	content: $dashicons-var-dashboard;
+}
+.#{$dashicons-css-prefix}-admin-post:before {
+	content: $dashicons-var-admin-post;
+}
+.#{$dashicons-css-prefix}-admin-media:before {
+	content: $dashicons-var-admin-media;
+}
+.#{$dashicons-css-prefix}-admin-links:before {
+	content: $dashicons-var-admin-links;
+}
+.#{$dashicons-css-prefix}-admin-page:before {
+	content: $dashicons-var-admin-page;
+}
+.#{$dashicons-css-prefix}-admin-comments:before {
+	content: $dashicons-var-admin-comments;
+}
+.#{$dashicons-css-prefix}-admin-appearance:before {
+	content: $dashicons-var-admin-appearance;
+}
+.#{$dashicons-css-prefix}-admin-plugins:before {
+	content: $dashicons-var-admin-plugins;
+}
+.#{$dashicons-css-prefix}-admin-users:before {
+	content: $dashicons-var-admin-users;
+}
+.#{$dashicons-css-prefix}-admin-tools:before {
+	content: $dashicons-var-admin-tools;
+}
+.#{$dashicons-css-prefix}-admin-settings:before {
+	content: $dashicons-var-admin-settings;
+}
+.#{$dashicons-css-prefix}-admin-network:before {
+	content: $dashicons-var-admin-network;
+}
+.#{$dashicons-css-prefix}-admin-home:before {
+	content: $dashicons-var-admin-home;
+}
+.#{$dashicons-css-prefix}-admin-generic:before {
+	content: $dashicons-var-admin-generic;
+}
+.#{$dashicons-css-prefix}-admin-collapse:before {
+	content: $dashicons-var-admin-collapse;
+}
+.#{$dashicons-css-prefix}-filter:before {
+	content: $dashicons-var-filter;
+}
+.#{$dashicons-css-prefix}-admin-customizer:before {
+	content: $dashicons-var-admin-customizer;
+}
+.#{$dashicons-css-prefix}-admin-multisite:before {
+	content: $dashicons-var-admin-multisite;
+}
+.#{$dashicons-css-prefix}-welcome-write-blog:before {
+	content: $dashicons-var-welcome-write-blog;
+}
+.#{$dashicons-css-prefix}-welcome-add-page:before {
+	content: $dashicons-var-welcome-add-page;
+}
+.#{$dashicons-css-prefix}-welcome-view-site:before {
+	content: $dashicons-var-welcome-view-site;
+}
+.#{$dashicons-css-prefix}-welcome-widgets-menus:before {
+	content: $dashicons-var-welcome-widgets-menus;
+}
+.#{$dashicons-css-prefix}-welcome-comments:before {
+	content: $dashicons-var-welcome-comments;
+}
+.#{$dashicons-css-prefix}-welcome-learn-more:before {
+	content: $dashicons-var-welcome-learn-more;
+}
+.#{$dashicons-css-prefix}-format-aside:before {
+	content: $dashicons-var-format-aside;
+}
+.#{$dashicons-css-prefix}-format-image:before {
+	content: $dashicons-var-format-image;
+}
+.#{$dashicons-css-prefix}-format-gallery:before {
+	content: $dashicons-var-format-gallery;
+}
+.#{$dashicons-css-prefix}-format-video:before {
+	content: $dashicons-var-format-video;
+}
+.#{$dashicons-css-prefix}-format-status:before {
+	content: $dashicons-var-format-status;
+}
+.#{$dashicons-css-prefix}-format-quote:before {
+	content: $dashicons-var-format-quote;
+}
+.#{$dashicons-css-prefix}-format-chat:before {
+	content: $dashicons-var-format-chat;
+}
+.#{$dashicons-css-prefix}-format-audio:before {
+	content: $dashicons-var-format-audio;
+}
+.#{$dashicons-css-prefix}-camera:before {
+	content: $dashicons-var-camera;
+}
+.#{$dashicons-css-prefix}-images-alt:before {
+	content: $dashicons-var-images-alt;
+}
+.#{$dashicons-css-prefix}-images-alt2:before {
+	content: $dashicons-var-images-alt2;
+}
+.#{$dashicons-css-prefix}-video-alt:before {
+	content: $dashicons-var-video-alt;
+}
+.#{$dashicons-css-prefix}-video-alt2:before {
+	content: $dashicons-var-video-alt2;
+}
+.#{$dashicons-css-prefix}-video-alt3:before {
+	content: $dashicons-var-video-alt3;
+}
+.#{$dashicons-css-prefix}-media-archive:before {
+	content: $dashicons-var-media-archive;
+}
+.#{$dashicons-css-prefix}-media-audio:before {
+	content: $dashicons-var-media-audio;
+}
+.#{$dashicons-css-prefix}-media-code:before {
+	content: $dashicons-var-media-code;
+}
+.#{$dashicons-css-prefix}-media-default:before {
+	content: $dashicons-var-media-default;
+}
+.#{$dashicons-css-prefix}-media-document:before {
+	content: $dashicons-var-media-document;
+}
+.#{$dashicons-css-prefix}-media-interactive:before {
+	content: $dashicons-var-media-interactive;
+}
+.#{$dashicons-css-prefix}-media-spreadsheet:before {
+	content: $dashicons-var-media-spreadsheet;
+}
+.#{$dashicons-css-prefix}-media-text:before {
+	content: $dashicons-var-media-text;
+}
+.#{$dashicons-css-prefix}-media-video:before {
+	content: $dashicons-var-media-video;
+}
+.#{$dashicons-css-prefix}-playlist-audio:before {
+	content: $dashicons-var-playlist-audio;
+}
+.#{$dashicons-css-prefix}-playlist-video:before {
+	content: $dashicons-var-playlist-video;
+}
+.#{$dashicons-css-prefix}-controls-play:before {
+	content: $dashicons-var-controls-play;
+}
+.#{$dashicons-css-prefix}-controls-pause:before {
+	content: $dashicons-var-controls-pause;
+}
+.#{$dashicons-css-prefix}-controls-forward:before {
+	content: $dashicons-var-controls-forward;
+}
+.#{$dashicons-css-prefix}-controls-skipforward:before {
+	content: $dashicons-var-controls-skipforward;
+}
+.#{$dashicons-css-prefix}-controls-back:before {
+	content: $dashicons-var-controls-back;
+}
+.#{$dashicons-css-prefix}-controls-skipback:before {
+	content: $dashicons-var-controls-skipback;
+}
+.#{$dashicons-css-prefix}-controls-repeat:before {
+	content: $dashicons-var-controls-repeat;
+}
+.#{$dashicons-css-prefix}-controls-volumeon:before {
+	content: $dashicons-var-controls-volumeon;
+}
+.#{$dashicons-css-prefix}-controls-volumeoff:before {
+	content: $dashicons-var-controls-volumeoff;
+}
+.#{$dashicons-css-prefix}-image-crop:before {
+	content: $dashicons-var-image-crop;
+}
+.#{$dashicons-css-prefix}-image-rotate:before {
+	content: $dashicons-var-image-rotate;
+}
+.#{$dashicons-css-prefix}-image-rotate-left:before {
+	content: $dashicons-var-image-rotate-left;
+}
+.#{$dashicons-css-prefix}-image-rotate-right:before {
+	content: $dashicons-var-image-rotate-right;
+}
+.#{$dashicons-css-prefix}-image-flip-vertical:before {
+	content: $dashicons-var-image-flip-vertical;
+}
+.#{$dashicons-css-prefix}-image-flip-horizontal:before {
+	content: $dashicons-var-image-flip-horizontal;
+}
+.#{$dashicons-css-prefix}-image-filter:before {
+	content: $dashicons-var-image-filter;
+}
+.#{$dashicons-css-prefix}-undo:before {
+	content: $dashicons-var-undo;
+}
+.#{$dashicons-css-prefix}-redo:before {
+	content: $dashicons-var-redo;
+}
+.#{$dashicons-css-prefix}-editor-bold:before {
+	content: $dashicons-var-editor-bold;
+}
+.#{$dashicons-css-prefix}-editor-italic:before {
+	content: $dashicons-var-editor-italic;
+}
+.#{$dashicons-css-prefix}-editor-ul:before {
+	content: $dashicons-var-editor-ul;
+}
+.#{$dashicons-css-prefix}-editor-ol:before {
+	content: $dashicons-var-editor-ol;
+}
+.#{$dashicons-css-prefix}-editor-quote:before {
+	content: $dashicons-var-editor-quote;
+}
+.#{$dashicons-css-prefix}-editor-alignleft:before {
+	content: $dashicons-var-editor-alignleft;
+}
+.#{$dashicons-css-prefix}-editor-aligncenter:before {
+	content: $dashicons-var-editor-aligncenter;
+}
+.#{$dashicons-css-prefix}-editor-alignright:before {
+	content: $dashicons-var-editor-alignright;
+}
+.#{$dashicons-css-prefix}-editor-insertmore:before {
+	content: $dashicons-var-editor-insertmore;
+}
+.#{$dashicons-css-prefix}-editor-spellcheck:before {
+	content: $dashicons-var-editor-spellcheck;
+}
+.#{$dashicons-css-prefix}-editor-expand:before {
+	content: $dashicons-var-editor-expand;
+}
+.#{$dashicons-css-prefix}-editor-contract:before {
+	content: $dashicons-var-editor-contract;
+}
+.#{$dashicons-css-prefix}-editor-kitchensink:before {
+	content: $dashicons-var-editor-kitchensink;
+}
+.#{$dashicons-css-prefix}-editor-underline:before {
+	content: $dashicons-var-editor-underline;
+}
+.#{$dashicons-css-prefix}-editor-justify:before {
+	content: $dashicons-var-editor-justify;
+}
+.#{$dashicons-css-prefix}-editor-textcolor:before {
+	content: $dashicons-var-editor-textcolor;
+}
+.#{$dashicons-css-prefix}-editor-paste-word:before {
+	content: $dashicons-var-editor-paste-word;
+}
+.#{$dashicons-css-prefix}-editor-paste-text:before {
+	content: $dashicons-var-editor-paste-text;
+}
+.#{$dashicons-css-prefix}-editor-removeformatting:before {
+	content: $dashicons-var-editor-removeformatting;
+}
+.#{$dashicons-css-prefix}-editor-video:before {
+	content: $dashicons-var-editor-video;
+}
+.#{$dashicons-css-prefix}-editor-customchar:before {
+	content: $dashicons-var-editor-customchar;
+}
+.#{$dashicons-css-prefix}-editor-outdent:before {
+	content: $dashicons-var-editor-outdent;
+}
+.#{$dashicons-css-prefix}-editor-indent:before {
+	content: $dashicons-var-editor-indent;
+}
+.#{$dashicons-css-prefix}-editor-help:before {
+	content: $dashicons-var-editor-help;
+}
+.#{$dashicons-css-prefix}-editor-strikethrough:before {
+	content: $dashicons-var-editor-strikethrough;
+}
+.#{$dashicons-css-prefix}-editor-unlink:before {
+	content: $dashicons-var-editor-unlink;
+}
+.#{$dashicons-css-prefix}-editor-rtl:before {
+	content: $dashicons-var-editor-rtl;
+}
+.#{$dashicons-css-prefix}-editor-break:before {
+	content: $dashicons-var-editor-break;
+}
+.#{$dashicons-css-prefix}-editor-code:before {
+	content: $dashicons-var-editor-code;
+}
+.#{$dashicons-css-prefix}-editor-paragraph:before {
+	content: $dashicons-var-editor-paragraph;
+}
+.#{$dashicons-css-prefix}-editor-table:before {
+	content: $dashicons-var-editor-table;
+}
+.#{$dashicons-css-prefix}-align-left:before {
+	content: $dashicons-var-align-left;
+}
+.#{$dashicons-css-prefix}-align-right:before {
+	content: $dashicons-var-align-right;
+}
+.#{$dashicons-css-prefix}-align-center:before {
+	content: $dashicons-var-align-center;
+}
+.#{$dashicons-css-prefix}-align-none:before {
+	content: $dashicons-var-align-none;
+}
+.#{$dashicons-css-prefix}-lock:before {
+	content: $dashicons-var-lock;
+}
+.#{$dashicons-css-prefix}-unlock:before {
+	content: $dashicons-var-unlock;
+}
+.#{$dashicons-css-prefix}-calendar:before {
+	content: $dashicons-var-calendar;
+}
+.#{$dashicons-css-prefix}-calendar-alt:before {
+	content: $dashicons-var-calendar-alt;
+}
+.#{$dashicons-css-prefix}-visibility:before {
+	content: $dashicons-var-visibility;
+}
+.#{$dashicons-css-prefix}-hidden:before {
+	content: $dashicons-var-hidden;
+}
+.#{$dashicons-css-prefix}-post-status:before {
+	content: $dashicons-var-post-status;
+}
+.#{$dashicons-css-prefix}-edit:before {
+	content: $dashicons-var-edit;
+}
+.#{$dashicons-css-prefix}-trash:before {
+	content: $dashicons-var-trash;
+}
+.#{$dashicons-css-prefix}-sticky:before {
+	content: $dashicons-var-sticky;
+}
+.#{$dashicons-css-prefix}-external:before {
+	content: $dashicons-var-external;
+}
+.#{$dashicons-css-prefix}-arrow-up:before {
+	content: $dashicons-var-arrow-up;
+}
+.#{$dashicons-css-prefix}-arrow-down:before {
+	content: $dashicons-var-arrow-down;
+}
+.#{$dashicons-css-prefix}-arrow-right:before {
+	content: $dashicons-var-arrow-right;
+}
+.#{$dashicons-css-prefix}-arrow-left:before {
+	content: $dashicons-var-arrow-left;
+}
+.#{$dashicons-css-prefix}-arrow-up-alt:before {
+	content: $dashicons-var-arrow-up-alt;
+}
+.#{$dashicons-css-prefix}-arrow-down-alt:before {
+	content: $dashicons-var-arrow-down-alt;
+}
+.#{$dashicons-css-prefix}-arrow-right-alt:before {
+	content: $dashicons-var-arrow-right-alt;
+}
+.#{$dashicons-css-prefix}-arrow-left-alt:before {
+	content: $dashicons-var-arrow-left-alt;
+}
+.#{$dashicons-css-prefix}-arrow-up-alt2:before {
+	content: $dashicons-var-arrow-up-alt2;
+}
+.#{$dashicons-css-prefix}-arrow-down-alt2:before {
+	content: $dashicons-var-arrow-down-alt2;
+}
+.#{$dashicons-css-prefix}-arrow-right-alt2:before {
+	content: $dashicons-var-arrow-right-alt2;
+}
+.#{$dashicons-css-prefix}-arrow-left-alt2:before {
+	content: $dashicons-var-arrow-left-alt2;
+}
+.#{$dashicons-css-prefix}-sort:before {
+	content: $dashicons-var-sort;
+}
+.#{$dashicons-css-prefix}-leftright:before {
+	content: $dashicons-var-leftright;
+}
+.#{$dashicons-css-prefix}-randomize:before {
+	content: $dashicons-var-randomize;
+}
+.#{$dashicons-css-prefix}-list-view:before {
+	content: $dashicons-var-list-view;
+}
+.#{$dashicons-css-prefix}-exerpt-view:before {
+	content: $dashicons-var-exerpt-view;
+}
+.#{$dashicons-css-prefix}-grid-view:before {
+	content: $dashicons-var-grid-view;
+}
+.#{$dashicons-css-prefix}-move:before {
+	content: $dashicons-var-move;
+}
+.#{$dashicons-css-prefix}-share:before {
+	content: $dashicons-var-share;
+}
+.#{$dashicons-css-prefix}-share-alt:before {
+	content: $dashicons-var-share-alt;
+}
+.#{$dashicons-css-prefix}-share-alt2:before {
+	content: $dashicons-var-share-alt2;
+}
+.#{$dashicons-css-prefix}-twitter:before {
+	content: $dashicons-var-twitter;
+}
+.#{$dashicons-css-prefix}-rss:before {
+	content: $dashicons-var-rss;
+}
+.#{$dashicons-css-prefix}-email:before {
+	content: $dashicons-var-email;
+}
+.#{$dashicons-css-prefix}-email-alt:before {
+	content: $dashicons-var-email-alt;
+}
+.#{$dashicons-css-prefix}-facebook:before {
+	content: $dashicons-var-facebook;
+}
+.#{$dashicons-css-prefix}-facebook-alt:before {
+	content: $dashicons-var-facebook-alt;
+}
+.#{$dashicons-css-prefix}-googleplus:before {
+	content: $dashicons-var-googleplus;
+}
+.#{$dashicons-css-prefix}-networking:before {
+	content: $dashicons-var-networking;
+}
+.#{$dashicons-css-prefix}-hammer:before {
+	content: $dashicons-var-hammer;
+}
+.#{$dashicons-css-prefix}-art:before {
+	content: $dashicons-var-art;
+}
+.#{$dashicons-css-prefix}-migrate:before {
+	content: $dashicons-var-migrate;
+}
+.#{$dashicons-css-prefix}-performance:before {
+	content: $dashicons-var-performance;
+}
+.#{$dashicons-css-prefix}-universal-access:before {
+	content: $dashicons-var-universal-access;
+}
+.#{$dashicons-css-prefix}-universal-access-alt:before {
+	content: $dashicons-var-universal-access-alt;
+}
+.#{$dashicons-css-prefix}-tickets:before {
+	content: $dashicons-var-tickets;
+}
+.#{$dashicons-css-prefix}-nametag:before {
+	content: $dashicons-var-nametag;
+}
+.#{$dashicons-css-prefix}-clipboard:before {
+	content: $dashicons-var-clipboard;
+}
+.#{$dashicons-css-prefix}-heart:before {
+	content: $dashicons-var-heart;
+}
+.#{$dashicons-css-prefix}-megaphone:before {
+	content: $dashicons-var-megaphone;
+}
+.#{$dashicons-css-prefix}-schedule:before {
+	content: $dashicons-var-schedule;
+}
+.#{$dashicons-css-prefix}-wordpress:before {
+	content: $dashicons-var-wordpress;
+}
+.#{$dashicons-css-prefix}-wordpress-alt:before {
+	content: $dashicons-var-wordpress-alt;
+}
+.#{$dashicons-css-prefix}-pressthis:before {
+	content: $dashicons-var-pressthis;
+}
+.#{$dashicons-css-prefix}-update:before {
+	content: $dashicons-var-update;
+}
+.#{$dashicons-css-prefix}-screenoptions:before {
+	content: $dashicons-var-screenoptions;
+}
+.#{$dashicons-css-prefix}-info:before {
+	content: $dashicons-var-info;
+}
+.#{$dashicons-css-prefix}-cart:before {
+	content: $dashicons-var-cart;
+}
+.#{$dashicons-css-prefix}-feedback:before {
+	content: $dashicons-var-feedback;
+}
+.#{$dashicons-css-prefix}-cloud:before {
+	content: $dashicons-var-cloud;
+}
+.#{$dashicons-css-prefix}-translation:before {
+	content: $dashicons-var-translation;
+}
+.#{$dashicons-css-prefix}-tag:before {
+	content: $dashicons-var-tag;
+}
+.#{$dashicons-css-prefix}-category:before {
+	content: $dashicons-var-category;
+}
+.#{$dashicons-css-prefix}-archive:before {
+	content: $dashicons-var-archive;
+}
+.#{$dashicons-css-prefix}-tagcloud:before {
+	content: $dashicons-var-tagcloud;
+}
+.#{$dashicons-css-prefix}-text:before {
+	content: $dashicons-var-text;
+}
+.#{$dashicons-css-prefix}-yes:before {
+	content: $dashicons-var-yes;
+}
+.#{$dashicons-css-prefix}-no:before {
+	content: $dashicons-var-no;
+}
+.#{$dashicons-css-prefix}-no-alt:before {
+	content: $dashicons-var-no-alt;
+}
+.#{$dashicons-css-prefix}-plus:before {
+	content: $dashicons-var-plus;
+}
+.#{$dashicons-css-prefix}-plus-alt:before {
+	content: $dashicons-var-plus-alt;
+}
+.#{$dashicons-css-prefix}-minus:before {
+	content: $dashicons-var-minus;
+}
+.#{$dashicons-css-prefix}-dismiss:before {
+	content: $dashicons-var-dismiss;
+}
+.#{$dashicons-css-prefix}-marker:before {
+	content: $dashicons-var-marker;
+}
+.#{$dashicons-css-prefix}-star-filled:before {
+	content: $dashicons-var-star-filled;
+}
+.#{$dashicons-css-prefix}-star-half:before {
+	content: $dashicons-var-star-half;
+}
+.#{$dashicons-css-prefix}-star-empty:before {
+	content: $dashicons-var-star-empty;
+}
+.#{$dashicons-css-prefix}-flag:before {
+	content: $dashicons-var-flag;
+}
+.#{$dashicons-css-prefix}-warning:before {
+	content: $dashicons-var-warning;
+}
+.#{$dashicons-css-prefix}-location:before {
+	content: $dashicons-var-location;
+}
+.#{$dashicons-css-prefix}-location-alt:before {
+	content: $dashicons-var-location-alt;
+}
+.#{$dashicons-css-prefix}-vault:before {
+	content: $dashicons-var-vault;
+}
+.#{$dashicons-css-prefix}-shield:before {
+	content: $dashicons-var-shield;
+}
+.#{$dashicons-css-prefix}-shield-alt:before {
+	content: $dashicons-var-shield-alt;
+}
+.#{$dashicons-css-prefix}-sos:before {
+	content: $dashicons-var-sos;
+}
+.#{$dashicons-css-prefix}-search:before {
+	content: $dashicons-var-search;
+}
+.#{$dashicons-css-prefix}-slides:before {
+	content: $dashicons-var-slides;
+}
+.#{$dashicons-css-prefix}-analytics:before {
+	content: $dashicons-var-analytics;
+}
+.#{$dashicons-css-prefix}-chart-pie:before {
+	content: $dashicons-var-chart-pie;
+}
+.#{$dashicons-css-prefix}-chart-bar:before {
+	content: $dashicons-var-chart-bar;
+}
+.#{$dashicons-css-prefix}-chart-line:before {
+	content: $dashicons-var-chart-line;
+}
+.#{$dashicons-css-prefix}-chart-area:before {
+	content: $dashicons-var-chart-area;
+}
+.#{$dashicons-css-prefix}-groups:before {
+	content: $dashicons-var-groups;
+}
+.#{$dashicons-css-prefix}-businessman:before {
+	content: $dashicons-var-businessman;
+}
+.#{$dashicons-css-prefix}-id:before {
+	content: $dashicons-var-id;
+}
+.#{$dashicons-css-prefix}-id-alt:before {
+	content: $dashicons-var-id-alt;
+}
+.#{$dashicons-css-prefix}-products:before {
+	content: $dashicons-var-products;
+}
+.#{$dashicons-css-prefix}-awards:before {
+	content: $dashicons-var-awards;
+}
+.#{$dashicons-css-prefix}-forms:before {
+	content: $dashicons-var-forms;
+}
+.#{$dashicons-css-prefix}-testimonial:before {
+	content: $dashicons-var-testimonial;
+}
+.#{$dashicons-css-prefix}-portfolio:before {
+	content: $dashicons-var-portfolio;
+}
+.#{$dashicons-css-prefix}-book:before {
+	content: $dashicons-var-book;
+}
+.#{$dashicons-css-prefix}-book-alt:before {
+	content: $dashicons-var-book-alt;
+}
+.#{$dashicons-css-prefix}-download:before {
+	content: $dashicons-var-download;
+}
+.#{$dashicons-css-prefix}-upload:before {
+	content: $dashicons-var-upload;
+}
+.#{$dashicons-css-prefix}-backup:before {
+	content: $dashicons-var-backup;
+}
+.#{$dashicons-css-prefix}-clock:before {
+	content: $dashicons-var-clock;
+}
+.#{$dashicons-css-prefix}-lightbulb:before {
+	content: $dashicons-var-lightbulb;
+}
+.#{$dashicons-css-prefix}-microphone:before {
+	content: $dashicons-var-microphone;
+}
+.#{$dashicons-css-prefix}-desktop:before {
+	content: $dashicons-var-desktop;
+}
+.#{$dashicons-css-prefix}-laptop:before {
+	content: $dashicons-var-laptop;
+}
+.#{$dashicons-css-prefix}-tablet:before {
+	content: $dashicons-var-tablet;
+}
+.#{$dashicons-css-prefix}-smartphone:before {
+	content: $dashicons-var-smartphone;
+}
+.#{$dashicons-css-prefix}-phone:before {
+	content: $dashicons-var-phone;
+}
+.#{$dashicons-css-prefix}-index-card:before {
+	content: $dashicons-var-index-card;
+}
+.#{$dashicons-css-prefix}-carrot:before {
+	content: $dashicons-var-carrot;
+}
+.#{$dashicons-css-prefix}-building:before {
+	content: $dashicons-var-building;
+}
+.#{$dashicons-css-prefix}-store:before {
+	content: $dashicons-var-store;
+}
+.#{$dashicons-css-prefix}-album:before {
+	content: $dashicons-var-album;
+}
+.#{$dashicons-css-prefix}-palmtree:before {
+	content: $dashicons-var-palmtree;
+}
+.#{$dashicons-css-prefix}-tickets-alt:before {
+	content: $dashicons-var-tickets-alt;
+}
+.#{$dashicons-css-prefix}-money:before {
+	content: $dashicons-var-money;
+}
+.#{$dashicons-css-prefix}-smiley:before {
+	content: $dashicons-var-smiley;
+}
+.#{$dashicons-css-prefix}-thumbs-up:before {
+	content: $dashicons-var-thumbs-up;
+}
+.#{$dashicons-css-prefix}-thumbs-down:before {
+	content: $dashicons-var-thumbs-down;
+}
+.#{$dashicons-css-prefix}-layout:before {
+	content: $dashicons-var-layout;
+}
+.#{$dashicons-css-prefix}-paperclip:before {
+	content: $dashicons-var-paperclip;
+}

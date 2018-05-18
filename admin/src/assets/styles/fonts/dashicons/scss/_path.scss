@@ -1,0 +1,14 @@
+// Font path
+// --------------------------
+@font-face {
+
+  font-family: '#{$dashicons-font-family}';
+  src: url('#{$dashicons-font-path}/#{$dashicons-font-file}.eot?v=#{$dashicons-version}');
+  src: url('#{$dashicons-font-path}/#{$dashicons-font-file}.eot?#iefix&v=#{$dashicons-version}') format('embedded-opentype'),
+
+    url('#{$dashicons-font-path}/#{$dashicons-font-file}.woff?v=#{$dashicons-version}') format('woff'),
+    url('#{$dashicons-font-path}/#{$dashicons-font-file}.ttf?v=#{$dashicons-version}') format('truetype'),
+    url('#{$dashicons-font-path}/#{$dashicons-font-file}.svg?v=#{$dashicons-version}##{$dashicons-font-file}') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}

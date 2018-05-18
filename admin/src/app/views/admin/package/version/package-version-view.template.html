@@ -1,0 +1,207 @@
+<style>
+  .ql-snow b, strong {
+    font-weight: bold !important;
+  }
+
+  .page-main .list-group {
+    margin: 0;
+    padding-right: 15px;
+  }
+
+  .list-group .avatar {
+    width: 62px;
+  }
+
+  .list-group .card {
+    margin-bottom: 15px;
+  }
+
+  .list-group .card-block {
+    -webkit-transition: border .2s linear, color .2s linear, width .2s linear, background-color .2s linear;
+    -o-transition: border .2s linear, color .2s linear, width .2s linear, background-color .2s linear;
+    transition: border .2s linear, color .2s linear, width .2s linear, background-color .2s linear;
+  }
+
+  .list-group .card-block:hover {
+    cursor: pointer;
+    background-color: #eee;
+  }
+
+  .list-group .list-group-item, .list-group .list-group-item:hover {
+    background-color: transparent;
+  }
+
+  .list-inline {
+    height: 25px;
+  }
+
+  .list-inline li a:hover {
+    text-decoration: none;
+    color: #76838f !important;
+  }
+
+  .detail {
+    background-color: #a2caee !important;
+  }
+
+  .page-content {
+    height: 100%;
+    overflow-y: auto;
+  }
+
+  .download-stat-section {
+    border: 1px solid #e4eaec;
+    border-left-color: transparent;
+    border-right-color: transparent;
+    overflow: hidden;
+    padding: 15px;
+  }
+
+  .small-left-padding {
+    padding-left: 5px;
+  }
+
+  .c-border-bottom {
+    border: 1px solid #e4eaec;
+    border-left-color: transparent;
+    border-right-color: transparent;
+    overflow: hidden;
+    border-top-color: transparent;
+  }
+
+  .c-border-top {
+    border: 1px solid #e4eaec;
+    border-left-color: transparent;
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+    overflow: hidden;
+  }
+
+  .no-underline {
+    text-decoration: none !important;
+  }
+</style>
+
+<div class="page-content container-fluid" *ngIf="package">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card" style="background-color: transparent">
+        <div class="card-block" style="padding: 0px; border-top: none;">
+          <div class="nav-tabs-animate nav-tabs-horizontal nav-tabs-inverse" data-plugin="tabs">
+            <ul class="nav nav-tabs nav-tabs-solid" role="tablist">
+              <li class="nav-item" role="presentation">
+                <a class="nav-link active" data-toggle="tab" (click)="switchStats(deviceTypeStats)" href="#devicetype" aria-controls="device type" role="tab"
+                   aria-expanded="true">
+                  Device Type
+                </a>
+              </li>
+              <li class="nav-item" role="presentation">
+                <a class="nav-link" data-toggle="tab" href="#devicetype" (click)="switchStats(deviceModelStats)" aria-controls="device model" role="tab"
+                   aria-expanded="true">
+                  Device Model
+                </a>
+              </li>
+              <li class="nav-item" role="presentation">
+                <a class="nav-link" data-toggle="tab" href="#devicetype" (click)="switchStats(deviceVersionStats)" aria-controls="ios version" role="tab"
+                   aria-expanded="false">
+                  iOS Version
+                </a>
+              </li>
+              <li class="nav-item dropdown" style="display: none;">
+                <a class="dropdown-toggle nav-link" data-toggle="dropdown" href="#" aria-expanded="false">Menu </a>
+                <div class="dropdown-menu" role="menu">
+                  <a class="dropdown-item" data-toggle="tab" href="#devicetype" aria-controls="description" role="tab">Device Type
+                  </a>
+                  <a class="dropdown-item" data-toggle="tab" href="#devicetype" aria-controls="description" role="tab">Device Model
+                  </a>
+                  <a class="dropdown-item" data-toggle="tab" href="#devicetype" aria-controls="screenshots" role="tab">iOS Version
+                  </a>
+                </div>
+              </li>
+            </ul>
+            <div class="tab-content">
+              <div class="tab-pane active" id="devicetype" role="tabpanel" aria-expanded="true" style="height:275px;">
+                <ngx-charts-advanced-pie-chart
+                  [results]="activeStats">
+                </ngx-charts-advanced-pie-chart>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6 col-xl-3 order-xl-1">
+      <!-- Page Widget -->
+      <div class="card card-shadow text-center">
+        <div class="card-block" style="padding-bottom: 0px;">
+          <h4 class="profile-user">{{package.name}}</h4>
+          <p class="user-job">{{packageVersion.version}}</p>
+        </div>
+        <div class="user-stats download-stat-section">
+          <div class="user-stat counter" href="#!">
+            <span class="counter-number font-size-16">{{packageVersion.downloadCount}}</span>
+            <a class="no-underline" href="#!">
+              <span class="counter-label inline-block small-left-padding">Downloads</span>
+            </a>
+          </div>
+        </div>
+        <div class="card-footer page-profile-v2">
+          <!--<div class="row no-space">-->
+          <!--<div class="col-12">-->
+          <!--<strong class="profile-stat-count">{{packageVersion.downloadCount}}</strong>-->
+          <!--<span>Downloads</span>-->
+          <!--</div>-->
+          <!--</div>-->
+        </div>
+        <!-- End Page Widget -->
+      </div>
+    </div>
+    <div class="col-lg-12 col-xl-6 order-xl-2">
+      <div class="card card-shadow">
+        <div class="input-group input-group-md">
+          <input [(ngModel)]="changeToBeAdded" type="text" class="form-control" name="" placeholder="Add change...">
+          <span class="input-group-btn">
+              <button (click)="addChange()" class="btn btn-primary" style="height: 100%;"><i class="icon wb-plus"
+                                                                       aria-hidden="true"></i></button>
+            </span>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel-heading">
+          <h3 class="panel-title">Changes</h3>
+          <div class="panel-actions" style="margin-right: -15px;">
+            <button class="btn btn-raised btn-primary" type="button" name="button" (click)="saveChanges()">Save</button>
+          </div>
+        </div>
+        <div class="panel-body" style="padding:0px;">
+          <ul class="list-group list-group-full" [sortablejs]="versionChanges" style="margin-bottom:0px">
+            <li class="list-group-item c-border-top" *ngFor="let change of versionChanges; let i = index"
+                style="padding-left:30px; padding-right:1rem; padding-top:0.6rem; padding-bottom:0.6rem">
+              {{change}}
+              <span>
+              <button (click)="removeChange(i)" class="btn btn-icon btn-danger btn-outline btn-round btn-xs"
+                      style="float: right; transform: scale(0.8,0.8);" type="button" name="button">
+                <i class="icon icon-xs wb-minus mr-0"></i>
+              </button>
+            </span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!--<div class="panel">-->
+        <!--<div class="panel-heading">-->
+          <!--<h3 class="panel-title">Changes</h3>-->
+        <!--</div>-->
+        <!--<div class="panel-body" style="padding:0px;">-->
+          <!--&lt;!&ndash;<canvas baseChart&ndash;&gt;-->
+                  <!--&lt;!&ndash;[data]="deviceTypeChartData"&ndash;&gt;-->
+                  <!--&lt;!&ndash;[labels]="deviceTypeChartLabels"&ndash;&gt;-->
+                  <!--&lt;!&ndash;[chartType]="deviceTypeChartType"></canvas>&ndash;&gt;-->
+          <!--<ngx-charts-advanced-pie-chart-->
+            <!--[results]="deviceTypeStats">-->
+          <!--</ngx-charts-advanced-pie-chart>-->
+        <!--</div>-->
+      <!--</div>-->
+    </div>
+  </div>
+</div>

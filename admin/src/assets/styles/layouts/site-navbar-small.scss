@@ -1,0 +1,96 @@
+$navbar-avatar-size:              pxToRem(30px) !default;
+
+body.site-navbar-small {
+  padding-top: $navbar-small-height;
+}
+
+.site-navbar-small {
+  .site-navbar {
+    height: $navbar-small-height;
+    min-height: $navbar-small-height;
+
+    .navbar-brand {
+      height: $navbar-small-height;
+      padding: $navbar-small-padding-vertical $navbar-brand-padding-horizontal;
+    }
+
+    .navbar-nav {
+      margin: ($navbar-small-padding-vertical / 2) (-$navbar-padding-x);
+
+      @include media-breakpoint-up(md) {
+        > li {
+          > a {
+            padding-top:    $navbar-small-padding-vertical;
+            padding-bottom: $navbar-small-padding-vertical;
+          }
+        }
+      }
+    }
+
+    .navbar-toggler {
+      height: $navbar-small-height;
+      padding: $navbar-small-padding-vertical $navbar-padding-x;
+    }
+
+    .navbar-toolbar {
+      > li {
+        > a {
+          padding-top: $navbar-small-padding-vertical;
+          padding-bottom: $navbar-small-padding-vertical;
+        }
+      }
+    }
+
+    .navbar-nav, .navbar-toolbar {
+      > li > a.navbar-avatar {
+        padding-top: (($navbar-small-height - $navbar-avatar-size)/2);
+        padding-bottom: (($navbar-small-height - $navbar-avatar-size)/2);
+      }
+    }
+
+    .navbar-search-overlap {
+      .form-control {
+        height: $navbar-small-height !important;
+      }
+    }
+  }
+
+  .site-menubar {
+    top: $navbar-small-height;
+    height: -webkit-calc(100% - #{$navbar-small-height});
+    height: calc(100% - #{$navbar-small-height});
+  }
+
+  .site-gridmenu {
+    top: $navbar-small-height;
+  }
+}
+
+
+@include media-breakpoint-down(sm) {
+  body.site-navbar-collapse-show.site-navbar-small {
+    padding-top: (2 * $navbar-small-height);
+  }
+
+  .site-navbar-small {
+    .site-menubar {
+      top: $navbar-small-height;
+
+      .site-navbar-collapse-show & {
+        top: (2 * $navbar-small-height);
+
+        $height:(2 * $navbar-small-height);
+        height: -webkit-calc(100% - #{$height});
+        height: calc(100% - #{$height});
+      }
+    }
+
+    .page-aside {
+      top: $navbar-small-height;
+
+      .site-navbar-collapse-show & {
+        top: (2 * $navbar-small-height);
+      }
+    }
+  }
+}

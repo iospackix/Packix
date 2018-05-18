@@ -1,0 +1,293 @@
+// Name:            Ribbon
+//
+// Component:       `ribbon`
+//
+// Modifiers:       'ribbon-lg'
+//                  'ribbon-sm'
+//                  'ribbon-xs'
+//                  'ribbon-vertical'
+//                  'ribbon-reverse'
+//                  'ribbon-bookmark'
+//                  'ribbon-badge'
+//                  'ribbon-corner'
+//                  'ribbon-clip'
+//                  'ribbon-primary'
+//                  'ribbon-success'
+//                  'ribbon-info'
+//                  'ribbon-warning'
+//                  'ribbon-danger'
+//
+// ========================================================================
+
+// Variables
+// ========================================================================
+
+$ribbon-inner-color:         $inverse !default;
+$ribbon-inner-bg:            $brand-dark !default;
+
+
+$ribbon-clip-inner-border:   $brand-dark-active !default;
+
+$ribbon-primary-inner-bg:    $brand-primary !default;
+$ribbon-primary-clip-border: $brand-primary-active !default;
+
+$ribbon-success-inner-bg:    $brand-success !default;
+$ribbon-success-clip-border: $brand-success-active !default;
+
+$ribbon-info-inner-bg:       $brand-info !default;
+$ribbon-info-clip-border:    $brand-info-active !default;
+
+$ribbon-warning-inner-bg:    $brand-warning !default;
+$ribbon-warning-clip-border: $brand-warning-active !default;
+
+$ribbon-danger-inner-bg:     $brand-danger !default;
+$ribbon-danger-clip-border:  $brand-danger-active !default;
+
+
+// Mixins
+// ========================================================================
+
+@mixin ribbon-variant($bg){
+  .ribbon-inner {
+    background-color: $bg;
+  }
+
+  &.ribbon-bookmark {
+    @include ribbon-bookmark-variant($bg);
+  }
+
+  &.ribbon-corner {
+    @include ribbon-corner-variant($bg);
+  }
+}
+
+@mixin ribbon-bookmark-variant($border){
+  .ribbon-inner {
+    &:before {
+      border-color: $border;
+      border-right-color: transparent;
+    }
+  }
+
+  &.ribbon-reverse {
+    .ribbon-inner {
+      &:before {
+        border-right-color: $border;
+        border-left-color: transparent;
+      }
+    }
+  }
+
+  &.ribbon-vertical {
+    .ribbon-inner {
+      &:before {
+        border-right-color: $border;
+        border-bottom-color: transparent;
+      }
+    }
+  }
+
+  &.ribbon-vertical.ribbon-reverse {
+    .ribbon-inner {
+      &:before {
+        border-right-color: $border;
+        border-bottom-color: transparent;
+        border-left-color: $border;
+      }
+    }
+  }
+}
+
+@mixin ribbon-clip-variant($border){
+  .ribbon-inner {
+    &:after {
+      border-top-color: $border;
+      border-right-color: $border;
+    }
+  }
+
+  &.ribbon-reverse {
+    .ribbon-inner {
+      &:after {
+        border-right-color: transparent;
+        border-left-color: $border;
+      }
+    }
+  }
+
+  &.ribbon-bottom {
+    .ribbon-inner {
+      &:after {
+        border-top-color: transparent;
+        border-bottom-color: $border;
+      }
+    }
+  }
+}
+
+@mixin ribbon-corner-variant($border){
+  .ribbon-inner {
+    background-color: transparent;
+    &:before {
+      border-top-color: $border;
+      border-left-color: $border;
+    }
+  }
+
+  &.ribbon-reverse {
+    .ribbon-inner {
+      &:before {
+        border-right-color: $border;
+        border-left-color: transparent;
+      }
+    }
+  }
+
+  &.ribbon-bottom {
+    .ribbon-inner {
+      &:before {
+        border-top-color: transparent;
+        border-bottom-color: $border;
+      }
+    }
+  }
+}
+
+// Component: Ribbon
+// ========================================================================
+
+.ribbon-inner {
+  color: $ribbon-inner-color;
+  background-color: $ribbon-inner-bg;
+}
+
+
+// Modifier: `ribbon-reverse`
+// ========================================================================
+
+.ribbon-bookmark {
+  .ribbon-inner {
+
+    &:before {
+      border: 15px solid $ribbon-inner-bg;
+    }
+  }
+
+  &.ribbon-vertical {
+    .ribbon-inner {
+      &:before {
+        border-right: 15px solid $ribbon-inner-bg;
+      }
+    }
+  }
+
+  &.ribbon-reverse {
+    .ribbon-inner {
+      &:before {
+        border-right: 15px solid $ribbon-inner-bg;
+      }
+    }
+  }
+
+  &.ribbon-reverse.ribbon-vertical {
+    .ribbon-inner {
+      &:before {
+        border-right-color: $ribbon-inner-bg;
+        border-left: 15px solid $ribbon-inner-bg;
+      }
+    }
+  }
+}
+
+// Modifier: `ribbon-corner`
+// ========================================================================
+
+.ribbon-corner {
+
+  .ribbon-inner {
+    &:before {
+      border-top-color: $ribbon-inner-bg;
+      border-left-color: $ribbon-inner-bg;
+    }
+  }
+  &.ribbon-reverse {
+
+    .ribbon-inner {
+
+      &:before {
+        border-right-color: $ribbon-inner-bg;
+      }
+    }
+  }
+  &.ribbon-bottom {
+
+    .ribbon-inner {
+
+      &:before {
+        border-bottom-color: $ribbon-inner-bg;
+      }
+    }
+  }
+}
+
+// Modifier: `ribbon-clip`
+// ========================================================================
+
+.ribbon-clip {
+
+  .ribbon-inner {
+    
+    &:after {
+      border-top-color: $ribbon-clip-inner-border;
+      border-right-color: $ribbon-clip-inner-border;
+    }
+  }
+
+  &.ribbon-reverse {
+
+    .ribbon-inner {
+
+      &:after {
+        border-left-color: $ribbon-clip-inner-border;
+      }
+    }
+  }
+
+  &.ribbon-bottom {
+
+    .ribbon-inner {
+      
+      &:after {
+        border-bottom-color: $ribbon-clip-inner-border;
+      }
+    }
+  }
+}
+
+// Color Modifier
+// ========================================================================
+
+.ribbon-primary {
+  @include ribbon-variant($ribbon-primary-inner-bg);
+  @include ribbon-clip-variant($ribbon-primary-clip-border);
+}
+
+.ribbon-success {
+  @include ribbon-variant($ribbon-success-inner-bg);
+  @include ribbon-clip-variant($ribbon-success-clip-border);
+}
+
+.ribbon-info {
+  @include ribbon-variant($ribbon-info-inner-bg);
+  @include ribbon-clip-variant($ribbon-info-clip-border);
+}
+
+.ribbon-warning {
+  @include ribbon-variant($ribbon-warning-inner-bg);
+  @include ribbon-clip-variant($ribbon-warning-clip-border);
+}
+
+.ribbon-danger {
+  @include ribbon-variant($ribbon-danger-inner-bg);
+  @include ribbon-clip-variant($ribbon-danger-clip-border);
+}

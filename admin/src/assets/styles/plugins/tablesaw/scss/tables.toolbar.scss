@@ -1,0 +1,255 @@
+/*
+* Button Markup
+* Custom-styled native inputs/buttons.
+*
+* Copyright (c) 2012 Filament Group, Inc.
+* Licensed under the MIT, GPL licenses.
+*/
+
+.tablesaw-bar .btn {
+  border: 1px solid $border-color-base;
+  border-radius: .25em;
+  background: none;
+  box-shadow: 0 1px 0 rgba(255,255,255,1);
+  color: $gray-dark;
+  cursor: pointer;
+  display: inline-block;
+  margin: 0;
+  padding: .5em .85em .4em .85em;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  text-transform: capitalize;
+
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+.tablesaw-bar a.btn {
+  color: $color-primary-500;
+}
+.tablesaw-bar .btn:hover {
+  text-decoration: none;
+}
+
+/* Default radio/checkbox styling horizonal controlgroups. */
+.tablesaw-bar .btn:active {
+  background-color: #ddd;
+}
+@supports ( box-shadow: none ) {
+  .tablesaw-bar .btn:focus {
+    background-color: #fff;
+    outline: none;
+  }
+  .tablesaw-bar .btn:focus {
+    box-shadow: 0 0 .35em $color-primary-400 !important;
+  }
+}
+
+.tablesaw-bar .btn-select select {
+  background: none;
+  border: none;
+  display:inline-block;
+  position: absolute;
+  font-weight: inherit;
+  left: 0;
+  top: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  min-height: 1em;
+  opacity: 0;
+  color: transparent;
+}
+.tablesaw-bar .btn select option {
+  background: $color-white;
+  color: $color-black;
+  font-family: sans-serif;
+}
+.tablesaw-bar .btn {
+  display: inline-block;
+  width: auto;
+  height: auto;
+  position: relative;
+  top: 0;
+}
+
+.tablesaw-bar .btn.btn-small {
+  font-size: 1.0625em;
+  line-height: 19px;
+  padding: .3em 1em .3em 1em;
+}
+.tablesaw-bar .btn.btn-micro {
+  font-size: .8125em;
+  padding: .4em .7em .25em .7em;
+}
+
+.tablesaw-bar .btn-select {
+  padding-right: 1.5em;
+  text-align: left;
+  display: inline-block;
+  color: #4d4d4d;
+  padding-right: 2.5em;
+  min-width: 7.25em;
+  text-align: left;
+}
+
+.tablesaw-bar .btn-select:after {
+  display: inline-block;
+  font-family: $wb-font-family;
+  font-feature-settings: normal;
+  font-kerning: auto;
+  font-language-override: normal;
+  font-size-adjust: none;
+  font-stretch: normal;
+  font-style: normal;
+  font-synthesis: weight style;
+  font-variant: normal;
+  font-weight: $font-weight-normal;
+  line-height: 1;
+  text-rendering: auto;
+
+  background: transparent;
+  // background-repeat: no-repeat;
+  // background-position: .25em .45em;
+  content: $wb-var-triangle-down;
+  font-size: 16px;
+  padding: 0;
+  left: auto;
+  right: auto;
+  margin: 0 5px 0;
+  top: 6px;
+  bottom: 0;
+  width: 1.8em;
+}
+.tablesaw-bar .btn-select.btn-small:after,
+.tablesaw-bar .btn-select.btn-micro:after {
+  // width: 1.2em;
+  // font-size: .5em;
+  // padding-top: 1em;
+  // padding-right: .5em;
+  // line-height: 1.65;
+  background: none;
+  box-shadow: none;
+  border-left-width: 0;
+}
+
+/* Column navigation buttons for swipe and columntoggle tables */
+.tablesaw-advance .btn {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  box-sizing: border-box;
+  border-radius: $border-radius;
+}
+.tablesaw-advance .btn.btn-micro {
+  // font-size: .8125em;
+  // padding: .3em .7em .25em .7em;
+}
+.tablesaw-bar .tablesaw-advance a.tablesaw-nav-btn {
+  position: relative;
+  // width: 2em;
+  // height: 2em;
+  margin-left: .5em;
+
+  display: inline-block;
+  font-family: $wb-font-family;
+  font-feature-settings: normal;
+  font-kerning: auto;
+  font-language-override: normal;
+  font-size: inherit;
+  font-size-adjust: none;
+  font-stretch: normal;
+  font-style: normal;
+  font-synthesis: weight style;
+  font-variant: normal;
+  font-weight: $font-weight-normal;
+  line-height: 1;
+  text-rendering: auto;
+}
+.tablesaw-bar .tablesaw-advance a.tablesaw-nav-btn.down:before {
+  content: $wb-var-triangle-down;
+}
+.tablesaw-bar .tablesaw-advance a.tablesaw-nav-btn.up:before {
+  content: $wb-var-triangle-up;
+}
+
+.tablesaw-bar .tablesaw-advance a.tablesaw-nav-btn.left:before {
+  content: $wb-var-chevron-left-mini;
+}
+.tablesaw-bar .tablesaw-advance a.tablesaw-nav-btn.right:before {
+  content: $wb-var-chevron-right-mini;
+}
+.tablesaw-advance a.tablesaw-nav-btn.disabled {
+  opacity: .25;
+  cursor: default;
+  pointer-events: none;
+}
+
+/* Table Toolbar */
+.tablesaw-bar {
+  clear: both;
+  font-family: sans-serif;
+}
+.tablesaw-toolbar {
+  font-size: 13px;
+  float: left;
+}
+.tablesaw-toolbar label {
+  padding: .5em 0;
+  clear: both;
+  display: block;
+  color: $text-color;
+  margin-right: 20px;
+  text-transform:uppercase;
+}
+.tablesaw-bar .btn,
+.tablesaw-enhanced .tablesaw-bar .btn {
+  margin-top: .5em;
+  margin-bottom: .5em;
+}
+.tablesaw-bar .btn-select,
+.tablesaw-enhanced .tablesaw-bar .btn-select {
+  margin-bottom: 0;
+}
+.tablesaw-bar .tablesaw-toolbar .btn {
+  margin-left: .4em;
+  margin-top: 0;
+  text-transform:uppercase;
+  border: none;
+  box-shadow: none;
+  background: transparent;
+  font-family: sans-serif;
+  font-size: 1em;
+  padding-left: .3em;
+}
+.tablesaw-bar .tablesaw-toolbar .btn-select {
+  min-width: 0;
+}
+.tablesaw-bar .tablesaw-toolbar .btn-select:after {
+  padding-top: 0;
+}
+.tablesaw-bar .tablesaw-toolbar select {
+  color: $text-color;
+  text-transform: none;
+  background: transparent;
+}
+.tablesaw-toolbar ~ table {
+  clear: both;
+}
+.tablesaw-toolbar .a11y-sm {
+  clip: rect(0 0 0 0);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  width: 1px;
+}
+@media (min-width: 24em) {
+  .tablesaw-toolbar .a11y-sm {
+    clip: none;
+    height: auto;
+    width: auto;
+    position: static;
+    overflow: visible;
+  }
+}

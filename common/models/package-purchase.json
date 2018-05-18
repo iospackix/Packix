@@ -1,0 +1,209 @@
+{
+  "name": "PackagePurchase",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "scope": {
+    "include": [
+      {
+        "relation": "package",
+        "scope": {
+          "fields": {
+            "accountId": true,
+            "id": true,
+            "identifier": true,
+            "recentReviews": false,
+            "latestVersion": false,
+            "name": true
+          }
+        }
+      }
+    ]
+  },
+  "mixins": {
+    "Computed": {
+      "properties": {
+        "isComplete": "computeIsPurchaseComplete",
+        "details": "computeDetails"
+      }
+    },
+    "TimeStamp": {
+      "createdAt": "createdOn",
+      "updatedAt": "updatedOn",
+      "silenceWarnings": false
+    },
+    "Archive": {
+      "deletedAt": "deletedAt",
+      "isDeleted": "isDeleted"
+    }
+  },
+  "ownerIdPath": "package.accountId",
+  "allowedMethods": [
+    "find",
+    "findOne",
+    "findById",
+    "deleteById",
+    "prototype.updateAttributes",
+    "prototype.refundPurchase",
+    "prototype.createRefundRequest",
+    "count",
+    "refund",
+    "delete",
+    "prototype.getPayPalDetails"
+  ],
+  "properties": {
+    "saleId": {
+      "type": "string"
+    },
+    "isComplete": {
+      "type": "boolean"
+    },
+    "_json": {
+      "type": "object"
+    },
+    "accountId": {
+      "type": "string",
+      "index": true
+    },
+    "amount": {
+      "type": "string"
+    },
+    "fee": {
+      "type": "string"
+    },
+    "currency": {
+      "type": "string"
+    },
+    "amountPaid": {
+      "type": "string"
+    },
+    "details": {
+      "type": "object"
+    },
+    "status": {
+      "type": "string",
+      "index": true,
+      "default": "Unknown"
+    },
+    "provider": {
+      "type": "string",
+      "required": true,
+      "index": true
+    },
+    "packageId": {
+      "type": "string",
+      "index": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "account": {
+      "type": "belongsTo",
+      "model": "Account",
+      "foreignKey": "accountId",
+      "allowedMethods": [
+        "get"
+      ]
+    },
+    "package": {
+      "type": "belongsTo",
+      "model": "Package",
+      "foreignKey": "",
+      "allowedMethods": [
+        "get"
+      ]
+    },
+    "refundRequest": {
+      "type": "hasOne",
+      "model": "PackageRefundRequest",
+      "foreignKey": "purchaseId",
+      "allowedMethods": [
+        "get"
+      ]
+    }
+  },
+  "acls": [
+    {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "$owner",
+      "permission": "ALLOW"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$owner",
+      "permission": "ALLOW",
+      "property": "createRefundRequest"
+    },
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$owner",
+      "permission": "ALLOW",
+      "property": "getPayPalDetails"
+    },
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    },
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": [
+        "count",
+        "refundPurchase",
+        "prototype.refundPurchase",
+        "prototype.createRefundRequest",
+        "createRefundRequest",
+        "find",
+        "findOne",
+        "findById"
+      ]
+    },
+    {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": "package"
+    },
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "dynamicOwner",
+      "permission": "ALLOW",
+      "property": [
+        "findById",
+        "prototype.updateAttributes",
+        "deleteById",
+        "destroyById",
+        "find",
+        "findOne",
+        "findById",
+        "getPayPalDetails"
+      ]
+    },
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "admin",
+      "permission": "ALLOW",
+      "property": [
+        "prototype.updateAttributes",
+        "find",
+        "findOne",
+        "findById",
+        "getPayPalDetails",
+        "count"
+      ]
+    }
+  ],
+  "methods": {}
+}

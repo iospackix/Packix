@@ -1,0 +1,50 @@
+<div class="site-menubar">
+  <div class="site-menubar-body">
+    <div>
+      <div>
+        <ul class="site-menu">
+          <li class="site-menu-category">Repository</li>
+          <li class="site-menu-item">
+            <a [routerLink]="['/packages']" class="animsition-link">
+              <i class="site-menu-icon fa-archive" aria-hidden="true"></i>
+              <span class="site-menu-title">Packages</span>
+            </a>
+          </li>
+          <li class="site-menu-item">
+            <a [routerLink]="['/groups']" class="animsition-link">
+              <i class="site-menu-icon fa-users" aria-hidden="true"></i>
+              <span class="site-menu-title">Groups</span>
+            </a>
+          </li>
+          <li class="site-menu-item">
+            <a [routerLink]="['/accounts']" class="animsition-link">
+              <i class="site-menu-icon fa-address-book" aria-hidden="true"></i>
+              <span class="site-menu-title">Accounts</span>
+            </a>
+          </li>
+          <li class="site-menu-item has-sub">
+            <a>
+              <i class="site-menu-icon fa-cog" aria-hidden="true"></i>
+              <span class="site-menu-title">Developer</span>
+              <span class="site-menu-arrow"></span>
+            </a>
+            <ul class="site-menu-sub">
+              <li class="site-menu-item">
+                <a [routerLink]="['/developer/settings']">
+                  <span class="site-menu-title">Settings</span>
+                </a>
+              </li>
+              <li class="site-menu-item">
+                <a [routerLink]="['/developer/info']">
+                  <span class="site-menu-title">Info</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="site-menubar-footer">
+  </div>
+</div>

@@ -1,0 +1,180 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "project": {
+    "name": "Packix"
+  },
+  "apps": [
+    {
+      "root": "src",
+      "outDir": "dist",
+      "assets": [
+        "favicon.ico",
+        "assets/vendor",
+        "assets/data"
+      ],
+      "index": "index.html",
+      "main": "main.ts",
+      "polyfills": "polyfills.ts",
+      "test": "test.ts",
+      "tsconfig": "tsconfig.app.json",
+      "testTsconfig": "tsconfig.spec.json",
+      "prefix": "app",
+      "styles": [
+        "assets/styles/bootstrap.scss",
+        "assets/styles/site.scss",
+        "assets/styles/bootstrap-extend.scss",
+        "assets/styles/skins/scss/skin.scss",
+        "assets/styles/plugins/alertify/alertify.scss",
+        "assets/styles/plugins/animsition/animsition.scss",
+        "assets/styles/plugins/ascolorpicker/asColorPicker.scss",
+        "assets/styles/plugins/aspieprogress/asPieProgress.scss",
+        "assets/styles/plugins/asrange/asRange.scss",
+        "assets/styles/plugins/asscrollable/asScrollable.scss",
+        "assets/styles/plugins/asspinner/asSpinner.scss",
+        "assets/styles/plugins/blueimp-file-upload/jquery.fileupload.scss",
+        "assets/styles/plugins/bootstrap-datepicker/bootstrap-datepicker.scss",
+        "assets/styles/plugins/bootstrap-markdown/bootstrap-markdown.scss",
+        "assets/styles/plugins/bootstrap-maxlength/bootstrap-maxlength.scss",
+        "assets/styles/plugins/bootstrap-select/bootstrap-select.scss",
+        "assets/styles/plugins/bootstrap-sweetalert/sweetalert.scss",
+        "assets/styles/plugins/bootstrap-table/bootstrap-table.scss",
+        "assets/styles/plugins/bootstrap-tagsinput/bootstrap-tagsinput.scss",
+        "assets/styles/plugins/bootstrap-tokenfield/bootstrap-tokenfield.scss",
+        "assets/styles/plugins/bootstrap-touchspin/bootstrap-touchspin.scss",
+        "assets/styles/plugins/bootstrap-treeview/bootstrap-treeview.scss",
+        "assets/styles/plugins/c3/c3.scss",
+        "assets/styles/plugins/chartist/chartist.scss",
+        "assets/styles/plugins/chartist-plugin-tooltip/chartist-plugin-tooltip.scss",
+        "assets/styles/plugins/clockpicker/clockpicker.scss",
+        "assets/styles/plugins/codemirror/codemirror.scss",
+        "assets/styles/plugins/cropper/cropper.scss",
+        "assets/styles/plugins/datatables/datatables.scss",
+        "assets/styles/plugins/datatables-bootstrap/dataTables.bootstrap.scss",
+        "assets/styles/plugins/datatables-fixedheader/dataTables.fixedHeader.scss",
+        "assets/styles/plugins/datatables-responsive/dataTables.responsive.scss",
+        "assets/styles/plugins/datatables-tabletools/datatables-tabletools.scss",
+        "assets/styles/plugins/dropify/dropify.scss",
+        "assets/styles/plugins/editable-table/editable-table.scss",
+        "assets/styles/plugins/flag-icon-css/flag-icon.scss",
+        "assets/styles/plugins/floatthead/jquery.floatThead.scss",
+        "assets/styles/plugins/flot/flot.scss",
+        "assets/styles/plugins/footable/footable.core.scss",
+        "assets/styles/plugins/formvalidation/formValidation.scss",
+        "assets/styles/plugins/fullcalendar/fullcalendar.print.scss",
+        "assets/styles/plugins/fullcalendar/fullcalendar.scss",
+        "assets/styles/plugins/gauge-js/gauge.scss",
+        "assets/styles/plugins/gridstack/gridstack-extra.scss",
+        "assets/styles/plugins/gridstack/gridstack.scss",
+        "assets/styles/plugins/highlight/highlight.scss",
+        "assets/styles/plugins/html5sortable/sortable.scss",
+        "assets/styles/plugins/icheck/icheck.scss",
+        "assets/styles/plugins/intro-js/introjs-rtl.scss",
+        "assets/styles/plugins/intro-js/introjs.scss",
+        "assets/styles/plugins/ionrangeslider/ionrangeslider.scss",
+        "assets/styles/plugins/jquery-contextmenu/jquery-contextmenu.scss",
+        "assets/styles/plugins/jquery-labelauty/jquery-labelauty.scss",
+        "assets/styles/plugins/jquery-mmenu/jquery-mmenu.scss",
+        "assets/styles/plugins/jquery-selective/jquery-selective.scss",
+        "assets/styles/plugins/jquery-strength/jquery-strength.scss",
+        "assets/styles/plugins/jquery-wizard/jquery-wizard.scss",
+        "assets/styles/plugins/jsgrid/jsgrid.scss",
+        "assets/styles/plugins/jstree/jstree.scss",
+        "assets/styles/plugins/jt-timepicker/jquery-timepicker.scss",
+        "assets/styles/plugins/jvectormap/jquery-jvectormap.scss",
+        "assets/styles/plugins/ladda/ladda.scss",
+        "assets/styles/plugins/layout-grid/layout-grid.scss",
+        "assets/styles/plugins/magnific-popup/magnific-popup.scss",
+        "assets/styles/plugins/mapbox-js/mapbox.scss",
+        "assets/styles/plugins/morris/morris.scss",
+        "assets/styles/plugins/multi-select/multi-select.scss",
+        "assets/styles/plugins/nestable/nestable.scss",
+        "assets/styles/plugins/notie/notie.scss",
+        "assets/styles/plugins/nprogress/nprogress.scss",
+        "assets/styles/plugins/owl-carousel/owl.carousel.scss",
+        "assets/styles/plugins/plyr/plyr.scss",
+        "assets/styles/plugins/quill/quill.bubble.scss",
+        "assets/styles/plugins/quill/quill.snow.scss",
+        "assets/styles/plugins/rickshaw/rickshaw.scss",
+        "assets/styles/plugins/select2/select2.scss",
+        "assets/styles/plugins/slick-carousel/slick.scss",
+        "assets/styles/plugins/slidepanel/slidePanel.scss",
+        "assets/styles/plugins/sparkline/sparkline.scss",
+        "assets/styles/plugins/summernote/summernote.scss",
+        "assets/styles/plugins/switchery/switchery.scss",
+        "assets/styles/plugins/table-dragger/table-dragger.scss",
+        "assets/styles/plugins/tablesaw/tablesaw.scss",
+        "assets/styles/plugins/tasklist/tasklist.scss",
+        "assets/styles/plugins/tether/tether.scss",
+        "assets/styles/plugins/toastr/toastr.scss",
+        "assets/styles/plugins/toolbar/toolbar.scss",
+        "assets/styles/plugins/typeahead-js/typeahead.scss",
+        "assets/styles/plugins/webui-popover/webui-popover.scss",
+        "assets/styles/fonts/font-awesome/font-awesome.scss",
+        "assets/styles/fonts/foundation/foundation.scss",
+        "assets/styles/fonts/glyphicons/glyphicons.scss",
+        "assets/styles/fonts/openwebicons/openwebicons.scss",
+        "assets/styles/fonts/Roboto/Roboto.scss",
+        "assets/styles/fonts/web-icons/web-icons.scss",
+        "../node_modules/@swimlane/ngx-datatable/src/themes/bootstrap.scss",
+        "../node_modules/angular2-toaster/src/toaster.scss",
+        "assets/styles/custom.scss"
+      ],
+      "stylePreprocessorOptions": {
+        "includePaths": [
+           "assets/styles",
+           "assets/styles/bootstrap",
+           "assets/styles/mixins",
+           "assets/styles/skins",
+           "../../client/static/assets"
+        ]
+      },
+      "scripts": [
+        "assets/vendor/jquery/jquery.js",
+        "assets/vendor/tether/tether.js",
+        "assets/vendor/bootstrap/bootstrap.js",
+        "assets/vendor/animsition/animsition.js",
+        "assets/vendor/asscrollable/jquery-asScrollable.js",
+        "assets/vendor/asscrollbar/jquery-asScrollbar.js",
+        "assets/vendor/ashoverscroll/jquery-asHoverScroll.js",
+        "assets/vendor/bootstrap-hover-dropdown/bootstrap-hover-dropdown.js",
+        "assets/vendor/bootstrap-select/bootstrap-select.js",
+        "assets/vendor/breakpoints/breakpoints.js",
+        "../node_modules/css-element-queries/src/ResizeSensor.js"
+      ],
+      "environmentSource": "environments/environment.ts",
+      "environments": {
+        "dev": "environments/environment.ts",
+        "prod": "environments/environment.prod.ts"
+      }
+    }
+  ],
+  "e2e": {
+    "protractor": {
+      "config": "./protractor.conf.js"
+    }
+  },
+  "lint": [
+    {
+      "project": "src/tsconfig.app.json"
+    },
+    {
+      "project": "src/tsconfig.spec.json"
+    },
+    {
+      "project": "e2e/tsconfig.e2e.json"
+    }
+  ],
+  "test": {
+    "karma": {
+      "config": "./karma.conf.js"
+    }
+  },
+  "defaults": {
+    "styleExt": "scss",
+    "component": {},
+    "serve": {
+      "port": 8082,
+      "host": "127.0.0.1"
+    }
+  }
+}

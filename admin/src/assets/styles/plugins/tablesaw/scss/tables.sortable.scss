@@ -1,0 +1,74 @@
+.tablesaw-sortable,
+.tablesaw-sortable thead,
+.tablesaw-sortable thead tr, 
+.tablesaw-sortable thead tr th {
+	position: relative;
+}
+.tablesaw-sortable thead tr th {
+	vertical-align: top;
+}
+.tablesaw-sortable th.tablesaw-sortable-head.tablesaw-sortable-head {
+	padding: 0;
+}
+.tablesaw-sortable th.tablesaw-sortable-head button {
+	padding-top: .9em;
+	padding-bottom: .7em;
+	padding-left: .6em;
+	padding-right: .6em;
+}
+.tablesaw-sortable .tablesaw-sortable-head button {
+	min-width: 100%;
+	color: inherit;
+	background: transparent;
+	border: 0;
+	padding: 0;
+	text-align: left;
+	font: inherit;
+	text-transform: inherit;
+}
+.tablesaw-sortable-arrow:after {
+	display: inline-block;
+	width: 10px;
+	height: 14px;
+	content: " ";
+	margin-left: .3125em;
+}
+.tablesaw-sortable .tablesaw-sortable-head.tablesaw-sortable-ascending .tablesaw-sortable-arrow:after,
+.tablesaw-sortable .tablesaw-sortable-head.tablesaw-sortable-descending .tablesaw-sortable-arrow:after {
+
+  width: 7px;
+  height: 10px;
+  content: "\0020";
+  position: absolute;
+  right: .5em;
+
+  display: inline-block;
+  font-family: $wb-font-family;
+  font-feature-settings: normal;
+  font-kerning: auto;
+  font-language-override: normal;
+  font-size: inherit;
+  font-size-adjust: none;
+  font-stretch: normal;
+  font-style: normal;
+  font-synthesis: weight style;
+  font-variant: normal;
+  font-weight: $font-weight-normal;
+  line-height: 1;
+  text-rendering: auto;
+}
+.tablesaw-sortable .tablesaw-sortable-head.tablesaw-sortable-ascending .tablesaw-sortable-arrow:after {
+  content: $wb-var-triangle-up;
+}
+
+.tablesaw-sortable .tablesaw-sortable-head.tablesaw-sortable-descending .tablesaw-sortable-arrow:after {
+  content: $wb-var-triangle-down;
+}
+
+.tablesaw-sortable .not-applicable:after {
+  content: "--";
+  display: block;
+}
+.tablesaw-sortable .not-applicable span {
+  display: none;
+}

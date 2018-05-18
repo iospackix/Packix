@@ -1,0 +1,161 @@
+{
+  "_meta": {
+    "sources": [
+      "loopback/common/models",
+      "loopback/server/models",
+      "../common/models",
+      "./models",
+      "../node_modules/loopback-component-passport/lib/models"
+    ],
+    "mixins": [
+      "loopback/common/mixins",
+      "loopback/server/mixins",
+      "../node_modules/loopback-v-computed-mixin/lib",
+      "../node_modules/loopback-ds-timestamp-mixin",
+      "../node_modules/loopback-archive-mixin",
+      "../node_modules/loopback-stats-mixin/dist",
+      "../common/mixins",
+      "./mixins"
+    ]
+  },
+  "Device": {
+    "dataSource": "db",
+    "public": false
+  },
+  "User": {
+    "dataSource": "db",
+    "public": false,
+    "attached": "extend-models/user.js"
+  },
+  "AccessToken": {
+    "dataSource": "db",
+    "public": false
+  },
+  "UserCredential": {
+    "dataSource": "db",
+    "public": false
+  },
+  "UserIdentity": {
+    "dataSource": "db",
+    "public": false
+  },
+  "Account": {
+    "dataSource": "db",
+    "public": true
+  },
+  "AccountToken": {
+    "dataSource": "db",
+    "public": false
+  },
+  "AccountCredential": {
+    "dataSource": "db",
+    "public": false
+  },
+  "AccountIdentity": {
+    "dataSource": "db",
+    "public": false
+  },
+  "ACL": {
+    "dataSource": "db",
+    "public": false
+  },
+  "RoleMapping": {
+    "dataSource": "db",
+    "public": false
+  },
+  "Role": {
+    "dataSource": "db",
+    "public": false
+  },
+  "Package": {
+    "dataSource": "db",
+    "public": true
+  },
+  "Container": {
+    "dataSource": "files",
+    "public": false
+  },
+  "PackageFile": {
+    "dataSource": "db",
+    "public": true
+  },
+  "PackageVersion": {
+    "dataSource": "db",
+    "public": true
+  },
+  "Section": {
+    "dataSource": "db",
+    "public": true
+  },
+  "PackageDownload": {
+    "dataSource": "db",
+    "public": true
+  },
+  "DeviceLinkNonce": {
+    "dataSource": "db",
+    "public": true
+  },
+  "PayPal": {
+    "dataSource": false,
+    "public": true
+  },
+  "PackagePurchase": {
+    "dataSource": "db",
+    "public": true
+  },
+  "PackageScreenshot": {
+    "dataSource": "db",
+    "public": true
+  },
+  "PackageScreenshotFile": {
+    "dataSource": "db",
+    "public": true
+  },
+  "PackageVersionRating": {
+    "dataSource": "db",
+    "public": true
+  },
+  "PackageVersionReview": {
+    "dataSource": "db",
+    "public": true
+  },
+  "Repository": {
+    "public": true
+  },
+  "PackageDownloadRestriction": {
+    "dataSource": "db",
+    "public": true
+  },
+  "AccountGroup": {
+    "dataSource": "db",
+    "public": true
+  },
+  "AccountGroupLink": {
+    "dataSource": "db",
+    "public": true
+  },
+  "PackageGiftLink": {
+    "dataSource": "db",
+    "public": true
+  },
+  "PatreonUser": {
+    "dataSource": "db",
+    "public": true
+  },
+  "PackageCouponCode": {
+    "dataSource": "db",
+    "public": true
+  },
+  "DeveloperPreferences": {
+    "dataSource": "db",
+    "public": true
+  },
+  "DeveloperInfo": {
+    "dataSource": "db",
+    "public": true
+  },
+  "PackageRefundRequest": {
+    "dataSource": "db",
+    "public": true
+  }
+}

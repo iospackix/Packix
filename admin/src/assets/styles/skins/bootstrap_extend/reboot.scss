@@ -1,0 +1,31 @@
+// Name:            Reboot
+// ========================================================================
+
+$link-text-action-color:       $gray !default;
+$link-text-action-hover-color: $gray-light !default;
+
+$link-like-action-color:       $gray !default;
+$link-like-action-hover-color: $color-red-600 !default;
+
+// Links
+// ========================================================================
+a {
+  &.text-body {
+    color: $body-color;
+  }
+  &.text-action {
+    color: $link-text-action-color;
+
+    &:hover, &:focus {
+      color: $link-text-action-hover-color;
+    }
+  }
+
+  &.text-like {
+    color: $link-like-action-color !important;
+
+    &.active, &:hover, &:focus {
+      color: $link-like-action-hover-color !important;
+    }
+  }
+}

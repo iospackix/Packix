@@ -1,0 +1,55 @@
+@include media-breakpoint-down(sm) {
+  .site-navbar {
+    .brand {
+      display: none;
+    }
+    .brand-mobile {
+      display: block;
+    }
+  }
+
+  .site-menubar {
+    $top: $site-navbar-height !default;
+    top: $top;
+
+    height: -webkit-calc(100% - #{$top});
+    height: calc(100% - #{$top});
+
+    backface-visibility: hidden;
+    perspective: 1000;
+
+    -ms-transform: translate(-$site-menubar-unfold-width, 0);
+    @include transform(translate3d(-$site-menubar-unfold-width, 0, 0));
+
+    .site-navbar-collapse-show & {
+      $height: (2*$site-navbar-height);
+      top: (2*$site-navbar-height);
+      height: -webkit-calc(100% - #{$height});
+      height: calc(100% - #{$height});
+    }
+  }
+
+  .site-menubar-footer {
+    visibility: hidden;
+
+    .site-menubar-open & {
+      visibility: visible;
+    }
+  }
+
+  .disable-scrolling {
+    overflow: hidden;
+    height: 100%;
+  }
+
+  body.site-menubar-open {
+    overflow: hidden;
+    height: 100%;
+
+    .page {
+      overflow: hidden;
+      height: 100%;
+      pointer-events: none;
+    }
+  }
+}

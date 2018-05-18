@@ -1,0 +1,45 @@
+
+%site-menu-fold {
+  .site-menu {
+
+    &-category {
+      background: $site-menubar-fold-divider-bg;
+    }
+
+    > .site-menu-item {
+      > .site-menu-sub {
+        background: $site-menubar-fold-sub-bg;
+      }
+    }
+  }
+
+  .site-menubar-light {
+    .site-menu {
+      &-category {
+        background: $site-menubar-light-fold-divider-bg;
+      }
+
+      > .site-menu-item {
+        > .site-menu-sub {
+          background: $site-menubar-light-fold-sub-bg;
+          border: 1px solid $site-menubar-light-fold-sub-border-color;
+        }
+      }
+    }
+  }
+};
+
+
+%site-menubar-section-fold {
+  .site-menubar-section {
+    border-top: 2px solid $site-menubar-fold-divider-bg;
+    border-bottom: 2px solid $site-menubar-fold-divider-bg;
+  }
+
+  .site-menubar-light {
+    .site-menubar-section {
+      border-top: 2px solid $site-menubar-light-fold-divider-bg;
+      border-bottom: 2px solid $site-menubar-light-fold-divider-bg;
+    }
+  }
+};

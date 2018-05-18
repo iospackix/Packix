@@ -1,0 +1,119 @@
+<style>
+  .page-main .list-group {
+    margin: 0;
+    padding-right: 15px;
+  }
+
+  .list-group .avatar {
+    width: 62px;
+  }
+
+  .list-group .card {
+    margin-bottom: 15px;
+  }
+
+  .list-group .card-block {
+    -webkit-transition: border .2s linear, color .2s linear, width .2s linear, background-color .2s linear;
+    -o-transition: border .2s linear, color .2s linear, width .2s linear, background-color .2s linear;
+    transition: border .2s linear, color .2s linear, width .2s linear, background-color .2s linear;
+  }
+
+  .list-group .card-block:hover {
+    cursor: pointer;
+    background-color: #eee;
+  }
+
+  .list-group .list-group-item, .list-group .list-group-item:hover {
+    background-color: transparent;
+  }
+
+  .list-inline {
+    height: 25px;
+  }
+
+  .list-inline li a:hover {
+    text-decoration: none;
+    color: #76838f !important;
+  }
+
+  .detail {
+    background-color: #a2caee !important;
+  }
+
+  strong, b {
+    font-weight: 500;
+  }
+
+  .group-page .card-block {
+    border-top: 1px solid #e4eaec;
+  }
+
+  .head-action-btn {
+    font-size: 12px;
+    padding: 5px;
+    padding-right: 5px;
+    padding-left: 10px;
+    border: none;
+    float: right;
+  }
+
+  .thing {
+    min-height: 0 !important;
+    min-width: 0 !important;
+  }
+
+
+</style>
+
+<div class="page-header">
+  <h1 class="page-title">Developer Info</h1>
+  <div class="page-header-actions">
+    <button type="button" class="btn btn-primary" (click)="saveInfoData();">Save</button>
+  </div>
+</div>
+<div class="page-content container-fluid">
+  <div class="row packages-row" *ngIf="devInfo">
+    <div class="col-lg-12">
+      <div class="panel package-panel panel-bordered">
+        <div class="panel-heading">
+          <h3 class="panel-title">General</h3>
+        </div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-12 col-lg-6">
+              <div class="form-group">
+                <label class="form-control-label">Name</label>
+                <input type="text" class="form-control" [(ngModel)]="devInfo.name" placeholder="Name">
+                <span class="text-help">The name the JB Community knows you by.</span>
+              </div>
+            </div>
+            <div class="col-md-12 col-lg-6">
+              <div class="form-group">
+                <label class="form-control-label">Email</label>
+                <input type="text" class="form-control" [(ngModel)]="devInfo.email" placeholder="Contact Email">
+                <span class="text-help">What email you can be contacted at.</span>
+              </div>
+            </div>
+            <div class="col-md-12 col-lg-6">
+              <div class="form-group">
+                <label class="form-control-label">Twitter Handle</label>
+                <div class="input-group">
+                  <span class="input-group-addon">@</span>
+                  <input type="text" class="form-control" [(ngModel)]="devInfo.twitterHandle" placeholder="Twitter Handle">
+                </div>
+                <span class="text-help">Your Twitter Handle</span>
+              </div>
+            </div>
+            <div class="col-md-12 col-lg-6">
+              <div class="form-group">
+                <label class="form-control-label">Profile Image URL</label>
+                <input type="text" class="form-control" [(ngModel)]="devInfo.profileImageUrl" placeholder="Image URL">
+                <span class="text-help">Link to an image to use as you public developer image.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

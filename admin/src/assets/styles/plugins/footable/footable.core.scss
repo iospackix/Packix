@@ -1,0 +1,408 @@
+@import 'vars';
+
+// Variables
+$charPlus: $wb-var-plus;
+$charMinus: $wb-var-minus;
+
+$charCirclePlus: $wb-var-plus-circle;
+$charCircleMinus: $wb-var-minus-circle;
+
+$charSearch: $wb-var-search;
+$charRemove: $wb-var-close;
+$charPencil: $wb-var-pencil;
+$charTrash: $wb-var-trash;
+
+$charArrowUp: $wb-var-arrow-up;
+$charArrowDown: $wb-var-arrow-down;
+$charArrowLeft: $wb-var-arrow-left;
+$charArrowRight: $wb-var-arrow-right;
+
+$charArrowSmallUp: $wb-var-triangle-up;
+$charArrowSmallDown: $wb-var-triangle-down;
+$charArrowSmallLeft: $wb-var-triangle-left;
+$charArrowSmallRight: $wb-var-triangle-right;
+
+$charArrowAltUp: $wb-var-chevron-up;
+$charArrowAltDown: $wb-var-chevron-down;
+$charArrowAltLeft: $wb-var-chevron-left;
+$charArrowAltRight: $wb-var-chevron-right;
+
+$charCircleArrowUp: $wb-var-dropup;
+$charCircleArrowDown: $wb-var-dropdown;
+$charCircleArrowLeft: $wb-var-dropleft;
+$charCircleArrowRight: $wb-var-dropright;
+
+$charArrowTinyUp: $wb-var-chevron-up-mini;
+$charArrowTinyDown: $wb-var-chevron-down-mini;
+$charArrowTinyLeft: $wb-var-chevron-left-mini;
+$charArrowTinyRight: $wb-var-chevron-right-mini;
+
+$charArrowSmallUpDown: $wb-var-sort-vertical;
+
+
+$colorStriping: $table-bg-accent;
+$tr-hover: $table-bg-hover;
+
+$fontPath: $wb-font-path;
+$fontFootable: $wb-font-family;
+
+@mixin ToggleTheme($charCirclePlus, $charCircleMinus){
+  > tbody > tr {
+    > td > span.fooicon-minus:before {
+      content: $charCircleMinus;
+      &:hover{
+        background-color: $tr-hover;
+      }
+    }
+
+    > td > span.fooicon-plus:before {
+      content: $charCirclePlus;
+    }
+  }
+}
+
+// Classes
+
+.footable {
+  width: 100%;
+
+  span.fooicon {
+    font-family: $fontFootable;
+  }
+
+  &.breakpoint {
+    > tbody > tr {
+      > td {
+        border-bottom:none;
+        & > span.footable-toggle:before {
+          content: $charCircleMinus;
+        }
+      }
+
+      &:hover:not(.footable-row-detail) {
+        cursor: pointer;
+      }
+
+      > td.footable-cell-detail {
+        border-top:none;
+      }
+
+      > td > span.footable-toggle {
+        display: inline-block;
+        font-family: $fontFootable;
+        speak: none;
+        font-style: normal;
+        font-weight: normal;
+        font-variant: normal;
+        text-transform: none;
+        -webkit-font-smoothing: antialiased;
+        padding-right:5px;
+        font-size:14px;
+        
+        &:before {
+          content: $charCirclePlus;
+        }
+      }
+    }
+
+    &.toggle-circle {
+      @include ToggleTheme($charCirclePlus, $charCircleMinus);
+    }
+
+    &.toggle-arrow {
+      @include ToggleTheme($charArrowRight, $charArrowDown);
+    }
+
+    &.toggle-arrow-small {
+      @include ToggleTheme($charArrowSmallRight, $charArrowSmallDown);
+    }
+
+    &.toggle-arrow-circle {
+      @include ToggleTheme($charCircleArrowRight, $charCircleArrowDown);
+    }
+
+    &.toggle-arrow-tiny {
+      @include ToggleTheme($charArrowTinyRight, $charArrowTinyDown);
+    }
+
+    &.toggle-medium > tbody > tr {
+      > td > span.footable-toggle {
+        font-size:18px;
+      }
+    }
+
+    &.toggle-large > tbody > tr {
+      > td > span.footable-toggle {
+        font-size:24px;
+      }
+    }
+  }
+
+  /** SORTING **/
+  > thead > tr > th {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: -moz-none;
+    -ms-user-select: none;
+    user-select: none;
+
+    &.footable-sortable:hover {
+      cursor:pointer;
+    }
+
+    &.footable-asc > span.fooicon-sort-asc:before {
+      content: $charArrowSmallDown;
+      opacity: 0.5;
+    }
+
+    &.footable-desc > span.fooicon-sort-desc:before {
+      content: $charArrowSmallUp;
+      opacity: 0.5;
+    }
+
+    > span.fooicon-sort {
+      display: inline-block;
+      font-family: $fontFootable;
+      speak: none;
+      font-style: normal;
+      font-weight: normal;
+      font-variant: normal;
+      text-transform: none;
+      -webkit-font-smoothing: antialiased;
+	  padding-left: 5px;
+
+      &:before {
+        content: $charArrowSmallUpDown;
+        opacity: 0.2;
+      }
+    }
+  }
+
+  // FILTERING: for v3
+  /** FILTERING **/
+  > thead > tr.footable-filtering > th {
+    //for responsive ---start
+    .form-inline {
+      .form-group {
+        display: block;
+
+        @include media-breakpoint-up(md) {
+          display: inline-block;
+        }
+      }
+      .form-control {
+        display: block;
+        width: 100%;
+
+        @include media-breakpoint-up(md) {
+          display: inline-block;
+          width: auto;
+        }
+      }
+    }
+
+    //add for v4a6-dev 20170302 ---Kevin_y
+    > .form-inline {
+      justify-content: flex-end;
+    }
+    //---Kevin_y
+
+    .input-group-btn {
+      width: 1%;
+
+      @include media-breakpoint-up(md) {
+        width: auto;
+      }
+      //for responsive ---end
+
+      &:not(:first-child) > .btn:hover {
+        z-index: 2;
+      }
+    }
+
+    ul.dropdown-menu > li > a {
+      padding: 3px 20px;
+
+      &.checkbox input[type="checkbox"] {
+        margin-top: 4px;
+      }
+
+      &:hover {
+        background-color: $tr-hover;
+      }
+    }
+
+    span.fooicon-search:before {
+      content: $charSearch;
+    }
+
+    span.fooicon-remove:before {
+      content: $charRemove;
+    }
+  }
+
+  // EDITING: for v3
+  /** EDITING BODY**/
+  > tbody > tr > td {
+    span.fooicon-pencil:before {
+      content: $charPencil;
+    }
+
+    span.fooicon-trash:before {
+      content: $charTrash;
+    }
+  }
+  /** EDITING FOOT**/
+  > tfoot > tr > td {
+    span.fooicon-pencil:before {
+      content: $charPencil;
+    }
+  }
+
+  // Pagination: for v3
+  /** PAGINATION **/
+  > tfoot .pagination {
+    margin: 0;
+    justify-content: center;//add for v4a6-dev 20170302 ---Kevin_y
+
+    > li {
+      display: inline;
+
+      &.footable-page {
+        display: none;
+
+        &.visible {
+          display: inline;
+        }
+      }
+
+      &:first-child {
+        > a {
+          margin-left: 0;
+          @include border-left-radius($border-radius);
+        }
+      }
+      &:last-child {
+        > a {
+          @include border-right-radius($border-radius);
+        }
+      }
+
+      &.active > a {
+        @include plain-hover-focus {
+          z-index: 2;
+          color: $pagination-active-color;
+          cursor: default;
+          background-color: $pagination-active-bg;
+          border-color: $pagination-active-border;
+        }
+      }
+
+      &.disabled > a {
+        @include plain-hover-focus {
+          color: $pagination-disabled-color;
+          cursor: $cursor-disabled;
+          background-color: $pagination-disabled-bg;
+          border-color: $pagination-disabled-border;
+        }
+      }
+    }
+
+    a {
+      position: relative;
+      float: left; // Collapse white-space
+      padding: $pagination-padding-y $pagination-padding-x;
+      margin-left: -1px;
+      line-height: $line-height;
+      color: $pagination-color;
+      text-decoration: none;
+      background-color: $pagination-bg;
+      border: $pagination-border-width solid $pagination-border-color;
+
+      @include hover-focus {
+        color: $pagination-hover-color;
+        background-color: $pagination-hover-bg;
+        border-color: $pagination-hover-border;
+      }
+    }
+  }
+  
+  &.no-paging .hide-if-no-paging {
+    display: none;
+  }
+}
+
+.footable-row-detail-inner {
+	display:table;
+}
+
+.footable-row-detail-row {
+	display: table-row;
+	line-height: 1.5em;
+}
+
+.footable-row-detail-group  {
+	display: block;
+	line-height: 2em;
+	font-size: 1.2em;
+	font-weight: $font-weight-bold;
+}
+
+.footable-row-detail-name {
+	display: table-cell;
+	font-weight: $font-weight-bold;
+	padding-right: 0.5em;
+}
+
+.footable-row-detail-value {
+	display: table-cell;
+}
+
+.footable-odd {
+	background-color: $colorStriping;
+}
+
+//table style
+/** fix table-hover **/
+.table-hover {
+  &.footable {
+    tbody tr.footable-detail-row {
+      &:hover {
+        background-color: transparent;
+      }
+    }
+  }
+}
+
+/** fix table-bordered/hover/striped style in Footable **/
+.table-bordered,
+.table-hover,
+.table-striped {
+  &.footable {
+    tbody tr.footable-detail-row {
+      > td {
+        padding: 0;
+      }
+    }
+  }
+}
+
+// To repair and repair / repair for repair's sake PS:MDZZ
+// .footable-detail-row .footable-details.table-bordered {
+//   > tbody > tr:first-child,
+//   > thead > tr:first-child {
+//     > th,
+//     > td {
+//       border-top-width: 0 !important;
+//     }
+//   } 
+
+//   > tbody > tr:last-child,
+//   > tfoot > tr:last-child {
+//     > th,
+//     > td {
+//       border-bottom-width: 0 !important;
+//     }
+//   } 
+// } 

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/assets/css/styles.css" />
+<link rel="stylesheet" type="text/css" href="/assets/css/fa-regular.min.css" />
+<link rel="stylesheet" type="text/css" href="/assets/css/fa-solid.min.css" />
+<link rel="stylesheet" type="text/css" href="/assets/css/fontawesome.min.css" />
+  <title>Coupon - Success</title>
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" />
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-3560559626882023",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-118668002-1" />
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-118668002-1');
+  </script>
+  <style>
+    body {
+      -webkit-text-size-adjust:none;
+      -webkit-touch-callout:none;
+      -webkit-user-select:text;
+      -webkit-tap-highlight-color: rgba(0,0,0,0);
+      margin: 9px auto;
+      width: 100vw;
+      max-width: 414px !important;
+      background-color: #f4f4f4;
+      min-font-size: 13px;
+      text-align:center;
+      font-family: "SF Pro Display","SF Pro Icons","Helvetica Neue","Helvetica","Arial",sans-serif;
+      font-weight:500;
+      font-size:15px;
+    }
+    .link-button {
+      width: 80%;
+      padding: 12px 0px;
+      border-radius: 10px;
+      overflow: hidden;
+      margin: auto;
+      margin-top: 25px;
+      text-align: left;
+      padding-left: 20px;
+      margin-bottom: 18px;
+      background: linear-gradient(270deg, #16da82, #29a56d) !important;
+      font-family: "SF Pro Text","SF Pro Icons","Helvetica Neue","Helvetica","Arial",sans-serif;
+      margin-top: 10px;
+      letter-spacing: 0.5px;
+      width: 60%;
+    }
+
+    .link-device {
+
+      font-size: 14px;
+      font-weight: 400;
+      color: white;
+      text-align: left;
+    }
+
+    .link-icon {
+      float: right;
+      margin-right: 20px;
+    }
+  </style>
+</head>
+<body>
+<div>
+  <div class="contents-container" style="text-align: center;">
+    <panel class="modern">
+      <panel-body style="text-align:center;">
+        <h3>Success</h3>
+        <p>You have redeemed a code for:</p>
+        <h2 id="packageName"></h2>
+        <div class="link-button" style="background: linear-gradient(270deg, #16da82, #29a56d) !important; font-size: 16px; font-weight: 700; letter-spacing: 0.5px;">
+          <a style="padding-top: 0px" class="link-device" href="/account">
+            <label style="color: white !important">Go to Account...<i class="fas fa-arrow-right link-icon"></i></label>
+          </a>
+        </div>
+      </panel-body>
+    </panel>
+  </div>
+</div>
+
+<script type="text/javascript">
+
+  function getJSON(url, callback) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', url, true);
+    xhr.responseType = 'json';
+    xhr.onload = function() {
+      var status = xhr.status;
+      if (status === 200) {
+        callback(null, xhr.response);
+      } else {
+        callback(status, xhr.response);
+      }
+    };
+    xhr.send();
+  }
+
+  function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+      results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+  }
+
+  (function() {
+    var codeId = getParameterByName('code');
+    if (!codeId) {
+      window.location.href = '/account';
+    }
+    //if (redirectURL) {
+      //document.getElementById("google").href="/api/auth/google?next=" + redirectURL;
+      //  document.getElementById("patreon").href="/api/auth/patreon?next=" + redirectURL;
+   // }
+
+    getJSON('/api/PackageCouponCodes/' + codeId, function(status, response) {
+        if (response['package']['name']) {
+          document.getElementById("packageName").innerHTML = response['package']['name'];
+        } else {
+          window.location.href = '/account';
+        }
+    });
+    // your page initialization code here
+    // the DOM will be available here
+
+  })();
+</script>
+</body>
+</html>

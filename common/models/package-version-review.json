@@ -1,0 +1,118 @@
+{
+  "name": "PackageVersionReview",
+  "plural": "PackageVersionReviews",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "mixins": {
+    "TimeStamp": {
+      "createdAt": "createdOn",
+      "updatedAt": "updatedOn",
+      "silenceWarnings": false
+    },
+    "Computed": {
+      "properties": {
+        "rating": "getAssociatedRating",
+        "clientTypeN": "getClientName"
+      }
+    },
+    "Archive": {
+      "deletedAt": "deletedAt",
+      "isDeleted": "isDeleted"
+    }
+  },
+  "hidden": [
+    "clientIp",
+    "value"
+  ],
+  "ownerIdPath": "package.accountId",
+  "allowedMethods": [
+    "deleteById",
+    "prototype.patchAttributes",
+    "find",
+    "findOne",
+    "findById"
+  ],
+  "properties": {
+    "clientIp": {
+      "type": "string",
+      "required": true,
+      "index": true
+    },
+    "clientType": {
+      "type": "string",
+      "required": true,
+      "index": true,
+      "default": "UNKNOWN"
+    },
+    "title": {
+      "type": "string",
+      "required": true,
+      "default": "No Title Provided"
+    },
+    "description": {
+      "type": "string",
+      "required": true,
+      "default": "No Details were Provided"
+    },
+    "packageId": {
+      "type": "string",
+      "required": true,
+      "index": true
+    },
+    "packageVersionId": {
+      "type": "string",
+      "required": true,
+      "index": true
+    },
+    "rating": {
+      "type": "PackageVersionRating"
+    },
+    "versionName": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "package": {
+      "type": "belongsTo",
+      "model": "Package",
+      "foreignKey": "",
+      "allowedMethods": [
+        "get"
+      ]
+    },
+    "packageVersion": {
+      "type": "belongsTo",
+      "model": "PackageVersion",
+      "foreignKey": "",
+      "allowedMethods": [
+        "get"
+      ]
+    }
+  },
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    },
+    {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW"
+    },
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "dynamicOwner",
+      "permission": "ALLOW"
+    }
+  ],
+  "methods": {}
+}

@@ -1,0 +1,126 @@
+<style>
+  .page-main .list-group {
+    margin: 0;
+    padding-right: 15px;
+  }
+
+  .list-group .avatar {
+    width: 62px;
+  }
+
+  .list-group .card {
+    margin-bottom: 15px;
+  }
+
+  .list-group .card-block {
+    -webkit-transition: border .2s linear, color .2s linear, width .2s linear, background-color .2s linear;
+    -o-transition: border .2s linear, color .2s linear, width .2s linear, background-color .2s linear;
+    transition: border .2s linear, color .2s linear, width .2s linear, background-color .2s linear;
+  }
+
+  .list-group .card-block:hover {
+    cursor: pointer;
+    background-color: #eee;
+  }
+
+  .list-group .list-group-item, .list-group .list-group-item:hover {
+    background-color: transparent;
+  }
+
+  .list-inline {
+    height: 25px;
+  }
+
+  .list-inline li a:hover {
+    text-decoration: none;
+    color: #76838f !important;
+  }
+
+  .detail {
+    background-color: #a2caee !important;
+  }
+
+
+</style>
+<div class="page-main">
+  <div ng2FileDrop [uploader]=packageUploader style="height:100%; overflow-y: auto;" class="p-15">
+    <div class="row packages-row">
+      <!--<div class="list-group-item col-lg-4 col-md-6 col-sm-12 col-xs-12 friend-info" *ngFor="let item of packageUploader.queue" *ngIf="item.uploader.progress < 100">-->
+        <!--<div class="card card-shadow w-full">-->
+          <!--<div class="card-block text-center bg-white p-20">-->
+            <!--<a href="#" class="mb-5">-->
+              <!--<i class="icon fa fa-archive" style="margin:0px; !important; font-size:4em;"></i>-->
+            <!--</a>-->
+            <!--<div class="progress progress-lg" style="margin-bottom:0px;">-->
+              <!--<div class="progress-bar progress-bar-success" [style.width.%]="item.uploader.progress"-->
+                   <!--role="progressbar">-->
+                <!--{{item.uploader.progress}}%-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+      <ng-container *ngFor="let item of packageUploader.queue">
+        <div class="list-group-item col-lg-4 col-md-6 col-sm-12 col-xs-12 friend-info" *ngIf="item.uploader.progress < 100">
+          <div class="card card-shadow w-full">
+            <div class="card-block text-center bg-white p-20">
+              <a href="#" class="mb-5">
+                <i class="icon fa fa-archive" style="margin:0px; !important; font-size:4em;"></i>
+              </a>
+              <div class="progress progress-lg" style="margin-bottom:0px;">
+                <div class="progress-bar progress-bar-success" [style.width.%]="item.uploader.progress"
+                     role="progressbar">
+                  {{item.uploader.progress}}%
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-4" *ngFor="let package of packages">
+          <div class="panel package-panel panel-bordered">
+            <div class="panel-heading">
+              <h3 class="panel-title" [routerLink]="package.id" *ngIf="package.name">{{ package.name }}
+                <span class="panel-desc badges">
+                   <span *ngIf="!package.visible" class="badge badge-danger">Hidden</span>
+                  <span *ngIf="package.visible" class="badge badge-primary">Visible</span>
+                  <span *ngIf="package.hasRestrictions" class="badge badge-warning">Restricted</span>
+                </span>
+              </h3>
+              <div class="panel-actions panel-actions-keep">
+                <ui-switch container="body" tooltip="Toggle the visibility of this package" size="small" [checked]="package.visible" (change)="togglePackageVisibility(package)"></ui-switch>
+              </div>
+            </div>
+            <div class="alert alert-danger" *ngIf="!package.visible" role="alert">
+              This package is currently hidden, users will not be able to see or download it.
+            </div>
+            <div [routerLink]="package.id" class="panel-body">
+              <h5>Description</h5>
+              <p *ngIf="package.shortDescription">{{package.shortDescription}}</p>
+              <h5 *ngIf="package.section">Section</h5>
+              <p *ngIf="package.section">{{package.section.name}}</p>
+              <h5>Restrictions</h5>
+              <div *ngIf="package.downloadRestrictions && package.downloadRestrictions.length > 0" style="padding-bottom: 5px;">
+                <span *ngFor="let restriction of package.downloadRestrictions"
+                      [ngClass]="['badge mr-5 mt-5', {'patreon':'badge-warning', 'paypal-payment':'badge-primary', 'cydia-store':'badge-info'}[restriction.type]]">
+                  <ng-container *ngIf="restriction.type == 'patreon'">Patreon: {{restriction.data.rewardAmount/100 | currency}} or more</ng-container>
+                  <ng-container *ngIf="restriction.type == 'paypal-payment'">PayPal: {{restriction.data.price | currency}}</ng-container>
+                  <ng-container *ngIf="restriction.type == 'cydia-store'">Cydia Store: {{restriction.data.packageIdentifier}}</ng-container>
+                </span>
+              </div>
+              <div *ngIf="!package.downloadRestrictions || package.downloadRestrictions.length < 1">
+                <p>No Download Restrictions</p>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="site-action" data-plugin="actionBtn">
+    <input #packageUploadButton type="file" name="upload" ng2FileSelect [uploader]="packageUploader">
+    <button type="button" class="site-action-toggle btn-raised btn btn-success btn-floating" (click)="packageUploadButton.click()">
+      <i class="front-icon wb-upload animation-scale-up" aria-hidden="true"></i>
+    </button>
+  </div>
+</div>

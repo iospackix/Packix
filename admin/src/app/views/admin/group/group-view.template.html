@@ -1,0 +1,109 @@
+<style>
+  .page-main .list-group {
+    margin: 0;
+    padding-right: 15px;
+  }
+
+  .list-group .avatar {
+    width: 62px;
+  }
+
+  .list-group .card {
+    margin-bottom: 15px;
+  }
+
+  .list-group .card-block {
+    -webkit-transition: border .2s linear, color .2s linear, width .2s linear, background-color .2s linear;
+    -o-transition: border .2s linear, color .2s linear, width .2s linear, background-color .2s linear;
+    transition: border .2s linear, color .2s linear, width .2s linear, background-color .2s linear;
+  }
+
+  .list-group .card-block:hover {
+    cursor: pointer;
+    background-color: #eee;
+  }
+
+  .list-group .list-group-item, .list-group .list-group-item:hover {
+    background-color: transparent;
+  }
+
+  .list-inline {
+    height: 25px;
+  }
+
+  .list-inline li a:hover {
+    text-decoration: none;
+    color: #76838f !important;
+  }
+
+  .detail {
+    background-color: #a2caee !important;
+  }
+
+  strong, b {
+    font-weight: 500;
+  }
+
+  .group-page .card-block {
+    border-top: 1px solid #e4eaec;
+  }
+
+  .head-action-btn {
+    font-size: 12px;
+    padding: 5px;
+    padding-right: 5px;
+    padding-left: 10px;
+    border: none;
+    float: right;
+  }
+
+  .thing {
+    min-height: 0 !important;
+    min-width: 0 !important;
+  }
+
+
+</style>
+<div class="page-content container-fluid group-page">
+  <div class="row">
+    <div class="col-xxl-3 col-xl-4 col-lg-12" style="float: right;" *ngIf="group">
+      <div class="card">
+        <div class="card-block">
+          <h4 style="margin-top: 0px;" class="project-option-title">Group
+            <button type="button" class="btn btn-icon btn-default btn-outline head-action-btn">
+              <i class="icon wb-pencil" aria-hidden="true"></i>
+            </button>
+          </h4>
+          <p class="mb-5">
+            <span><strong>Name: </strong></span>{{group.name}}
+          </p>
+          <p class="mb-5">
+            <span><strong>Description: </strong></span>{{group.description}}
+          </p>
+          <p class="mb-5">
+            <span><strong>Access Type: </strong></span>{{group.packageAccessTypeDescription}}
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-xxl-9 col-xl-8 col-lg-12" *ngIf="group">
+      <div class="card">
+        <div class="card-block" style="padding: 0; border-top: none;">
+          <account-select></account-select>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-block" style="padding: 0; border-top: none;">
+          <button style="width: 100%;" class="btn btn-primary" (click)="addAccountToGroup()">
+            Add to Group
+          </button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-block" style="border-top: none;">
+          <accounts-table [accounts]="accounts"></accounts-table>
+        </div>
+      </div>
+  </div>
+</div>

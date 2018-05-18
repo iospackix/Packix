@@ -1,0 +1,6 @@
+
+.layout-boxed {
+  @include media-breakpoint-up(xl) {
+    background: $layout-boxed-bg;
+  }
+}

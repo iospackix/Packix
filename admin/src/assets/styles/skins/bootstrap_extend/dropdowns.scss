@@ -1,0 +1,171 @@
+// Name:            Dropdown menus
+//
+// Component:       `dropdown`
+//
+// Modifiers:       `dropdown-submenu`
+//                  `dropdown-menu-primary`
+//                  `dropdown-menu-success`
+//                  `dropdown-menu-info`
+//                  `dropdown-menu-warning`
+//                  `dropdown-menu-danger`
+//                  `dropdown-menu-dark`
+//                  `dropdown-menu-media`
+//
+// Markup:
+//
+// <!-- dropdown -->
+// <div class="dropdown-menu">
+//   <li><a href="">...</a></li>
+//   <li class="active"><a href="">...</a></li>
+// </div>
+//
+// ========================================================================
+
+// Variables
+// ========================================================================
+
+// primary
+$dropdown-primary-link-active-color: $inverse !default;
+$dropdown-primary-link-active-bg:    $brand-primary !default;
+
+// success
+$dropdown-success-link-active-color: $inverse !default;
+$dropdown-success-link-active-bg:    $brand-success !default;
+
+// info
+$dropdown-info-link-active-color:    $inverse !default;
+$dropdown-info-link-active-bg:       $brand-info !default;
+
+// warning
+$dropdown-warning-link-active-color: $inverse !default;
+$dropdown-warning-link-active-bg:    $brand-warning !default;
+
+// danger
+$dropdown-danger-link-active-color:  $inverse !default;
+$dropdown-danger-link-active-bg:     $brand-danger !default;
+
+// dark
+$dropdown-dark-link-active-color:    $inverse !default;
+$dropdown-dark-link-active-bg:       $brand-dark !default;
+
+// Dropdown menu
+// ========================================================================
+
+.dropdown-menu {
+  &.bullet {
+    &:before {
+      border-bottom-color: $dropdown-border-color;
+    }
+
+    &:after {
+      border-bottom-color: $dropdown-bg;
+    }
+  }
+}
+
+
+.dropup,
+.navbar-fixed-bottom .dropdown {
+  // Different positioning for bottom up menu
+  .dropdown-menu {
+
+    &.bullet {
+
+      &:before {
+        border-top-color: $dropdown-border-color;
+      }
+
+      &:after {
+        border-top-color: $dropdown-bg;
+      }
+    }
+  }
+}
+
+
+// Dropdown Menu With Media
+// ========================================================================
+$dropdown-menu-media-border:                             $dropdown-border !default;
+
+
+$dropdown-menu-media-header-bg:                          $inverse !default;
+
+$dropdown-menu-media-footer-color:                       $gray !default;
+$dropdown-menu-media-footer-bg:                          $gray-lightest !default;
+$dropdown-menu-media-footer-hover-color:                 $link-hover-color !default;
+$dropdown-menu-media-footer-btn-hover-color:             $link-hover-color !default;
+
+
+.dropdown-menu-media {
+
+  .dropdown-menu-header {
+    background-color: $dropdown-menu-media-header-bg;
+    border-bottom: 1px solid $dropdown-menu-media-border;
+  }
+
+  > .dropdown-menu-footer {
+    border-top: 1px solid $dropdown-menu-media-border;
+    background-color: $dropdown-menu-media-footer-bg;
+
+    > a {
+      color: $dropdown-menu-media-footer-color !important;
+
+      &:hover {
+        color: $dropdown-menu-media-footer-hover-color !important;
+      }
+    }
+
+    > .dropdown-menu-footer-btn {
+
+      &:hover {
+        color: $dropdown-menu-media-footer-btn-hover-color !important;
+      }
+    }
+  }
+}
+
+
+// Color Modifier
+// ========================================================================
+
+// Modifier: `dropdown-menu-primary`
+// -------------------------
+
+.dropdown-menu-primary {
+  @include dropdown-states-variant(".dropdown-menu-primary", $dropdown-primary-link-active-color, $dropdown-primary-link-active-bg);
+}
+
+// Modifier: `dropdown-menu-success`
+// -------------------------
+
+.dropdown-menu-success {
+  @include dropdown-states-variant(".dropdown-menu-success", $dropdown-success-link-active-color, $dropdown-success-link-active-bg);
+}
+
+// Modifier: `dropdown-menu-info`
+// -------------------------
+
+.dropdown-menu-info {
+  @include dropdown-states-variant(".dropdown-menu-info", $dropdown-info-link-active-color, $dropdown-info-link-active-bg);
+}
+
+// Modifier: `dropdown-menu-warning`
+// -------------------------
+
+.dropdown-menu-warning {
+  @include dropdown-states-variant(".dropdown-menu-warning", $dropdown-warning-link-active-color, $dropdown-warning-link-active-bg);
+}
+
+// Modifier: `dropdown-menu-danger`
+// -------------------------
+
+.dropdown-menu-danger {
+  @include dropdown-states-variant(".dropdown-menu-danger", $dropdown-danger-link-active-color, $dropdown-danger-link-active-bg);
+}
+
+// Modifier: `dropdown-menu-dark`
+// -------------------------
+
+.dropdown-menu-dark {
+  @include dropdown-states-variant(".dropdown-menu-dark", $dropdown-dark-link-active-color, $dropdown-dark-link-active-bg);
+}

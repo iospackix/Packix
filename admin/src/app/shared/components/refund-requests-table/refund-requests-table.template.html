@@ -1,0 +1,163 @@
+<div class="refund-requests-table">
+  <div class="form-group" style="width: 100%;">
+    <div class="input-group">
+      <input type="text" [ngModel]="searchText" (ngModelChange)="searchStroke($event)" class="form-control" placeholder="Search...">
+    </div>
+  </div>
+  <data-table id="requests-grid"
+              headerTitle=""
+              [items]="items"
+              [itemCount]="itemCount"
+              [limit]="10"
+              (reload)="reloadItems($event)"
+              [pagination]="true"
+              [indexColumn]="false"
+              [header]="false"
+              [rowColors]="rowColors"
+              [substituteRows]="false"
+              [expandableRows]="true"
+  >
+
+    <ng-template #dataTableExpand let-item="item">
+      <div class="row">
+        <div class="col-md-6 col-lg-6">
+          <h5 style="font-weight: 600 !important; font-size: 1.15rem;">Purchase</h5>
+          <p class="mb-5">
+            <span><strong>Date: </strong></span>{{ item.purchase.createdOn | amLocal | amDateFormat: 'lll' }}
+          </p>
+          <p class="mb-5">
+            <span><strong>Amount: </strong></span>{{ item.purchase.details.amount.value | number : '1.2-2' }}
+          </p>
+          <p class="mb-5">
+            <span><strong>Fee: </strong></span>{{ item.purchase.details.feeAmount | number : '1.2-2' }}
+          </p>
+        </div>
+        <div class="col-md-6 col-lg-6">
+          <h5 style="font-weight: 600 !important; font-size: 1.15rem;">Request</h5>
+          <p class="mb-5">
+            <span><strong>Created On: </strong></span>{{ item.createdOn | amLocal | amDateFormat: 'lll' }}
+          </p>
+        </div>
+        <div class="col-md-12 col-lg-12">
+          <h5 style="font-weight: 600 !important; font-size: 1.15rem;">Downloads</h5>
+          <table class="table" style="width: 100%;" *ngIf="item.downloads.length > 0">
+            <thead style="width: 100%">
+            <tr style="width: 100%">
+              <th scope="col">Device</th>
+              <th scope="col">iOS Version</th>
+              <th scope="col">Country Code</th>
+              <th scope="col">Package Version</th>
+              <th scope="col">Date</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let download of item.downloads">
+              <td>{{ download.deviceModelName }}</td>
+              <td>{{ download.clientVersion }}</td>
+              <td>{{ download.clientCountry }}</td>
+              <td>{{ download.packageVersion.version }}</td>
+              <td>{{ download.updatedOn | amLocal | amDateFormat: 'lll'}}</td>
+            </tr>
+            </tbody>
+          </table>
+          <p *ngIf="item.downloads.length < 1">
+            The user has not downloaded the package since they purchased it.
+          </p>
+        </div>
+        <div class="col-md-12 col-lg-12" *ngIf="item.relatedRequests.length > 0">
+          <h5 style="font-weight: 600 !important; font-size: 1.15rem;">Other User Requests</h5>
+          <table class="table" style="width: 100%;">
+            <thead style="width: 100%">
+            <tr style="width: 100%">
+              <th scope="col">Package</th>
+              <th scope="col">Requested On</th>
+              <th scope="col">Reason</th>
+              <th scope="col">Status</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let request of item.relatedRequests">
+              <td>{{ request.package.name }}</td>
+              <td>{{ request.createdOn | amLocal | amDateFormat: 'lll'}}</td>
+              <td><p>{{ request.reason }}</p></td>
+              <td>
+                <span [ngClass]="['badge', {'accepted':'badge-success', 'pending':'badge-info', 'declined':'badge-danger'}[ request.status]]">{{request.status}}</span>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </ng-template>
+    <data-table-column
+      [property]="'profileName'"
+      [header]="'Account'"
+      [sortable]="true"
+      [resizable]="false"
+      [width]="'30%'">
+      <ng-template #dataTableCell let-item="item">
+        <div class="account-select thing" style="min-height: min-content; display: table;">
+          <img class="account-photo" [src]="item.account.profilePhoto" />
+          <div class="account-name">{{item.account.profileName}}</div>
+          <div class="account-email" style="margin-top: -5px;">{{item.account.profileEmail}}</div>
+        </div>
+      </ng-template>
+    </data-table-column>
+    <data-table-column
+      [property]="'reason'"
+      [header]="'Reason'"
+      [sortable]="false"
+      [resizable]="false"
+      [width]="'40%'">
+      <ng-template #dataTableCell let-item="item">
+        <p>{{item.reason}}</p>
+      </ng-template>
+    </data-table-column>
+    <data-table-column
+      [property]="'status'"
+      [header]="'Status'"
+      [sortable]="true"
+      [resizable]="false"
+      [width]="'12.5%'">
+      <ng-template #dataTableCell let-item="item">
+        <span [ngClass]="['badge', {'accepted':'badge-success', 'pending':'badge-info', 'declined':'badge-danger'}[ item.status]]">
+              {{item.status}}
+        </span>
+      </ng-template>
+    </data-table-column>
+    <data-table-column
+      [header]="'Actions'"
+      [resizable]="false"
+      [width]="'17.5%'">
+      <ng-template #dataTableCell let-item="item">
+        <div class="btn-group btn-group-xs" style="width: 100%;">
+          <button (click)="acceptRequest(item.id)" type="button" style="width: 50%; text-align: center;" class="btn btn-icon btn-success" container="body" tooltip="Accept Refund Request"><i class="icon wb-check" aria-hidden="true"></i> Accept</button>
+          <button (click)="declineRequest(item.id)" type="button" style="width: 50%; text-align: center;" class="btn btn-icon btn-danger" container="body" tooltip="Decline Refund Request"><i class="icon wb-close" aria-hidden="true"></i> Decline</button>
+        </div>
+      </ng-template>
+    </data-table-column>
+  </data-table>
+  <ng-template #declineModal>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Decline Refund Request</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="form-group">
+            <label class="form-control-label">Decline Reason</label>
+            <textarea rows="2" class="form-control" [(ngModel)]="declineReason" placeholder="Reason for declining this refund request..."></textarea>
+            <span class="text-help">Please tell the user why you are declining their refund request.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-default" (click)="modalRef.hide()">Close</button>
+      <button type="button" class="btn btn-primary" (click)="confirmDeclineRequest()">Submit Decline</button>
+    </div>
+  </ng-template>
+</div>
